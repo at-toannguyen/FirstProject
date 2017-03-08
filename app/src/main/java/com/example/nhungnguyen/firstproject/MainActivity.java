@@ -79,20 +79,4 @@ public class MainActivity extends AppCompatActivity {
         else
             return null;
     }
-
-//    public CharSequence getTextCb() {
-//        String text = null;
-//        List<CheckBox> items = new ArrayList<CheckBox>();
-//        items.add(cb1);
-//        items.add(cb2);
-//        items.add(cb3);
-//        items.add(cb4);
-//        items.add(cb5);
-//        items.add(cb6);
-//        for (CheckBox item : items) {
-//            if (item.isChecked()) {
-//                text += item.getText().toString();
-//            }
-//        }
-//    }
 }
