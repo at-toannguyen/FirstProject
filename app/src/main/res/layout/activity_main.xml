@@ -8,12 +8,6 @@
     tools:context="com.example.nhungnguyen.firstproject.MainActivity"
     android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/spin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:prompt="@string/spinner_title">
-    </Spinner>
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
