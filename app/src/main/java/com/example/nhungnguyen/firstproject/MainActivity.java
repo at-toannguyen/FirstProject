@@ -4,78 +4,81 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    Button bt;
-    EditText user, pass;
-    RadioButton male, female;
-    RadioGroup rdgr;
-    CheckBox cb1, cb2, cb3, cb4, cb5, cb6;
+    //Khai bao bien
+    private Button mBtn;
+    private EditText mUser, mPass;
+    private RadioButton mMale, mFemale;
+    private RadioGroup mRbgr;
+    private CheckBox mChk1, mChk2, mChk3, mChk4, mChk5, mChk6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bt = (Button) findViewById(R.id.bt);
-        user = (EditText) findViewById(R.id.user);
-        pass = (EditText) findViewById(R.id.pass);
-        rdgr = (RadioGroup) findViewById(R.id.rdgr);
-        male = (RadioButton) findViewById(R.id.male);
-        female = (RadioButton) findViewById(R.id.female);
-        cb1 = (CheckBox) findViewById(R.id.cb1);
-        cb2 = (CheckBox) findViewById(R.id.cb2);
-        cb3 = (CheckBox) findViewById(R.id.cb3);
-        cb4 = (CheckBox) findViewById(R.id.cb4);
-        cb5 = (CheckBox) findViewById(R.id.cb5);
-        cb6 = (CheckBox) findViewById(R.id.cb6);
-        int idchecked = rdgr.getCheckedRadioButtonId();
+        //khoi tao
+        mBtn = (Button) findViewById(R.id.chkRegister);
+        mUser = (EditText) findViewById(R.id.edUser);
+        mPass = (EditText) findViewById(R.id.edPass);
+        mRbgr = (RadioGroup) findViewById(R.id.rbgSex);
+        mMale = (RadioButton) findViewById(R.id.rbgMale);
+        mFemale = (RadioButton) findViewById(R.id.rbFemale);
+        mChk1 = (CheckBox) findViewById(R.id.cbkReadBook);
+        mChk2 = (CheckBox) findViewById(R.id.ckPlaySoccer);
+        mChk3 = (CheckBox) findViewById(R.id.chkListen_music);
+        mChk4 = (CheckBox) findViewById(R.id.chkPlayGame);
+        mChk5 = (CheckBox) findViewById(R.id.chkSwimming);
+        mChk6 = (CheckBox) findViewById(R.id.chkPlayBasketball);
+        //set check cho cac radio button
+        int idchecked = mRbgr.getCheckedRadioButtonId();
         switch (idchecked) {
-            case R.id.male:
+            case R.id.rbgMale:
                 break;
-            case R.id.female:
+            case R.id.rbFemale:
                 break;
         }
-        bt.setOnClickListener(new View.OnClickListener() {
+        // set onClick cho button
+        mBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //gettext cac checkbox
                 String text = "";
-                List<CheckBox> items=new ArrayList<CheckBox>();
-                items.add(cb1);
-                items.add(cb2);
-                items.add(cb3);
-                items.add(cb4);
-                items.add(cb5);
-                items.add(cb6);
-                for (CheckBox item : items){
-                    if(item.isChecked()) {
+                List<CheckBox> items = new ArrayList<CheckBox>();
+                items.add(mChk1);
+                items.add(mChk2);
+                items.add(mChk3);
+                items.add(mChk4);
+                items.add(mChk5);
+                items.add(mChk6);
+                for (CheckBox item : items) {
+                    if (item.isChecked()) {
                         text += item.getText().toString() + " ";
                     }
                 }
-                Toast.makeText(MainActivity.this, "\n User: " + user.getText().toString() + " \n Pass: " + pass.getText().toString() + " \n sex: " + setSex() + " \n Hobby: " + text, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "\n User: " + mUser.getText().toString() + " \n Pass: " + mPass.getText().toString() + " \n sex: " + setSex() + " \n Hobby: " + text, Toast.LENGTH_SHORT).show();
+                //chuyen sang activity
                 Intent i = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(i);
             }
         });
     }
-
+//ham gettext radiobutton
     public CharSequence setSex() {
 
-        if (male.isChecked())
-            return male.getText().toString();
-        else if (female.isChecked())
-            return female.getText().toString();
+        if (mMale.isChecked())
+            return mMale.getText().toString();
+        else if (mFemale.isChecked())
+            return mFemale.getText().toString();
         else
             return null;
     }

@@ -1,10 +1,19 @@
 <resources>
     <string name="app_name">FirstProject</string>
-    <string name="spinner_title">Category</string>
-    <string name="user_cus">UserName:</string>
-    <string name="pass_cus">Password:</string>
-    <string name="sex_user">Sex:</string>
-    <string name="male">Male</string>
-    <string name="female">Female</string>
-    <string name="hobby_user">Hobby:</string>
+    <string name="textview.text.register">Register</string>
+    <string name="textview.text.user">User</string>
+    <string name="textview.text.pass">Password</string>
+    <string name="textview.text.sex">Sex:</string>
+    <string name="radiobutton.text.male">Male</string>
+    <string name="radiobutton.text.female">Female</string>
+    <string name="textview.text.hobby">Hobby:</string>
+    <string name="checkbox.text.read_book">Read Book</string>
+    <string name="checkbox.text.play_soccer">Play Soccer</string>
+    <string name="checkbox.text.listen_music">Listen Music</string>
+    <string name="checkbox.text.play_game">Play Game</string>
+    <string name="checkbox.text.swimming">Swimming</string>
+    <string name="checkbox.text.play_basketball">Play Basketball</string>
+    <string name="button.text.OK">OK</string>
+    <string name="textview.text.forgot_pass">Forgot Pass</string>
+    <string name="textview.text.login">Login</string>
 </resources>

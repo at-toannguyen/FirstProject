@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@mipmap/dota_2" />
+        android:src="@mipmap/img_logo" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,16 +17,16 @@
         android:orientation="horizontal">
 
         <TextView
-            style="@style/Textview1"
+            style="@style/MyTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/user_cus" />
+            android:text="@string/textview.text.user" />
 
         <EditText
-            android:id="@+id/user"
+            android:id="@+id/edUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/icon_user" />
+            android:drawableLeft="@mipmap/ic_user" />
     </LinearLayout>
 
     <LinearLayout
@@ -34,17 +34,17 @@
         android:layout_height="wrap_content">
 
         <TextView
-            style="@style/Textview1"
+            style="@style/MyTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pass_cus" />
+            android:text="@string/textview.text.pass" />
 
         <EditText
-            android:id="@+id/pass"
+            android:id="@+id/edPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/lock_icon"
-            android:drawableRight="@mipmap/eye_icon"
+            android:drawableLeft="@mipmap/ic_lock"
+            android:drawableRight="@mipmap/ic_eye"
             android:inputType="textPassword" />
     </LinearLayout>
 </LinearLayout>

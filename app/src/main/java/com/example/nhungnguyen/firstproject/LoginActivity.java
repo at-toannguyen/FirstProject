@@ -1,6 +1,5 @@
 package com.example.nhungnguyen.firstproject;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,19 +8,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText user,pass;
-    Button lgbt;
+    private EditText mUser, mPass;
+    private Button mBtnLg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        user=(EditText) findViewById(R.id.user);
-        pass=(EditText)findViewById(R.id.pass);
-        lgbt=(Button)findViewById(R.id.login);
-        lgbt.setOnClickListener(new View.OnClickListener() {
+        mUser =(EditText) findViewById(R.id.edUser);
+        mPass =(EditText)findViewById(R.id.edPass);
+        mBtnLg =(Button)findViewById(R.id.btnLogin);
+        mBtnLg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LoginActivity.this, "User: "+user.getText().toString()+" \n Pass: "+pass.getText().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "User: "+ mUser.getText().toString()+" \n Pass: "+ mPass.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }

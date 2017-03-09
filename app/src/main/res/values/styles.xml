@@ -7,11 +7,11 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <style name="Textview1">
+    <style name="MyTextView">
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
     </style>
-    <style name="Header">
+    <style name="TextViewHeader">
         <item name="android:textSize">30sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>

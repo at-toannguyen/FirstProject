@@ -8,10 +8,10 @@
     tools:context="com.example.nhungnguyen.firstproject.LoginActivity">
 
     <TextView
-        style="@style/Header"
+        style="@style/TextViewHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:text="@string/textview.text.login" />
 
     <include layout="@layout/user_customer" />
 
@@ -19,12 +19,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Forget Password?" />
+        android:text="@string/textview.text.forgot_pass" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="OK" />
+        android:text="@string/button.text.OK" />
 </LinearLayout>
