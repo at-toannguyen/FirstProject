@@ -3,10 +3,14 @@ package com.example.nhungnguyen.firstproject;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -21,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton mMale, mFemale;
     private RadioGroup mRbgr;
     private CheckBox mChk1, mChk2, mChk3, mChk4, mChk5, mChk6;
+    private ImageView mImgEye;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         mChk4 = (CheckBox) findViewById(R.id.chkPlayGame);
         mChk5 = (CheckBox) findViewById(R.id.chkSwimming);
         mChk6 = (CheckBox) findViewById(R.id.chkPlayBasketball);
+        mImgEye = (ImageView) findViewById(R.id.imgEye);
         //set check cho cac radio button
         int idchecked = mRbgr.getCheckedRadioButtonId();
         switch (idchecked) {
@@ -71,8 +77,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        //set hide/show password
+        mImgEye.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mPass.setInputType(InputType.TYPE_CLASS_TEXT);
+                        Log.v("Test","dơwn");
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        mPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        Log.v("test","up");
+                        break;
+                }
+                return true;
+            }
+        });
     }
-//ham gettext radiobutton
+
+    //ham gettext radiobutton
     public CharSequence setSex() {
 
         if (mMale.isChecked())

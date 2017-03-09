@@ -16,4 +16,6 @@
     <string name="button.text.OK">OK</string>
     <string name="textview.text.forgot_pass">Forgot Pass</string>
     <string name="textview.text.login">Login</string>
+    <string name="hint.text.user_name">User name</string>
+    <string name="hint.text.pass">Password</string>
 </resources>
