@@ -58,20 +58,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //gettext cac checkbox
-                String text = "";
-                List<CheckBox> items = new ArrayList<CheckBox>();
-                items.add(mChk1);
-                items.add(mChk2);
-                items.add(mChk3);
-                items.add(mChk4);
-                items.add(mChk5);
-                items.add(mChk6);
-                for (CheckBox item : items) {
-                    if (item.isChecked()) {
-                        text += item.getText().toString() + " ";
-                    }
-                }
-                Toast.makeText(MainActivity.this, "\n User: " + mUser.getText().toString() + " \n Pass: " + mPass.getText().toString() + " \n sex: " + setSex() + " \n Hobby: " + text, Toast.LENGTH_SHORT).show();
+//                String text = "";
+//                List<CheckBox> items = new ArrayList<CheckBox>();
+//                items.add(mChk1);
+//                items.add(mChk2);
+//                items.add(mChk3);
+//                items.add(mChk4);
+//                items.add(mChk5);
+//                items.add(mChk6);
+//                for (CheckBox item : items) {
+//                    if (item.isChecked()) {
+//                        text += item.getText().toString() + " ";
+//                    }
+//                }
+                Toast.makeText(MainActivity.this, "\n User: " + mUser.getText().toString() + " \n Pass: " + mPass.getText().toString() + " \n sex: " + setSex() + " \n Hobby: " + getTextCheckBox(), Toast.LENGTH_SHORT).show();
                 //chuyen sang activity
                 Intent i = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(i);
@@ -81,29 +81,50 @@ public class MainActivity extends AppCompatActivity {
         mImgEye.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
+                int x = Math.round(motionEvent.getX());
+                int y = Math.round(motionEvent.getY());
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         mPass.setInputType(InputType.TYPE_CLASS_TEXT);
-                        Log.v("Test","dơwn");
+                        Log.v("Test", "dơwn");
                         break;
                     case MotionEvent.ACTION_UP:
                         mPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                        Log.v("test","up");
+                        Log.v("test", "up");
                         break;
                 }
                 return true;
             }
         });
     }
-
+    //ham getText checkbox
+    public String getTextCheckBox(){
+        String text = "";
+        List<CheckBox> items = new ArrayList<CheckBox>();
+        items.add(mChk1);
+        items.add(mChk2);
+        items.add(mChk3);
+        items.add(mChk4);
+        items.add(mChk5);
+        items.add(mChk6);
+        for (CheckBox item : items) {
+            if (item.isChecked()) {
+                text += item.getText().toString() + " ";
+            }
+        }
+        return text;
+    }
     //ham gettext radiobutton
     public CharSequence setSex() {
 
-        if (mMale.isChecked())
+        if (mMale.isChecked()) {
             return mMale.getText().toString();
-        else if (mFemale.isChecked())
-            return mFemale.getText().toString();
-        else
-            return null;
+        } else {
+            if (mFemale.isChecked()) {
+                return mFemale.getText().toString();
+            } else {
+                return null;
+            }
+        }
     }
 }
