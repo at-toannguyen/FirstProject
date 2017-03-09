@@ -15,8 +15,8 @@
     <string name="checkbox.text.play_basketball">Play Basketball</string>
     <string name="button.text.OK">OK</string>
     <string name="textview.text.forgot_pass">Forgot Pass?</string>
-    <string name="textview.text.create_account">You don't have account?</string>
     <string name="textview.text.login">Login</string>
     <string name="hint.text.user_name">User name</string>
     <string name="hint.text.pass">Password</string>
+    <string name="textview.text.create_acc">Create accout here!</string>
 </resources>
