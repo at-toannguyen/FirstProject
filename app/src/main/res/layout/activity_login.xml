@@ -19,8 +19,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="@android:color/holo_blue_bright"
         android:text="@string/textview.text.forgot_pass" />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/holo_blue_bright"
+        android:text="@string/textview.text.create_account"/>
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
