@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-
+// TODO: 3/9/17  
 public class MainActivity extends AppCompatActivity {
     //Khai bao bien
     private Button mBtnTest1,mBtnTest2;
