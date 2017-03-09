@@ -8,10 +8,10 @@
     tools:context="com.example.nhungnguyen.firstproject.MainActivity">
 
     <TextView
-        style="@style/Header"
+        style="@style/TextViewHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register" />
+        android:text="@string/textview.text.register" />
 
     <include layout="@layout/user_customer" />
 
@@ -21,36 +21,99 @@
         android:orientation="horizontal">
 
         <TextView
-            style="@style/Textview1"
+            style="@style/MyTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/sex_user" />
-    <RadioGroup
-        android:id="@+id/rdgr"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <RadioButton
-            android:id="@+id/male"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/male" />
+            android:text="@string/textview.text.sex" />
 
-        <RadioButton
-            android:id="@+id/female"
+        <RadioGroup
+            android:id="@+id/rbgSex"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/female" />
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbgMale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/radiobutton.text.male" />
+
+            <RadioButton
+                android:id="@+id/rbFemale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/radiobutton.text.female" />
         </RadioGroup>
     </LinearLayout>
 
     <TextView
-        android:id="@+id/text"
+        style="@style/MyTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/textview.text.hobby" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/cbkReadBook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/checkbox.text.read_book" />
+
+        <CheckBox
+            android:id="@+id/ckPlaySoccer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/checkbox.text.play_soccer" />
+
+        <CheckBox
+            android:id="@+id/chkListen_music"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/checkbox.text.listen_music" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/chkPlayGame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/checkbox.text.play_game" />
+
+        <CheckBox
+            android:id="@+id/chkSwimming"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/checkbox.text.swimming" />
+
+        <CheckBox
+            android:id="@+id/chkPlayBasketball"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/checkbox.text.play_basketball" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/chkRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_gravity="center"
+        android:text="@string/button.text.OK" />
+
 </LinearLayout>
