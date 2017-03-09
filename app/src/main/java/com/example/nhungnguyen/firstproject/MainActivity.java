@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        //set hide/show password
         mImgEye.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
