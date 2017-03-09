@@ -27,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
     private CheckBox mChk1, mChk2, mChk3, mChk4, mChk5, mChk6;
     private ImageView mImgEye;
 
+    // TODO: 3/9/17  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +82,10 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    //ham getText checkbox
+    /**GET Text Checkbox of Uer
+     *
+     * @return String Text
+     */
     public String getTextCheckBox() {
         String text = "";
         List<CheckBox> items = new ArrayList<CheckBox>();
@@ -99,7 +103,10 @@ public class RegisterActivity extends AppCompatActivity {
         return text;
     }
 
-    //ham gettext radiobutton
+    /**GET Text RadioButton of User
+     *
+     * @return String Text
+     */
     public CharSequence setSex() {
 
         if (mMale.isChecked()) {
