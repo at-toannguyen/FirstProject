@@ -31,7 +31,7 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_layout);
         mRecyclerViewTestLayout = (RecyclerView) findViewById(R.id.recycleViewPersonal);
-        mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(createData());
+        mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(createData(), this, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerViewTestLayout.setLayoutManager(layoutManager);
@@ -60,7 +60,7 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
     }
 
     @Override
-    public void onItemClick(int poisision, String person, String age, String content) {
+    public void onItemClick(int poisision) {
 //        Bundle b=new Bundle();
         Intent i=new Intent(TestLayoutActivity.this,DetailPersonActivity.class);
 //        i.putExtra("user",person);

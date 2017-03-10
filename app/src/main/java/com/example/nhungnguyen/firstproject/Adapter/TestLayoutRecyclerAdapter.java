@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +24,7 @@ import java.util.List;
 // TODO: 3/10/17
 public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<TestLayoutRecyclerAdapter.RecyclerViewHolder> {
     private List<DataItemTestLayout> mDataTestLayout = new ArrayList<>();
-    private onItemClickListner mItemClick;
+    private final onItemClickListner mItemClick;
     private Context context;
 
     public TestLayoutRecyclerAdapter(List<DataItemTestLayout> mDataTestLayout, onItemClickListner listner, Context context) {
@@ -32,19 +33,11 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<TestLayoutRe
         this.context = context;
     }
 
-    public TestLayoutRecyclerAdapter(List<DataItemTestLayout> mDataTestLayout) {
-        this.mDataTestLayout = mDataTestLayout;
-    }
-
-    public TestLayoutRecyclerAdapter(List<DataItemTestLayout> data, TestLayoutActivity testLayoutActivity, TestLayoutActivity context) {
-    }
-
-
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View itemview = layoutInflater.inflate(R.layout.item_list_layout, parent, false);
-        return new RecyclerViewHolder(itemview);
+        return new RecyclerViewHolder(itemview, mItemClick);
     }
 
     @SuppressLint("NewApi")
@@ -65,7 +58,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<TestLayoutRe
         private TextView mTvUser, mTvAge, mTvContent;
         private ImageView mImgPerson;
 
-        public RecyclerViewHolder(View itemView) {
+        public RecyclerViewHolder(View itemView, final onItemClickListner o) {
             super(itemView);
             mTvUser = (TextView) itemView.findViewById(R.id.tvPerson1);
             mTvAge = (TextView) itemView.findViewById(R.id.tvPerson2);
@@ -74,13 +67,13 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<TestLayoutRe
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mItemClick.onItemClick(getLayoutPosition(),mDataTestLayout.get(getLayoutPosition()).getTvUser(),mDataTestLayout.get(getLayoutPosition()).getTvAge(),
-                            mDataTestLayout.get(getLayoutPosition()).getTvContent());
+                    o.onItemClick(getAdapterPosition());
                 }
             });
         }
     }
-    public interface onItemClickListner{
-        public void onItemClick(int poisision, String person,String age,String content);
+
+    public interface onItemClickListner {
+        public void onItemClick(int poisision);
     }
 }

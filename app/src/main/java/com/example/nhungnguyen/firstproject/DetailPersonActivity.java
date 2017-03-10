@@ -13,12 +13,6 @@ public class DetailPersonActivity extends AppCompatActivity {
         mTvPerson=(TextView) findViewById(R.id.tvDetail1);
         mTvAge=(TextView) findViewById(R.id.tvDetail2);
         mTvContent=(TextView) findViewById(R.id.tvDetail3);
-        Bundle bundle=getIntent().getExtras();
-        String person=bundle.getString("user");
-        String age=bundle.getString("age");
-        String content=bundle.getString("content");
-        mTvPerson.setText(person);
-        mTvAge.setText(age);
-        mTvContent.setText(content);
+
     }
 }
