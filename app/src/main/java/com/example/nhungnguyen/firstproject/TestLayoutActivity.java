@@ -1,5 +1,6 @@
 package com.example.nhungnguyen.firstproject;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,8 +19,7 @@ public class TestLayoutActivity extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(TestLayoutActivity.this,MainActivity.class);
-                startActivity(i);
+                finish();
             }
         });
     }

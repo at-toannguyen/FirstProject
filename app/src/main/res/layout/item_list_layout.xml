@@ -20,7 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/imgPerson"
         android:maxLines="1"
-        android:text="asdqwasdqweqweqweqweqweqweqweqweqweqeqweeqweqweqweqwqweqwedqwe"/>
+        android:ellipsize="end"
+        android:text="asdqwasdqweqweqweqweqasdfqerqweqeqweqweasdqweasdqweqweqweqweqweqeqweeqweqweqweqwqweqwedqwe"/>
     <TextView
         android:id="@+id/tvPerson2"
         android:maxLines="1"
@@ -30,12 +31,14 @@
         android:layout_below="@+id/tvPerson1"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:ellipsize="end"
         android:text="qweasdqweqwe13213543321521weqe"/>
     <TextView
         android:id="@+id/tvPerson3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="1"
+        android:ellipsize="end"
         android:layout_toRightOf="@+id/imgPerson"
         android:layout_below="@+id/tvPerson2"
         android:text="asdasdqweqwweqweqweqw321654651321365464532135465142361354361321354645612354631easd"/>
