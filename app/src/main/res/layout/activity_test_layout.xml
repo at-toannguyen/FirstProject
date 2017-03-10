@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.nhungnguyen.firstproject.TestLayoutActivity">
     <LinearLayout
+        android:id="@+id/lnHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@android:color/holo_blue_dark">
+        android:background="@android:color/holo_blue_dark"
+        android:layout_alignParentTop="true">
         <ImageView
             android:id="@+id/imgBack"
             android:layout_width="wrap_content"
@@ -28,10 +30,12 @@
             android:src="@mipmap/ic_option"
             android:layout_gravity="right" />
     </LinearLayout>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-        <include layout="@layout/item_list_layout" />
-    </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_below="@+id/lnHeader"
+            android:layout_centerInParent="true"
+            android:id="@+id/recycleViewPersonal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"/>
 </RelativeLayout>
