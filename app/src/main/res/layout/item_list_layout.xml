@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/tvPerson1"
         android:layout_alignBottom="@+id/tvPerson3"
-        android:background="@mipmap/img_person"/>
+        android:background="@drawable/img_person"/>
     <TextView
         android:id="@+id/tvPerson1"
         android:layout_width="wrap_content"

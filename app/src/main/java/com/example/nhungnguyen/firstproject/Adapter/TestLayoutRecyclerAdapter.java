@@ -1,6 +1,8 @@
 package com.example.nhungnguyen.firstproject.Adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.nhungnguyen.firstproject.DataItemTestLayout;
 import com.example.nhungnguyen.firstproject.R;
+import com.example.nhungnguyen.firstproject.TestLayoutActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +23,22 @@ import java.util.List;
 // TODO: 3/10/17
 public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<TestLayoutRecyclerAdapter.RecyclerViewHolder> {
     private List<DataItemTestLayout> mDataTestLayout = new ArrayList<>();
+    private onItemClickListner mItemClick;
+    private Context context;
+
+    public TestLayoutRecyclerAdapter(List<DataItemTestLayout> mDataTestLayout, onItemClickListner listner, Context context) {
+        this.mDataTestLayout = mDataTestLayout;
+        this.mItemClick = listner;
+        this.context = context;
+    }
 
     public TestLayoutRecyclerAdapter(List<DataItemTestLayout> mDataTestLayout) {
         this.mDataTestLayout = mDataTestLayout;
     }
+
+    public TestLayoutRecyclerAdapter(List<DataItemTestLayout> data, TestLayoutActivity testLayoutActivity, TestLayoutActivity context) {
+    }
+
 
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -56,6 +71,16 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<TestLayoutRe
             mTvAge = (TextView) itemView.findViewById(R.id.tvPerson2);
             mTvContent = (TextView) itemView.findViewById(R.id.tvPerson3);
             mImgPerson = (ImageView) itemView.findViewById(R.id.imgPerson);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mItemClick.onItemClick(getLayoutPosition(),mDataTestLayout.get(getLayoutPosition()).getTvUser(),mDataTestLayout.get(getLayoutPosition()).getTvAge(),
+                            mDataTestLayout.get(getLayoutPosition()).getTvContent());
+                }
+            });
         }
+    }
+    public interface onItemClickListner{
+        public void onItemClick(int poisision, String person,String age,String content);
     }
 }

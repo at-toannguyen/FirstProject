@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // TODO: 3/9/17
-public class TestLayoutActivity extends AppCompatActivity {
+public class TestLayoutActivity extends AppCompatActivity implements TestLayoutRecyclerAdapter.onItemClickListner{
     private Context mContext;
     private RecyclerView mRecyclerViewTestLayout;
     private List<DataItemTestLayout> mData = new ArrayList<>();
@@ -44,20 +44,28 @@ public class TestLayoutActivity extends AppCompatActivity {
             }
         });
     }
-
-    /**Create Data for RecycleView
+    /**
+     * Create Data for RecycleView
      *
      * @return Data
      */
     private List<DataItemTestLayout> createData() {
-        mData.add(new DataItemTestLayout("sdfqweqwe", "dfsqweqwe", "fafqweqwe", getResources().getDrawable(R.mipmap.img_person)));
-        mData.add(new DataItemTestLayout("sdfqweqwe", "dfsqweqwe", "fafqweqwe", getResources().getDrawable(R.mipmap.img_person)));
-        mData.add(new DataItemTestLayout("sdfqweqwe", "dfsqweqwe", "fafqweqwe", getResources().getDrawable(R.mipmap.img_person)));
-        mData.add(new DataItemTestLayout("sdfqweqwe", "dfsqweqwe", "fafqweqwe", getResources().getDrawable(R.mipmap.img_person)));
-        mData.add(new DataItemTestLayout("sdfqweqwe", "dfsqweqwe", "fafqweqwe", getResources().getDrawable(R.mipmap.img_person)));
-        mData.add(new DataItemTestLayout("sdfqweqwe", "dfsqweqwe", "fafqweqwe", getResources().getDrawable(R.mipmap.img_person)));
-        mData.add(new DataItemTestLayout("sdfqweqwe", "dfsqweqwe", "fafqweqwe", getResources().getDrawable(R.mipmap.img_person)));
-        mData.add(new DataItemTestLayout("sdfqweqwe", "dfsqweqwe", "fafqweqwe", getResources().getDrawable(R.mipmap.img_person)));
+        mData.add(new DataItemTestLayout("Person1", "12", "fafqweqwe", getResources().getDrawable(R.drawable.img_person)));
+        mData.add(new DataItemTestLayout("Person2", "dfsqweqwe", "fafqweqwe", getResources().getDrawable(R.drawable.img_person)));
+        mData.add(new DataItemTestLayout("Person3", "dfsqweqwe", "fafqweqwe", getResources().getDrawable(R.drawable.img_person)));
+        mData.add(new DataItemTestLayout("Person4", "dfsqweqwe", "fafqweqwe", getResources().getDrawable(R.drawable.img_person)));
+        mData.add(new DataItemTestLayout("person5", "dfsqweqwe", "fafqweqwe", getResources().getDrawable(R.drawable.img_person)));
+        mData.add(new DataItemTestLayout("person6", "dfsqweqwe", "fafqweqwe", getResources().getDrawable(R.drawable.img_person)));
         return mData;
+    }
+
+    @Override
+    public void onItemClick(int poisision, String person, String age, String content) {
+//        Bundle b=new Bundle();
+        Intent i=new Intent(TestLayoutActivity.this,DetailPersonActivity.class);
+//        i.putExtra("user",person);
+//        i.putExtra("age",age);
+//        i.putExtra("content",content);
+        startActivity(i);
     }
 }
