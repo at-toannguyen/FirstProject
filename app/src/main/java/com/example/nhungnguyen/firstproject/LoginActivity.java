@@ -25,6 +25,11 @@ public class LoginActivity extends AppCompatActivity {
         mBtnLg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent i=new Intent(LoginActivity.this,RegisterActivity.class);
+//                Bundle b=new Bundle();
+//                b.putString("key", mUser.getText().toString());
+//                i.putExtras(b);
+                startActivity(i);
                 Toast.makeText(LoginActivity.this, "User: "+ mUser.getText().toString()+" \n Pass: "+ mPass.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });

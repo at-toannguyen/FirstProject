@@ -2,9 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/holo_green_light">
+    android:background="@android:color/holo_green_light"
+    android:layout_marginBottom="2dp">
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:background="@android:color/holo_blue_bright"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
     <ImageView
@@ -13,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/tvPerson1"
         android:layout_alignBottom="@+id/tvPerson3"
-        android:background="@mipmap/img_person"/>
+        android:background="@drawable/img_person"/>
     <TextView
         android:id="@+id/tvPerson1"
         android:layout_width="wrap_content"
@@ -21,7 +23,7 @@
         android:layout_toRightOf="@+id/imgPerson"
         android:maxLines="1"
         android:ellipsize="end"
-        android:text="asdqwasdqweqweqweqweqasdfqerqweqeqweqweasdqweasdqweqweqweqweqweqeqweeqweqweqweqwqweqwedqwe"/>
+        android:text="User"/>
     <TextView
         android:id="@+id/tvPerson2"
         android:maxLines="1"
@@ -32,7 +34,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:ellipsize="end"
-        android:text="qweasdqweqwe13213543321521weqe"/>
+        android:text="Age"/>
     <TextView
         android:id="@+id/tvPerson3"
         android:layout_width="wrap_content"
@@ -41,6 +43,12 @@
         android:ellipsize="end"
         android:layout_toRightOf="@+id/imgPerson"
         android:layout_below="@+id/tvPerson2"
-        android:text="asdasdqweqwweqweqweqw321654651321365464532135465142361354361321354645612354631easd"/>
-        </RelativeLayout>
+        android:text="Content"/>
+        <ImageView
+            android:id="@+id/imgFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_star_selector" />
+    </RelativeLayout>
 </RelativeLayout>
