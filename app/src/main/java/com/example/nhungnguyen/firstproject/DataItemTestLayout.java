@@ -13,26 +13,22 @@ public class DataItemTestLayout implements Parcelable {
     String tvUser, tvAge, tvContent;
     Drawable imgPerson;
     int favorite;
-
-    public DataItemTestLayout() {
-    }
-
-    public Creator<DataItemTestLayout> getCREATOR() {
-        return CREATOR;
-    }
+    boolean isFavorite;
 
     public DataItemTestLayout(String tvUser, String tvAge, String tvContent) {
         this.tvUser = tvUser;
         this.tvAge = tvAge;
         this.tvContent = tvContent;
-//        this.favorite = favorite;
     }
 
     protected DataItemTestLayout(Parcel in) {
         tvUser = in.readString();
         tvAge = in.readString();
         tvContent = in.readString();
+        favorite = in.readInt();
+        isFavorite = in.readByte() != 0;
     }
+
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -40,6 +36,7 @@ public class DataItemTestLayout implements Parcelable {
         dest.writeString(tvAge);
         dest.writeString(tvContent);
         dest.writeInt(favorite);
+        dest.writeByte((byte) (isFavorite ? 1 : 0));
     }
 
     @Override
@@ -58,14 +55,6 @@ public class DataItemTestLayout implements Parcelable {
             return new DataItemTestLayout[size];
         }
     };
-
-    public int getFavorite() {
-        return favorite;
-    }
-
-    public void setFavorite(int favorite) {
-        this.favorite = favorite;
-    }
 
     public String getTvUser() {
         return tvUser;
@@ -98,4 +87,21 @@ public class DataItemTestLayout implements Parcelable {
     public void setImgPerson(Drawable imgPerson) {
         this.imgPerson = imgPerson;
     }
+
+    public int getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(int favorite) {
+        this.favorite = favorite;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
 }

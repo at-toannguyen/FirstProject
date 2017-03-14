@@ -19,7 +19,7 @@
         android:id="@+id/imgFavoriteDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_star_border_blue_grey_200_48dp"
+        android:src="@drawable/ic_star_selector"
         android:layout_alignParentRight="true"/>
     </RelativeLayout>
 

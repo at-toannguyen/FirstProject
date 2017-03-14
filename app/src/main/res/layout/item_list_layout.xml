@@ -49,6 +49,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:background="@drawable/ic_star_border_blue_grey_200_48dp"/>
-        </RelativeLayout>
+            android:src="@drawable/ic_star_selector" />
+    </RelativeLayout>
 </RelativeLayout>

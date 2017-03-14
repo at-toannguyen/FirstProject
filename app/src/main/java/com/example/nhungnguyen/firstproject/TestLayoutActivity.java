@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.example.nhungnguyen.firstproject.Adapter.TestLayoutRecyclerAdapter;
 
@@ -21,36 +22,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Handler;
 
-// TODO: 3/9/17
 public class TestLayoutActivity extends AppCompatActivity implements TestLayoutRecyclerAdapter.onItemClickListner {
-    private Context mContext;
     private RecyclerView mRecyclerViewTestLayout;
-    private List<DataItemTestLayout> mData = new ArrayList<>();
-    private ImageView imgBack, favorite;
+    private List<DataItemTestLayout> mData;
+    private ImageView imgBack;
     private TestLayoutRecyclerAdapter mTestLayoutRecyclerAdapter;
     private android.os.Handler mHandler;
     private LinearLayoutManager mLayoutManager;
-    private boolean mIsLoading;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_layout);
+        mData = new ArrayList<>();
         //---------
         mHandler = new android.os.Handler();
         //----------
         mRecyclerViewTestLayout = (RecyclerView) findViewById(R.id.recycleViewPersonal);
-        mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(mData, this, this, mRecyclerViewTestLayout);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBarUser);
+        mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(mData, this, this);
         createData();
-
         mRecyclerViewTestLayout.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerViewTestLayout.setLayoutManager(mLayoutManager);
         mRecyclerViewTestLayout.setAdapter(mTestLayoutRecyclerAdapter);
-        mTestLayoutRecyclerAdapter.notifyDataSetChanged();
         //----------
         imgBack = (ImageView) findViewById(R.id.imgBack);
-        //--------------
+
+        //-------------
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,35 +67,46 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
-                int lastPos = mLayoutManager.findLastCompletelyVisibleItemPosition();
-                if (lastPos == mData.size() - 1) {
+                int mLastVisibleItem = mLayoutManager.findLastCompletelyVisibleItemPosition();
+                if (mLastVisibleItem == mData.size() - 1) {
+                    mProgressBar.setVisibility(View.VISIBLE);
                     mHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             Log.d("131", "run: ");
-                            // remove progress item
-                            if (mIsLoading) {
-                                return;
+                            int start = mData.size();
+                            int end = start + 20;
+                            String person = "";
+                            String age = "";
+                            String content = "";
+                            for (int i = start + 1; i < end; i++) {
+                                person = "person " + i;
+                                age = "Age: " + i;
+                                if (i % 2 == 0) {
+                                    content = "Hello";
+                                } else {
+                                    content = "Hi";
+                                }
+                                mData.add(new DataItemTestLayout(person, age, content));
                             }
-                            createData();
+                            mTestLayoutRecyclerAdapter.notifyItemInserted(mData.size());
+                            mProgressBar.setVisibility(View.GONE);
                         }
                     }, 3000);
                 }
             }
         });
     }
+
     /**
      * Create Data for RecycleView
      *
      * @return Data
      */
     private void createData() {
-        mIsLoading = true;
         String person = "";
         String age = "";
         String content = "";
-        ImageView favor;
         for (int i = 1; i <= 20; i++) {
             person = "person " + i;
             age = "Age: " + i;
@@ -107,18 +118,34 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
             mData.add(new DataItemTestLayout(person, age, content));
         }
         mTestLayoutRecyclerAdapter.notifyDataSetChanged();
-        mIsLoading = false;
     }
 
 
     @Override
-    public void onItemClick(int poisision, DataItemTestLayout ob) {
+    public void onItemClick(int poisision) {
         Bundle b = new Bundle();
+        b.putInt("poin", poisision);
         Intent i = new Intent(TestLayoutActivity.this, DetailPersonActivity.class);
-        b.putParcelable("para", ob);
-        i.putExtra("key", b);
-//        i.putExtra("age",age);
-//        i.putExtra("content",content);
-        startActivity(i);
+        b.putParcelable("para", mData.get(poisision));
+        i.putExtras(b);
+        startActivityForResult(i, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                Log.d("result", "onActivityResult: ");
+                DataItemTestLayout test = data.getParcelableExtra("favor");
+
+                int poisision = data.getIntExtra("poinfavor", -1);
+                Log.d("poi", "onActivityResult: " + poisision);
+                if (poisision != -1) {
+                    mData.set(poisision, test);
+                    mTestLayoutRecyclerAdapter.notifyDataSetChanged();
+                }
+            }
+        }
     }
 }
