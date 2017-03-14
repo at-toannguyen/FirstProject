@@ -44,5 +44,11 @@
         android:layout_toRightOf="@+id/imgPerson"
         android:layout_below="@+id/tvPerson2"
         android:text="Content"/>
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/imgFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_star_selector" />
+    </RelativeLayout>
 </RelativeLayout>
