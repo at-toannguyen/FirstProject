@@ -15,7 +15,7 @@ import java.util.List;
 
 public class DetailPersonActivity extends AppCompatActivity {
     private TextView mTvPerson,mTvAge,mTvContent;
-    private ImageView mfavorite;
+    private ImageView mfavorite,mImgPerson;
     private List<DataItemTestLayout> mdata = new ArrayList<>();
     private DataItemTestLayout data;
     private int poisision;
@@ -27,13 +27,16 @@ public class DetailPersonActivity extends AppCompatActivity {
         mTvAge=(TextView) findViewById(R.id.tvDetail2);
         mTvContent=(TextView) findViewById(R.id.tvDetail3);
         mfavorite=(ImageView)findViewById(R.id.imgFavoriteDetail);
+        mImgPerson=(ImageView) findViewById(R.id.imgDetail);
         final Bundle bundle = getIntent().getExtras();
         data=bundle.getParcelable("para");
         poisision=bundle.getInt("poin");
         mTvPerson.setText(data.getTvUser());
         mTvAge.setText(data.getTvAge());
         mTvContent.setText(data.getTvContent());
+        mImgPerson.setBackgroundResource(data.getImgPerson());
         mfavorite.setSelected(data.isFavorite());
+
         mfavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

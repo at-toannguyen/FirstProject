@@ -59,6 +59,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
             ((RecyclerViewHolder) holder).mTvAge.setText(mDataTestLayout.get(position).getTvAge());
             ((RecyclerViewHolder) holder).mTvContent.setText(mDataTestLayout.get(position).getTvContent());
             ((RecyclerViewHolder) holder).favorite.setSelected(mDataTestLayout.get(position).isFavorite());
+            ((RecyclerViewHolder) holder).mImgPerson.setBackgroundResource(mDataTestLayout.get(position).getImgPerson());
 
             ((RecyclerViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -78,13 +79,14 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         private TextView mTvUser, mTvAge, mTvContent;
-        private ImageView favorite;
+        private ImageView favorite,mImgPerson;
 
         public RecyclerViewHolder(final View itemView) {
             super(itemView);
             mTvUser = (TextView) itemView.findViewById(R.id.tvPerson1);
             mTvAge = (TextView) itemView.findViewById(R.id.tvPerson2);
             mTvContent = (TextView) itemView.findViewById(R.id.tvPerson3);
+            mImgPerson = (ImageView) itemView.findViewById(R.id.imgPerson);
             favorite = (ImageView) itemView.findViewById(R.id.imgFavorite);
 
             favorite.setOnClickListener(new View.OnClickListener() {

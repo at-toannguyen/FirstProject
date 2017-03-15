@@ -87,7 +87,7 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
                                 } else {
                                     content = "Hi";
                                 }
-                                mData.add(new DataItemTestLayout(person, age, content));
+                                mData.add(new DataItemTestLayout(person, age, content,R.drawable.img_person_male));
                             }
                             mTestLayoutRecyclerAdapter.notifyItemInserted(mData.size());
                             mProgressBar.setVisibility(View.GONE);
@@ -115,7 +115,7 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
             } else {
                 content = "Hi";
             }
-            mData.add(new DataItemTestLayout(person, age, content));
+            mData.add(new DataItemTestLayout(person, age, content,R.drawable.img_person_male));
         }
         mTestLayoutRecyclerAdapter.notifyDataSetChanged();
     }
