@@ -1,6 +1,5 @@
-package com.example.nhungnguyen.firstproject;
+package com.example.nhungnguyen.firstproject.Activities;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -14,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.example.nhungnguyen.firstproject.R;
 
 import java.util.ArrayList;
 import java.util.List;

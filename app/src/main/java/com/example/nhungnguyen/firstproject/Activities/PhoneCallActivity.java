@@ -1,4 +1,4 @@
-package com.example.nhungnguyen.firstproject;
+package com.example.nhungnguyen.firstproject.Activities;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -18,6 +18,8 @@ import android.view.inputmethod.BaseInputConnection;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.nhungnguyen.firstproject.R;
 
 public class PhoneCallActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mTvNum1, mTvNum2, mTvNum3, mTvNum4, mTvNum5, mTvNum6, mTvNum7, mTvNum8, mTvNum9, mTvNum0, mTvSao, mTvThang;
@@ -128,14 +130,12 @@ public class PhoneCallActivity extends AppCompatActivity implements View.OnClick
                 del.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
                 break;
             case R.id.imgCall:
-                String TAG = "VINH";
                 Intent call = new Intent(Intent.ACTION_CALL);
                 call.setData(Uri.parse("tel: " + mEdtNumCall.getText().toString()));
                 if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 0);
                     return;
                 }
-                Log.d(TAG, "onClick: ");
                 startActivity(call);
         }
     }

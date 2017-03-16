@@ -1,14 +1,14 @@
-package com.example.nhungnguyen.firstproject;
+package com.example.nhungnguyen.firstproject.Activities;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.nhungnguyen.firstproject.Models.UserItem;
+import com.example.nhungnguyen.firstproject.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +16,8 @@ import java.util.List;
 public class DetailPersonActivity extends AppCompatActivity {
     private TextView mTvPerson,mTvAge,mTvContent;
     private ImageView mfavorite,mImgPerson;
-    private List<DataItemTestLayout> mdata = new ArrayList<>();
-    private DataItemTestLayout data;
+    private List<UserItem> mdata = new ArrayList<>();
+    private UserItem data;
     private int poisision;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

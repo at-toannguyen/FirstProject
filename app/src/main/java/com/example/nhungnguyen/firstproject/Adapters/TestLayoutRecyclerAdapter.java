@@ -1,21 +1,17 @@
-package com.example.nhungnguyen.firstproject.Adapter;
+package com.example.nhungnguyen.firstproject.Adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.nhungnguyen.firstproject.DataItemTestLayout;
-import com.example.nhungnguyen.firstproject.OnLoadMoreListener;
+import com.example.nhungnguyen.firstproject.Models.UserItem;
+import com.example.nhungnguyen.firstproject.Interface.OnLoadMoreListener;
 import com.example.nhungnguyen.firstproject.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +19,7 @@ import java.util.List;
  */
 // TODO: 3/10/17
 public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private final List<DataItemTestLayout> mDataTestLayout;
+    private final List<UserItem> mDataTestLayout;
     private final onItemClickListner mItemClickListener;
     private final int VIEW_TYPE_ITEM = 1;
     private final int VIEW_TYPE_LOADING = 0;
@@ -33,7 +29,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     private int visibleTheshold = 5;
     private int lastVisibleItem, totalItemCount;
 
-    public TestLayoutRecyclerAdapter(List<DataItemTestLayout> mDataTestLayout, onItemClickListner listner, Context context) {
+    public TestLayoutRecyclerAdapter(List<UserItem> mDataTestLayout, onItemClickListner listner, Context context) {
         this.mDataTestLayout = mDataTestLayout;
         this.mItemClickListener = listner;
         this.context = context;
@@ -48,7 +44,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_layout, parent, false);
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_user_layout, parent, false);
         return new RecyclerViewHolder(layoutView);
     }
 

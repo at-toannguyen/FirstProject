@@ -1,28 +1,26 @@
-package com.example.nhungnguyen.firstproject;
+package com.example.nhungnguyen.firstproject.Models;
 
-import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.ImageView;
 
 /**
  * Created by asiantech on 3/10/17.
  */
 // TODO: 3/10/17  
-public class DataItemTestLayout implements Parcelable {
+public class UserItem implements Parcelable {
     String tvUser, tvAge, tvContent;
     int imgPerson;
     int favorite;
     boolean isFavorite;
 
-    public DataItemTestLayout(String tvUser, String tvAge, String tvContent, int imgPerson) {
+    public UserItem(String tvUser, String tvAge, String tvContent, int imgPerson) {
         this.tvUser = tvUser;
         this.tvAge = tvAge;
         this.tvContent = tvContent;
         this.imgPerson = imgPerson;
     }
 
-    protected DataItemTestLayout(Parcel in) {
+    protected UserItem(Parcel in) {
         tvUser = in.readString();
         tvAge = in.readString();
         tvContent = in.readString();
@@ -46,15 +44,15 @@ public class DataItemTestLayout implements Parcelable {
         return 0;
     }
 
-    public static final Creator<DataItemTestLayout> CREATOR = new Creator<DataItemTestLayout>() {
+    public static final Creator<UserItem> CREATOR = new Creator<UserItem>() {
         @Override
-        public DataItemTestLayout createFromParcel(Parcel in) {
-            return new DataItemTestLayout(in);
+        public UserItem createFromParcel(Parcel in) {
+            return new UserItem(in);
         }
 
         @Override
-        public DataItemTestLayout[] newArray(int size) {
-            return new DataItemTestLayout[size];
+        public UserItem[] newArray(int size) {
+            return new UserItem[size];
         }
     };
 
