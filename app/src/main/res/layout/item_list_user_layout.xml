@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@android:color/holo_green_light"
     android:layout_marginBottom="2dp">
-    <RelativeLayout
-        android:background="@android:color/holo_blue_bright"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+
     <ImageView
         android:id="@+id/imgPerson"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
         android:layout_alignTop="@+id/tvPerson1"
         android:layout_alignBottom="@+id/tvPerson3"
         android:background="@drawable/img_person"/>
@@ -51,5 +47,4 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:src="@drawable/ic_star_selector" />
-    </RelativeLayout>
-</LinearLayout>
+</RelativeLayout>
