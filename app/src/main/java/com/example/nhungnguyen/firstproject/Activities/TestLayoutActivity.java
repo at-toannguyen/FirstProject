@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.nhungnguyen.firstproject.Adapters.TestLayoutRecyclerAdapter;
+import com.example.nhungnguyen.firstproject.Models.ItemList;
+import com.example.nhungnguyen.firstproject.Models.TitleItem;
 import com.example.nhungnguyen.firstproject.Models.UserItem;
 import com.example.nhungnguyen.firstproject.R;
 
@@ -19,7 +21,7 @@ import java.util.List;
 
 public class TestLayoutActivity extends AppCompatActivity implements TestLayoutRecyclerAdapter.onItemClickListner {
     private RecyclerView mRecyclerViewTestLayout;
-    private List<UserItem> mData;
+    private List<ItemList> mData;
     private ImageView imgBack;
     private TestLayoutRecyclerAdapter mTestLayoutRecyclerAdapter;
     private android.os.Handler mHandler;
@@ -36,7 +38,7 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
         //----------
         mRecyclerViewTestLayout = (RecyclerView) findViewById(R.id.recycleViewPersonal);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBarUser);
-        mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(mData, this, this);
+        mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(mData, this);
         createData();
         mRecyclerViewTestLayout.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
@@ -82,6 +84,12 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
                                 } else {
                                     content = "Hi";
                                 }
+                                if (i%3==0 || i==1 ){
+                                    mData.add(new TitleItem("Group A"));
+                                }else {if (i%5==0){
+                                    mData.add(new TitleItem("Group B"));
+                                }
+                                }
                                 mData.add(new UserItem(person, age, content,R.drawable.img_person_male));
                             }
                             mTestLayoutRecyclerAdapter.notifyItemInserted(mData.size());
@@ -110,8 +118,15 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
             } else {
                 content = "Hi";
             }
+            if (i%3==0 || i==1 ){
+                mData.add(new TitleItem("Group A"));
+            }else {if (i%5==0){
+                mData.add(new TitleItem("Group B"));
+            }
+            }
             mData.add(new UserItem(person, age, content,R.drawable.img_person_male));
         }
+
         mTestLayoutRecyclerAdapter.notifyDataSetChanged();
     }
 

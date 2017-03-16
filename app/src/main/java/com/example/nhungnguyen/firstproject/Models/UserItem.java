@@ -7,11 +7,14 @@ import android.os.Parcelable;
  * Created by asiantech on 3/10/17.
  */
 // TODO: 3/10/17  
-public class UserItem implements Parcelable {
+public class UserItem extends ItemList implements Parcelable {
     String tvUser, tvAge, tvContent;
     int imgPerson;
     int favorite;
     boolean isFavorite;
+
+    public UserItem() {
+    }
 
     public UserItem(String tvUser, String tvAge, String tvContent, int imgPerson) {
         this.tvUser = tvUser;
@@ -104,4 +107,9 @@ public class UserItem implements Parcelable {
         isFavorite = favorite;
     }
 
+    @Override
+    public int getType() {
+
+        return 2;
+    }
 }
