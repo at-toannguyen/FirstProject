@@ -1,30 +1,27 @@
-package com.example.nhungnguyen.firstproject;
+package com.example.nhungnguyen.firstproject.Activities;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import com.example.nhungnguyen.firstproject.Adapter.TestLayoutRecyclerAdapter;
+import com.example.nhungnguyen.firstproject.Adapters.TestLayoutRecyclerAdapter;
+import com.example.nhungnguyen.firstproject.Models.ItemList;
+import com.example.nhungnguyen.firstproject.Models.TitleItem;
+import com.example.nhungnguyen.firstproject.Models.UserItem;
+import com.example.nhungnguyen.firstproject.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Handler;
 
 public class TestLayoutActivity extends AppCompatActivity implements TestLayoutRecyclerAdapter.onItemClickListner {
     private RecyclerView mRecyclerViewTestLayout;
-    private List<DataItemTestLayout> mData;
+    private List<ItemList> mData;
     private ImageView imgBack;
     private TestLayoutRecyclerAdapter mTestLayoutRecyclerAdapter;
     private android.os.Handler mHandler;
@@ -34,14 +31,14 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_layout);
+        setContentView(R.layout.activity_user);
         mData = new ArrayList<>();
         //---------
         mHandler = new android.os.Handler();
         //----------
         mRecyclerViewTestLayout = (RecyclerView) findViewById(R.id.recycleViewPersonal);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBarUser);
-        mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(mData, this, this);
+        mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(mData, this);
         createData();
         mRecyclerViewTestLayout.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
@@ -87,7 +84,13 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
                                 } else {
                                     content = "Hi";
                                 }
-                                mData.add(new DataItemTestLayout(person, age, content,R.drawable.img_person_male));
+                                if (i%3==0 || i==1 ){
+                                    mData.add(new TitleItem("Group A"));
+                                }else {if (i%5==0){
+                                    mData.add(new TitleItem("Group B"));
+                                }
+                                }
+                                mData.add(new UserItem(person, age, content,R.drawable.img_person_male));
                             }
                             mTestLayoutRecyclerAdapter.notifyItemInserted(mData.size());
                             mProgressBar.setVisibility(View.GONE);
@@ -115,8 +118,15 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
             } else {
                 content = "Hi";
             }
-            mData.add(new DataItemTestLayout(person, age, content,R.drawable.img_person_male));
+            if (i%3==0 || i==1 ){
+                mData.add(new TitleItem("Group A"));
+            }else {if (i%5==0){
+                mData.add(new TitleItem("Group B"));
+            }
+            }
+            mData.add(new UserItem(person, age, content,R.drawable.img_person_male));
         }
+
         mTestLayoutRecyclerAdapter.notifyDataSetChanged();
     }
 
@@ -137,7 +147,7 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 Log.d("result", "onActivityResult: ");
-                DataItemTestLayout test = data.getParcelableExtra("favor");
+                UserItem test = data.getParcelableExtra("favor");
 
                 int poisision = data.getIntExtra("poinfavor", -1);
                 Log.d("poi", "onActivityResult: " + poisision);

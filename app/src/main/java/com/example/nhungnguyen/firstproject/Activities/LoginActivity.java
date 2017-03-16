@@ -1,4 +1,4 @@
-package com.example.nhungnguyen.firstproject;
+package com.example.nhungnguyen.firstproject.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.nhungnguyen.firstproject.R;
 
 // TODO: 3/9/17
 public class LoginActivity extends AppCompatActivity {

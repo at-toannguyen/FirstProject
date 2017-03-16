@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.nhungnguyen.firstproject.MainActivity">
+    tools:context="com.example.nhungnguyen.firstproject.Activities.MainActivity">
     <Button
         android:id="@+id/btnTest1"
         android:layout_width="wrap_content"
@@ -16,6 +16,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Test2"/>
-
+    <Button
+        android:id="@+id/btnTest3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test3"/>
+    <Button
+        android:id="@+id/btnTest4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test4"/>
 
 </LinearLayout>
