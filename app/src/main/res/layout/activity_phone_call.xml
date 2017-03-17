@@ -11,18 +11,18 @@
         android:id="@+id/edtPhoneCall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:inputType="phone"
+        android:layout_toLeftOf="@+id/imgDelNumber"
         android:background="@android:color/transparent"
-        android:layout_toLeftOf="@+id/imgDelNumber"/>
+        android:inputType="phone"
+        android:textSize="30sp" />
 
     <ImageView
         android:id="@+id/imgDelNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/ic_backspace" />
 
     <TableRow
@@ -108,6 +108,7 @@
             style="@style/MyTextViewPhoneCall"
             android:text="#" />
     </TableRow>
+
     <ImageView
         android:id="@+id/imgCall"
         android:layout_width="wrap_content"
@@ -115,5 +116,5 @@
         android:layout_below="@id/tbrLine4"
         android:layout_centerInParent="true"
         android:background="@drawable/ic_phone"
-        android:src="@drawable/ic_call_white_48dp"/>
+        android:src="@drawable/ic_call_white_48dp" />
 </RelativeLayout>

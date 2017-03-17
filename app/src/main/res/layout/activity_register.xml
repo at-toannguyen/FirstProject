@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.nhungnguyen.firstproject.Activities.RegisterActivity">
+
     <TextView
         style="@style/TextViewHeader"
         android:layout_width="match_parent"

@@ -6,46 +6,55 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.nhungnguyen.firstproject.Activities.ItentActivity">
+
     <Button
         android:id="@+id/btnCall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="call"/>
+        android:text="call" />
+
     <Button
         android:id="@+id/btnSendmMess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="send message"/>
+        android:text="send message" />
+
     <Button
         android:id="@+id/btnSendMail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="send mail"/>
+        android:text="send mail" />
+
     <Button
         android:id="@+id/btnLauchWeb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="lauch web"/>
+        android:text="lauch web" />
+
     <Button
         android:id="@+id/btnOpenAppPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="opent gg play store"/>
+        android:text="opent gg play store" />
+
     <Button
         android:id="@+id/btnOpenGGMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="open gg map with location"/>
+        android:text="open gg map with location" />
+
     <Button
         android:id="@+id/btnGallery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="gallery"/>
+        android:text="gallery" />
+
     <Button
         android:id="@+id/btnCamera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="camera"/>
+        android:text="camera" />
+
     <ImageView
         android:id="@+id/imgTest"
         android:layout_width="wrap_content"

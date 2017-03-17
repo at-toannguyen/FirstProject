@@ -19,15 +19,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="@android:color/holo_blue_bright"
-        android:text="@string/textview.text.forgot_pass" />
+        android:text="@string/textview.text.forgot_pass"
+        android:textColor="@android:color/holo_blue_bright" />
+
     <TextView
         android:id="@+id/tvCra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/textview.text.create_acc"
-        android:textColor="@android:color/holo_blue_bright"/>
+        android:textColor="@android:color/holo_blue_bright" />
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
