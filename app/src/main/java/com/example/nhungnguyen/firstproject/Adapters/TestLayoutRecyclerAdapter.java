@@ -119,7 +119,6 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
             mTvTitle = (TextView) itemView.findViewById(R.id.tvItemTitle);
         }
     }
-
     public interface onItemClickListener {
         void onItemClick(int position);
     }
