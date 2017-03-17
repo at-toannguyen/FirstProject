@@ -19,8 +19,17 @@ import android.widget.ImageView;
 
 import com.example.nhungnguyen.firstproject.R;
 
+import java.sql.BatchUpdateException;
+
 public class ItentActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button mBtnCall, mBtnSendMess, mBtnSendMail, mBtnLauch, mBtnOpenStore, mBtnOpenMap, mBtnGallery, mBtnCamera;
+    private Button mBtnCall;
+    private Button mBtnSendMess;
+    private Button mBtnSendMail;
+    private Button mBtnLauch;
+    private Button mBtnOpenStore;
+    private Button mBtnOpenMap;
+    private Button mBtnGallery;
+    private Button mBtnCamera;
     private ImageView mImgTest;
     private static final int SELECT_PICTURE = 100;
     private static final int CAMERA_REQUEST = 1888;
@@ -42,7 +51,7 @@ public class ItentActivity extends AppCompatActivity implements View.OnClickList
         mBtnOpenStore = (Button) findViewById(R.id.btnOpenAppPlay);
         mBtnOpenMap = (Button) findViewById(R.id.btnOpenGGMap);
         mBtnGallery = (Button) findViewById(R.id.btnGallery);
-        mImgTest=(ImageView) findViewById(R.id.imgTest);
+        mImgTest = (ImageView) findViewById(R.id.imgTest);
     }
 
     public void setOnClick() {
@@ -101,8 +110,8 @@ public class ItentActivity extends AppCompatActivity implements View.OnClickList
                 startActivityForResult(Intent.createChooser(intentGalerry, "Select Picture"), SELECT_PICTURE);
                 break;
             case R.id.btnCamera:
-                Intent intentCamera=new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intentCamera,CAMERA_REQUEST);
+                Intent intentCamera = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intentCamera, CAMERA_REQUEST);
                 break;
         }
     }
@@ -110,6 +119,7 @@ public class ItentActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        // Load ImageView From Gallery
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_PICTURE) {
                 // Get the url from data
@@ -122,11 +132,17 @@ public class ItentActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         }
-        if (requestCode==CAMERA_REQUEST && resultCode == Activity.RESULT_OK){
-            Bitmap photo=(Bitmap) data.getExtras().get("data");
+        // Load ImageView From Camera
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
             mImgTest.setImageBitmap(photo);
         }
     }
+
+    /**
+     * @param contentUri
+     * @return
+     */
     public String getPathFromURI(Uri contentUri) {
         String res = null;
         String[] proj = {MediaStore.Images.Media.DATA};

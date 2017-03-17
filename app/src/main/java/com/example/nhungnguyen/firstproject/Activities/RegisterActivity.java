@@ -20,12 +20,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
-    //Khai bao bien
     private Button mBtn;
-    private EditText mUser, mPass;
-    private RadioButton mMale, mFemale;
-    private RadioGroup mRbgr;
-    private CheckBox mChk1, mChk2, mChk3, mChk4, mChk5, mChk6;
+    private EditText mUser;
+    private EditText mPass;
+    private RadioButton mMale;
+    private RadioButton mFemale;
+    private RadioGroup mRag;
+    private CheckBox mChk1;
+    private CheckBox mChk2;
+    private CheckBox mChk3;
+    private CheckBox mChk4;
+    private CheckBox mChk5;
+    private CheckBox mChk6;
     private ImageView mImgEye;
 
     // TODO: 3/9/17  
@@ -33,45 +39,30 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        //khoi tao
-        mBtn = (Button) findViewById(R.id.chkRegister);
-        mUser = (EditText) findViewById(R.id.edUser);
-        mPass = (EditText) findViewById(R.id.edPass);
-        mRbgr = (RadioGroup) findViewById(R.id.rbgSex);
-        mMale = (RadioButton) findViewById(R.id.rbgMale);
-        mFemale = (RadioButton) findViewById(R.id.rbFemale);
-        mChk1 = (CheckBox) findViewById(R.id.cbkReadBook);
-        mChk2 = (CheckBox) findViewById(R.id.ckPlaySoccer);
-        mChk3 = (CheckBox) findViewById(R.id.chkListen_music);
-        mChk4 = (CheckBox) findViewById(R.id.chkPlayGame);
-        mChk5 = (CheckBox) findViewById(R.id.chkSwimming);
-        mChk6 = (CheckBox) findViewById(R.id.chkPlayBasketball);
-        mImgEye = (ImageView) findViewById(R.id.imgEye);
-        //set check cho cac radio button
-        int idchecked = mRbgr.getCheckedRadioButtonId();
-        switch (idchecked) {
+        initVariable();
+        // Set check cho cac radio button
+        int isChecked = mRag.getCheckedRadioButtonId();
+        switch (isChecked) {
             case R.id.rbgMale:
                 break;
             case R.id.rbFemale:
                 break;
         }
-        // set onClick cho button
+        // Set onClick cho button
         mBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(RegisterActivity.this, "\n User: " + mUser.getText().toString() + " \n Pass: " + mPass.getText().toString() + " \n sex: " + setSex() + " \n Hobby: " + getTextCheckBox(), Toast.LENGTH_SHORT).show();
             }
         });
-        //set hide/show password
+        // Set hide/show password
         mImgEye.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                int x = Math.round(motionEvent.getX());
-                int y = Math.round(motionEvent.getY());
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         mPass.setInputType(InputType.TYPE_CLASS_TEXT);
-                        Log.v("Test", "dơwn");
+                        Log.v("Test", "down");
                         break;
                     case MotionEvent.ACTION_UP:
                         mPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -83,13 +74,30 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    /**GET Text Checkbox of Uer
+    private void initVariable() {
+        mBtn = (Button) findViewById(R.id.chkRegister);
+        mUser = (EditText) findViewById(R.id.edUser);
+        mPass = (EditText) findViewById(R.id.edPass);
+        mMale = (RadioButton) findViewById(R.id.rbgMale);
+        mFemale = (RadioButton) findViewById(R.id.rbFemale);
+        mRag = (RadioGroup) findViewById(R.id.rbgSex);
+        mChk1 = (CheckBox) findViewById(R.id.cbkReadBook);
+        mChk2 = (CheckBox) findViewById(R.id.ckPlaySoccer);
+        mChk3 = (CheckBox) findViewById(R.id.chkListen_music);
+        mChk4 = (CheckBox) findViewById(R.id.chkPlayGame);
+        mChk5 = (CheckBox) findViewById(R.id.chkSwimming);
+        mChk6 = (CheckBox) findViewById(R.id.chkPlayBasketball);
+        mImgEye = (ImageView) findViewById(R.id.imgEye);
+    }
+
+    /**
+     * GET Text Checkbox of Uer
      *
      * @return String Text
      */
-    public String getTextCheckBox() {
+    private String getTextCheckBox() {
         String text = "";
-        List<CheckBox> items = new ArrayList<CheckBox>();
+        List<CheckBox> items = new ArrayList<>();
         items.add(mChk1);
         items.add(mChk2);
         items.add(mChk3);
@@ -104,11 +112,12 @@ public class RegisterActivity extends AppCompatActivity {
         return text;
     }
 
-    /**GET Text RadioButton of User
+    /**
+     * GET Text RadioButton of User
      *
      * @return String Text
      */
-    public CharSequence setSex() {
+    private CharSequence setSex() {
 
         if (mMale.isChecked()) {
             return mMale.getText().toString();

@@ -10,49 +10,54 @@ import android.widget.TextView;
 import com.example.nhungnguyen.firstproject.Models.UserItem;
 import com.example.nhungnguyen.firstproject.R;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class DetailPersonActivity extends AppCompatActivity {
-    private TextView mTvPerson,mTvAge,mTvContent;
-    private ImageView mfavorite,mImgPerson;
-    private List<UserItem> mdata = new ArrayList<>();
-    private UserItem data;
-    private int poisision;
+    private TextView mTvPerson;
+    private TextView mTvAge;
+    private TextView mTvContent;
+    private ImageView mFavorite;
+    private ImageView mImgPerson;
+    private UserItem mData;
+    private int mPosition;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_person);
-        mTvPerson=(TextView) findViewById(R.id.tvDetail1);
-        mTvAge=(TextView) findViewById(R.id.tvDetail2);
-        mTvContent=(TextView) findViewById(R.id.tvDetail3);
-        mfavorite=(ImageView)findViewById(R.id.imgFavoriteDetail);
-        mImgPerson=(ImageView) findViewById(R.id.imgDetail);
-        final Bundle bundle = getIntent().getExtras();
-        data=bundle.getParcelable("para");
-        poisision=bundle.getInt("poin");
-        mTvPerson.setText(data.getTvUser());
-        mTvAge.setText(data.getTvAge());
-        mTvContent.setText(data.getTvContent());
-        mImgPerson.setBackgroundResource(data.getImgPerson());
-        mfavorite.setSelected(data.isFavorite());
+        init();
+        Bundle bundle = getIntent().getExtras();
+        mData = bundle.getParcelable("para");
+        mPosition = bundle.getInt("position");
+        mTvPerson.setText(mData.getTvUser());
+        mTvAge.setText(mData.getTvAge());
+        mTvContent.setText(mData.getTvContent());
+        mImgPerson.setBackgroundResource(mData.getImgPerson());
+        mFavorite.setSelected(mData.isFavorite());
 
-        mfavorite.setOnClickListener(new View.OnClickListener() {
+        mFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mfavorite.setSelected(!data.isFavorite());
-                data.setFavorite(!data.isFavorite());
+                mFavorite.setSelected(!mData.isFavorite());
+                mData.setFavorite(!mData.isFavorite());
 
             }
         });
     }
 
+    private void init() {
+        mTvPerson = (TextView) findViewById(R.id.tvDetail1);
+        mTvAge = (TextView) findViewById(R.id.tvDetail2);
+        mTvContent = (TextView) findViewById(R.id.tvDetail3);
+        mFavorite = (ImageView) findViewById(R.id.imgFavoriteDetail);
+        mImgPerson = (ImageView) findViewById(R.id.imgDetail);
+    }
+
     @Override
     public void onBackPressed() {
-        Intent i=new Intent();
-        i.putExtra("favor", data);
-        i.putExtra("poinfavor",poisision);
-        setResult(RESULT_OK,i);
+        Intent i = new Intent();
+        i.putExtra("favor", mData);
+        i.putExtra("positionFavorite", mPosition);
+        setResult(RESULT_OK, i);
         finish();
     }
 }

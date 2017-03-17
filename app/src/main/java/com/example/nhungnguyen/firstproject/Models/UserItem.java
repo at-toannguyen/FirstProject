@@ -3,18 +3,16 @@ package com.example.nhungnguyen.firstproject.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by asiantech on 3/10/17.
- */
+
 // TODO: 3/10/17  
 public class UserItem extends ItemList implements Parcelable {
-    String tvUser, tvAge, tvContent;
-    int imgPerson;
-    int favorite;
-    boolean isFavorite;
+    private final String tvUser;
+    private final String tvAge;
+    private final String tvContent;
+    private final int imgPerson;
+    private int favorite;
+    private boolean isFavorite;
 
-    public UserItem() {
-    }
 
     public UserItem(String tvUser, String tvAge, String tvContent, int imgPerson) {
         this.tvUser = tvUser;
@@ -23,7 +21,7 @@ public class UserItem extends ItemList implements Parcelable {
         this.imgPerson = imgPerson;
     }
 
-    protected UserItem(Parcel in) {
+    private UserItem(Parcel in) {
         tvUser = in.readString();
         tvAge = in.readString();
         tvContent = in.readString();
@@ -63,41 +61,20 @@ public class UserItem extends ItemList implements Parcelable {
         return imgPerson;
     }
 
-    public void setImgPerson(int imgPerson) {
-        this.imgPerson = imgPerson;
-    }
-
     public String getTvUser() {
         return tvUser;
     }
 
-    public void setTvUser(String tvUser) {
-        this.tvUser = tvUser;
-    }
 
     public String getTvAge() {
         return tvAge;
     }
 
-    public void setTvAge(String tvAge) {
-        this.tvAge = tvAge;
-    }
 
     public String getTvContent() {
         return tvContent;
     }
 
-    public void setTvContent(String tvContent) {
-        this.tvContent = tvContent;
-    }
-
-    public int getFavorite() {
-        return favorite;
-    }
-
-    public void setFavorite(int favorite) {
-        this.favorite = favorite;
-    }
 
     public boolean isFavorite() {
         return isFavorite;

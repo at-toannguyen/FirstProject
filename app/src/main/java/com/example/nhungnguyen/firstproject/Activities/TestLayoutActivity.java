@@ -19,7 +19,7 @@ import com.example.nhungnguyen.firstproject.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestLayoutActivity extends AppCompatActivity implements TestLayoutRecyclerAdapter.onItemClickListner {
+public class TestLayoutActivity extends AppCompatActivity implements TestLayoutRecyclerAdapter.onItemClickListener {
     private RecyclerView mRecyclerViewTestLayout;
     private List<ItemList> mData;
     private ImageView imgBack;
@@ -32,34 +32,35 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-        mData = new ArrayList<>();
-        //---------
-        mHandler = new android.os.Handler();
-        //----------
-        mRecyclerViewTestLayout = (RecyclerView) findViewById(R.id.recycleViewPersonal);
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBarUser);
-        mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(mData, this);
+        init();
         createData();
+
         mRecyclerViewTestLayout.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerViewTestLayout.setLayoutManager(mLayoutManager);
         mRecyclerViewTestLayout.setAdapter(mTestLayoutRecyclerAdapter);
-        //----------
-        imgBack = (ImageView) findViewById(R.id.imgBack);
 
-        //-------------
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+        loadMore();
 
+    }
+
+    private void init() {
+        imgBack = (ImageView) findViewById(R.id.imgBack);
+        mRecyclerViewTestLayout = (RecyclerView) findViewById(R.id.recycleViewPersonal);
+        mData = new ArrayList<>();
+        mHandler = new android.os.Handler();
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBarUser);
+        mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(mData, this);
+    }
+
+    private void loadMore() {
         mRecyclerViewTestLayout.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -73,9 +74,9 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
                             Log.d("131", "run: ");
                             int start = mData.size();
                             int end = start + 20;
-                            String person = "";
-                            String age = "";
-                            String content = "";
+                            String person;
+                            String age;
+                            String content;
                             for (int i = start + 1; i < end; i++) {
                                 person = "person " + i;
                                 age = "Age: " + i;
@@ -84,32 +85,29 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
                                 } else {
                                     content = "Hi";
                                 }
-                                if (i%3==0 || i==1 ){
+                                if (i % 3 == 0 || i == 1) {
                                     mData.add(new TitleItem("Group A"));
-                                }else {if (i%5==0){
-                                    mData.add(new TitleItem("Group B"));
+                                } else {
+                                    if (i % 5 == 0) {
+                                        mData.add(new TitleItem("Group B"));
+                                    }
                                 }
-                                }
-                                mData.add(new UserItem(person, age, content,R.drawable.img_person_male));
+                                mData.add(new UserItem(person, age, content, R.drawable.img_person_male));
                             }
                             mTestLayoutRecyclerAdapter.notifyItemInserted(mData.size());
                             mProgressBar.setVisibility(View.GONE);
                         }
+
                     }, 3000);
                 }
             }
         });
     }
 
-    /**
-     * Create Data for RecycleView
-     *
-     * @return Data
-     */
     private void createData() {
-        String person = "";
-        String age = "";
-        String content = "";
+        String person;
+        String age;
+        String content;
         for (int i = 1; i <= 20; i++) {
             person = "person " + i;
             age = "Age: " + i;
@@ -118,13 +116,14 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
             } else {
                 content = "Hi";
             }
-            if (i%3==0 || i==1 ){
+            if (i % 3 == 0 || i == 1) {
                 mData.add(new TitleItem("Group A"));
-            }else {if (i%5==0){
-                mData.add(new TitleItem("Group B"));
+            } else {
+                if (i % 5 == 0) {
+                    mData.add(new TitleItem("Group B"));
+                }
             }
-            }
-            mData.add(new UserItem(person, age, content,R.drawable.img_person_male));
+            mData.add(new UserItem(person, age, content, R.drawable.img_person_male));
         }
 
         mTestLayoutRecyclerAdapter.notifyDataSetChanged();
@@ -132,11 +131,11 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
 
 
     @Override
-    public void onItemClick(int poisision) {
+    public void onItemClick(int position) {
         Bundle b = new Bundle();
-        b.putInt("poin", poisision);
+        b.putInt("position", position);
         Intent i = new Intent(TestLayoutActivity.this, DetailPersonActivity.class);
-        b.putParcelable("para", mData.get(poisision));
+        b.putParcelable("para", mData.get(position));
         i.putExtras(b);
         startActivityForResult(i, 1);
     }
@@ -149,10 +148,10 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
                 Log.d("result", "onActivityResult: ");
                 UserItem test = data.getParcelableExtra("favor");
 
-                int poisision = data.getIntExtra("poinfavor", -1);
-                Log.d("poi", "onActivityResult: " + poisision);
-                if (poisision != -1) {
-                    mData.set(poisision, test);
+                int position = data.getIntExtra("positionFavorite", -1);
+                Log.d("poi", "onActivityResult: " + position);
+                if (position != -1) {
+                    mData.set(position, test);
                     mTestLayoutRecyclerAdapter.notifyDataSetChanged();
                 }
             }

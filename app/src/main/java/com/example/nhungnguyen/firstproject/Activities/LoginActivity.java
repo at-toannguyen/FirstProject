@@ -13,32 +13,41 @@ import com.example.nhungnguyen.firstproject.R;
 
 // TODO: 3/9/17
 public class LoginActivity extends AppCompatActivity {
-    private EditText mUser, mPass;
+    private EditText mUser;
+    private EditText mPass;
     private Button mBtnLg;
     private TextView mTvCra;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        mUser =(EditText) findViewById(R.id.edUser);
-        mPass =(EditText)findViewById(R.id.edPass);
-        mBtnLg =(Button)findViewById(R.id.btnLogin);
-        mTvCra=(TextView)findViewById(R.id.tvCra);
+        initVariable();
+        setOnClick();
+    }
+
+    // Init Variable
+    private void initVariable() {
+        mUser = (EditText) findViewById(R.id.edUser);
+        mPass = (EditText) findViewById(R.id.edPass);
+        mBtnLg = (Button) findViewById(R.id.btnLogin);
+        mTvCra = (TextView) findViewById(R.id.tvCra);
+    }
+
+    // Set OnClick for Button and TextView
+    private void setOnClick() {
         mBtnLg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(LoginActivity.this,RegisterActivity.class);
-//                Bundle b=new Bundle();
-//                b.putString("key", mUser.getText().toString());
-//                i.putExtras(b);
+                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(i);
-                Toast.makeText(LoginActivity.this, "User: "+ mUser.getText().toString()+" \n Pass: "+ mPass.getText().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "User: " + mUser.getText().toString() + " \n Pass: " + mPass.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
         mTvCra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(i);
             }
         });

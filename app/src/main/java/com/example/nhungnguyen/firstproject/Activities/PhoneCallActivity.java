@@ -1,17 +1,15 @@
 package com.example.nhungnguyen.firstproject.Activities;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.inputmethodservice.Keyboard;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.BaseInputConnection;
@@ -22,8 +20,20 @@ import android.widget.TextView;
 import com.example.nhungnguyen.firstproject.R;
 
 public class PhoneCallActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView mTvNum1, mTvNum2, mTvNum3, mTvNum4, mTvNum5, mTvNum6, mTvNum7, mTvNum8, mTvNum9, mTvNum0, mTvSao, mTvThang;
-    private ImageView mImgCall, mImgDel;
+    private TextView mTvNum1;
+    private TextView mTvNum2;
+    private TextView mTvNum3;
+    private TextView mTvNum4;
+    private TextView mTvNum5;
+    private TextView mTvNum6;
+    private TextView mTvNum7;
+    private TextView mTvNum8;
+    private TextView mTvNum9;
+    private TextView mTvNum0;
+    private TextView mTvAsterisk;
+    private TextView mTvPound;
+    private ImageView mImgCall;
+    private ImageView mImgDel;
     private EditText mEdtNumCall;
 
     @Override
@@ -32,7 +42,13 @@ public class PhoneCallActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_phone_call);
         initVariable();
         setOnClick();
-
+        mImgDel.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                mEdtNumCall.getText().clear();
+                return true;
+            }
+        });
         mEdtNumCall.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -51,11 +67,7 @@ public class PhoneCallActivity extends AppCompatActivity implements View.OnClick
         });
     }
 
-    public void initVariable() {
-        mEdtNumCall = (EditText) findViewById(R.id.edtPhoneCall);
-        mImgCall = (ImageView) findViewById(R.id.imgCall);
-        mImgDel = (ImageView) findViewById(R.id.imgDelNumber);
-        mTvNum0 = (TextView) findViewById(R.id.tvNum0);
+    private void initVariable() {
         mTvNum1 = (TextView) findViewById(R.id.tvNum1);
         mTvNum2 = (TextView) findViewById(R.id.tvNum2);
         mTvNum3 = (TextView) findViewById(R.id.tvNum3);
@@ -65,11 +77,15 @@ public class PhoneCallActivity extends AppCompatActivity implements View.OnClick
         mTvNum7 = (TextView) findViewById(R.id.tvNum7);
         mTvNum8 = (TextView) findViewById(R.id.tvNum8);
         mTvNum9 = (TextView) findViewById(R.id.tvNum9);
-        mTvSao = (TextView) findViewById(R.id.tvSao);
-        mTvThang = (TextView) findViewById(R.id.tvThang);
+        mTvNum0 = (TextView) findViewById(R.id.tvNum0);
+        mTvAsterisk = (TextView) findViewById(R.id.tvSao);
+        mTvPound = (TextView) findViewById(R.id.tvThang);
+        mImgCall = (ImageView) findViewById(R.id.imgCall);
+        mImgDel = (ImageView) findViewById(R.id.imgDelNumber);
+        mEdtNumCall = (EditText) findViewById(R.id.edtPhoneCall);
     }
 
-    public void setOnClick() {
+    private void setOnClick() {
         mTvNum0.setOnClickListener(this);
         mTvNum1.setOnClickListener(this);
         mTvNum2.setOnClickListener(this);
@@ -80,8 +96,8 @@ public class PhoneCallActivity extends AppCompatActivity implements View.OnClick
         mTvNum7.setOnClickListener(this);
         mTvNum8.setOnClickListener(this);
         mTvNum9.setOnClickListener(this);
-        mTvSao.setOnClickListener(this);
-        mTvThang.setOnClickListener(this);
+        mTvAsterisk.setOnClickListener(this);
+        mTvPound.setOnClickListener(this);
         mImgDel.setOnClickListener(this);
         mImgCall.setOnClickListener(this);
     }
@@ -120,10 +136,10 @@ public class PhoneCallActivity extends AppCompatActivity implements View.OnClick
                 mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum9.getText().toString());
                 break;
             case R.id.tvSao:
-                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvSao.getText().toString());
+                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvAsterisk.getText().toString());
                 break;
             case R.id.tvThang:
-                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvThang.getText().toString());
+                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvPound.getText().toString());
                 break;
             case R.id.imgDelNumber:
                 BaseInputConnection del = new BaseInputConnection(mEdtNumCall, true);

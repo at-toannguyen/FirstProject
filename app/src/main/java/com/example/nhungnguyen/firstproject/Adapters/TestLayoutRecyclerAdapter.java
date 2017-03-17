@@ -14,20 +14,16 @@ import com.example.nhungnguyen.firstproject.R;
 
 import java.util.List;
 
-/**
- * Created by asiantech on 3/10/17.
- */
+
 // TODO: 3/10/17
 public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final List<ItemList> mData;
-    private final onItemClickListner mItemClickListener;
-    private final int VIEW_TYPE_TITLE = 1;
-    private final int VIEW_TYPE_USER = 2;
+    private final onItemClickListener mItemClickListener;
 
 
-    public TestLayoutRecyclerAdapter(List<ItemList> mData, onItemClickListner listner) {
+    public TestLayoutRecyclerAdapter(List<ItemList> mData, onItemClickListener listener) {
         this.mData = mData;
-        this.mItemClickListener = listner;
+        this.mItemClickListener = listener;
     }
 
 
@@ -39,13 +35,15 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder = null;
+        final int VIEW_TYPE_USER = 2;
         if (viewType == VIEW_TYPE_USER) {
             View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_user_layout, parent, false);
-            viewHolder=new UserViewHolder(layoutView);
+            viewHolder = new UserViewHolder(layoutView);
         } else {
+            final int VIEW_TYPE_TITLE = 1;
             if (viewType == VIEW_TYPE_TITLE) {
                 View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_title_layout, parent, false);
-                viewHolder=new TitleViewHolder(layoutView);
+                viewHolder = new TitleViewHolder(layoutView);
             }
         }
         return viewHolder;
@@ -85,8 +83,11 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder {
-        private TextView mTvUser, mTvAge, mTvContent;
-        private ImageView favorite, mImgPerson;
+        private final TextView mTvUser;
+        private final TextView mTvAge;
+        private final TextView mTvContent;
+        private final ImageView favorite;
+        private final ImageView mImgPerson;
 
         public UserViewHolder(final View itemView) {
             super(itemView);
@@ -99,13 +100,11 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
             favorite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ItemList ob =mData.get(getAdapterPosition());
-                    if (ob instanceof  UserItem){
+                    ItemList ob = mData.get(getAdapterPosition());
+                    if (ob instanceof UserItem) {
                         ((UserItem) ob).setFavorite(!((UserItem) ob).isFavorite());
                         notifyDataSetChanged();
                     }
-//                    mData.get(getAdapterPosition()).setFavorite(!mData.get(getAdapterPosition()).isFavorite());
-//                    notifyDataSetChanged();
                 }
             });
 
@@ -113,7 +112,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
     public class TitleViewHolder extends RecyclerView.ViewHolder {
-        private TextView mTvTitle;
+        private final TextView mTvTitle;
 
         public TitleViewHolder(View itemView) {
             super(itemView);
@@ -121,7 +120,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         }
     }
 
-    public interface onItemClickListner {
-        void onItemClick(int poisision);
+    public interface onItemClickListener {
+        void onItemClick(int position);
     }
 }
