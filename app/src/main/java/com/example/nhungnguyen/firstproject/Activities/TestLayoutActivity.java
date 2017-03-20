@@ -15,6 +15,7 @@ import com.example.nhungnguyen.firstproject.Models.ItemList;
 import com.example.nhungnguyen.firstproject.Models.TitleItem;
 import com.example.nhungnguyen.firstproject.Models.UserItem;
 import com.example.nhungnguyen.firstproject.R;
+import com.example.nhungnguyen.firstproject.SQLite.DataBaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
     private android.os.Handler mHandler;
     private LinearLayoutManager mLayoutManager;
     private ProgressBar mProgressBar;
+    private DataBaseHelper mDataBaseHealper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
         mHandler = new android.os.Handler();
         mProgressBar = (ProgressBar) findViewById(R.id.progressBarUser);
         mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(mData, this);
+        mDataBaseHealper=new DataBaseHelper(this);
     }
 
     private void loadMore() {
@@ -105,10 +108,12 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
     }
 
     private void createData() {
+        int id = 0;
         String person;
         String age;
         String content;
         for (int i = 1; i <= 20; i++) {
+            id+=i;
             person = "person " + i;
             age = "Age: " + i;
             if (i % 2 == 0) {
@@ -123,9 +128,10 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
                     mData.add(new TitleItem("Group B"));
                 }
             }
-            mData.add(new UserItem(person, age, content, R.drawable.img_person_male));
+//            mData.add(new UserItem(person, age, content, R.drawable.img_person_male));
+            mDataBaseHealper.addUser(new UserItem(id,person,age,content));
         }
-
+        mData.addAll(mDataBaseHealper.getAllUsers());
         mTestLayoutRecyclerAdapter.notifyDataSetChanged();
     }
 

@@ -28,6 +28,7 @@ public class UserItem extends ItemList implements Parcelable {
         this.tvUser = tvUser;
         this.tvAge = tvAge;
         this.tvContent = tvContent;
+//        this.imgPerson=imgPerson;?
     }
     private UserItem(Parcel in) {
         tvUser = in.readString();
@@ -64,6 +65,10 @@ public class UserItem extends ItemList implements Parcelable {
             return new UserItem[size];
         }
     };
+
+    public void setImgPerson(int imgPerson) {
+        this.imgPerson = imgPerson;
+    }
 
     public int getImgPerson() {
         return imgPerson;

@@ -1,5 +1,9 @@
 package com.example.nhungnguyen.firstproject.Activities;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -33,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
     private CheckBox mChk5;
     private CheckBox mChk6;
     private ImageView mImgEye;
+    private Button mBtnLogOut;
 
     // TODO: 3/9/17  
     @Override
@@ -72,6 +77,29 @@ public class RegisterActivity extends AppCompatActivity {
                 return true;
             }
         });
+        mBtnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                builder.setMessage("Do U want exit?")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                SharedPreferences preferences=getSharedPreferences("mydata",MODE_PRIVATE);
+                                SharedPreferences.Editor editor=preferences.edit();
+                                editor.clear();
+                                editor.commit();
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                            }
+                        });
+                builder.create();
+                builder.show();
+            }
+        });
     }
 
     private void initVariable() {
@@ -88,6 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
         mChk5 = (CheckBox) findViewById(R.id.chkSwimming);
         mChk6 = (CheckBox) findViewById(R.id.chkPlayBasketball);
         mImgEye = (ImageView) findViewById(R.id.imgEye);
+        mBtnLogOut=(Button) findViewById(R.id.btnLogOut);
     }
 
     /**
