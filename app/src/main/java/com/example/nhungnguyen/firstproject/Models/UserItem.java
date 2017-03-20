@@ -6,13 +6,16 @@ import android.os.Parcelable;
 
 // TODO: 3/10/17  
 public class UserItem extends ItemList implements Parcelable {
-    private final String tvUser;
-    private final String tvAge;
-    private final String tvContent;
-    private final int imgPerson;
+    private int id;
+    private String tvUser;
+    private String tvAge;
+    private String tvContent;
+    private int imgPerson;
     private int favorite;
     private boolean isFavorite;
 
+    public UserItem() {
+    }
 
     public UserItem(String tvUser, String tvAge, String tvContent, int imgPerson) {
         this.tvUser = tvUser;
@@ -20,7 +23,13 @@ public class UserItem extends ItemList implements Parcelable {
         this.tvContent = tvContent;
         this.imgPerson = imgPerson;
     }
-
+    public UserItem(int id, String tvUser, String tvAge, String tvContent) {
+        this.id = id;
+        this.tvUser = tvUser;
+        this.tvAge = tvAge;
+        this.tvContent = tvContent;
+//        this.imgPerson=imgPerson;?
+    }
     private UserItem(Parcel in) {
         tvUser = in.readString();
         tvAge = in.readString();
@@ -57,6 +66,10 @@ public class UserItem extends ItemList implements Parcelable {
         }
     };
 
+    public void setImgPerson(int imgPerson) {
+        this.imgPerson = imgPerson;
+    }
+
     public int getImgPerson() {
         return imgPerson;
     }
@@ -65,6 +78,25 @@ public class UserItem extends ItemList implements Parcelable {
         return tvUser;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTvUser(String tvUser) {
+        this.tvUser = tvUser;
+    }
+
+    public void setTvAge(String tvAge) {
+        this.tvAge = tvAge;
+    }
+
+    public void setTvContent(String tvContent) {
+        this.tvContent = tvContent;
+    }
 
     public String getTvAge() {
         return tvAge;

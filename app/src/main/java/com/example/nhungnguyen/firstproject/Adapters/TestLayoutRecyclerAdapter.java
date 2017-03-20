@@ -54,6 +54,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         ItemList ob = mData.get(position);
         if (holder instanceof UserViewHolder) {
             if (ob instanceof UserItem) {
+//                ((UserViewHolder) holder).mTvIdUser.setText(((UserItem) ob).getId());
                 ((UserViewHolder) holder).mTvUser.setText(((UserItem) ob).getTvUser());
                 ((UserViewHolder) holder).mTvAge.setText(((UserItem) ob).getTvAge());
                 ((UserViewHolder) holder).mTvContent.setText(((UserItem) ob).getTvContent());
@@ -83,6 +84,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder {
+        private final TextView mTvIdUser;
         private final TextView mTvUser;
         private final TextView mTvAge;
         private final TextView mTvContent;
@@ -91,6 +93,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
 
         public UserViewHolder(final View itemView) {
             super(itemView);
+            mTvIdUser=(TextView)itemView.findViewById(R.id.tvIdUser);
             mTvUser = (TextView) itemView.findViewById(R.id.tvPerson1);
             mTvAge = (TextView) itemView.findViewById(R.id.tvPerson2);
             mTvContent = (TextView) itemView.findViewById(R.id.tvPerson3);
@@ -119,7 +122,6 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
             mTvTitle = (TextView) itemView.findViewById(R.id.tvItemTitle);
         }
     }
-
     public interface onItemClickListener {
         void onItemClick(int position);
     }
