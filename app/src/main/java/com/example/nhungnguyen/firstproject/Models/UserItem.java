@@ -6,45 +6,50 @@ import android.os.Parcelable;
 
 // TODO: 3/10/17  
 public class UserItem extends ItemList implements Parcelable {
-    private int id;
+    private String id;
     private String tvUser;
     private String tvAge;
     private String tvContent;
-    private int imgPerson;
+    private String imgPerson;
     private int favorite;
     private boolean isFavorite;
 
     public UserItem() {
     }
 
-    public UserItem(String tvUser, String tvAge, String tvContent, int imgPerson) {
+    public UserItem(String tvUser, String tvAge, String tvContent, String imgPerson) {
         this.tvUser = tvUser;
         this.tvAge = tvAge;
         this.tvContent = tvContent;
         this.imgPerson = imgPerson;
     }
-    public UserItem(int id, String tvUser, String tvAge, String tvContent) {
+    public UserItem(String id, String tvUser, String tvAge, String tvContent, String imgPerson) {
         this.id = id;
         this.tvUser = tvUser;
         this.tvAge = tvAge;
         this.tvContent = tvContent;
-//        this.imgPerson=imgPerson;?
+        this.imgPerson=imgPerson;
     }
-    private UserItem(Parcel in) {
+
+    protected UserItem(Parcel in) {
+        super(in);
+        id = in.readString();
         tvUser = in.readString();
         tvAge = in.readString();
         tvContent = in.readString();
-        imgPerson = in.readInt();
+        imgPerson = in.readString();
         favorite = in.readInt();
         isFavorite = in.readByte() != 0;
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+        dest.writeString(id);
         dest.writeString(tvUser);
         dest.writeString(tvAge);
         dest.writeString(tvContent);
-        dest.writeInt(imgPerson);
+        dest.writeString(imgPerson);
         dest.writeInt(favorite);
         dest.writeByte((byte) (isFavorite ? 1 : 0));
     }
@@ -66,23 +71,23 @@ public class UserItem extends ItemList implements Parcelable {
         }
     };
 
-    public void setImgPerson(int imgPerson) {
-        this.imgPerson = imgPerson;
+    public String getImgPerson() {
+        return imgPerson;
     }
 
-    public int getImgPerson() {
-        return imgPerson;
+    public void setImgPerson(String imgPerson) {
+        this.imgPerson = imgPerson;
     }
 
     public String getTvUser() {
         return tvUser;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

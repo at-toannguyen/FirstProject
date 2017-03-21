@@ -32,6 +32,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:src="@drawable/ic_option" />
+        <ImageView
+            android:id="@+id/imgAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/plus"/>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

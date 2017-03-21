@@ -14,14 +14,14 @@ import java.util.List;
 
 
 public class DataBaseHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "demo";
+    private static final int DATABASE_VERSION = 25;
+    private static final String DATABASE_NAME = "abc";
     private static final String TABLE_USER = "user";
     private static final String USER_ID = "id";
     private static final String USER_NAME = "name";
     private static final String USER_AGE = "age";
     private static final String USER_CONTENT = "content";
-//    private static final String USER_IMAGE="image";
+    private static final String USER_IMAGE = "image";
 
 
     public DataBaseHelper(Context context) {
@@ -29,12 +29,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
 
-
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + " ("
-                + USER_ID + " INTEGER PRIMARY KEY," + USER_NAME + " TEXT,"
-                + USER_AGE + " TEXT," + USER_CONTENT + " TEXT" +")";
+                + USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + USER_NAME + " TEXT,"
+                + USER_AGE + " TEXT," + USER_CONTENT + " TEXT," + USER_IMAGE + " TEXT " + ")";
         sqLiteDatabase.execSQL(CREATE_USER_TABLE);
     }
 
@@ -52,22 +51,22 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         values.put(USER_NAME, userItem.getTvUser());
         values.put(USER_AGE, userItem.getTvAge());
         values.put(USER_CONTENT, userItem.getTvContent());
-//        values.put(USER_IMAGE,userItem.getImgPerson());
+        values.put(USER_IMAGE,userItem.getImgPerson());
 
         db.insert(TABLE_USER, null, values);
         db.close();
     }
 
     // Getting single contact
-    public UserItem getUser(int id) {
+    public UserItem User(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_USER, new String[]{USER_ID,
                         USER_NAME, USER_AGE, USER_CONTENT}, USER_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null
         );
-        UserItem userItem = new UserItem(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2), cursor.getString(3));
+        UserItem userItem = new UserItem(cursor.getString(0),
+                cursor.getString(1), cursor.getString(2), cursor.getString(3),cursor.getString(4));
         return userItem;
     }
 
@@ -82,11 +81,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 UserItem userItem = new UserItem();
-                userItem.setId(Integer.parseInt(cursor.getString(0)));
+                userItem.setId(cursor.getString(0));
                 userItem.setTvUser(cursor.getString(1));
                 userItem.setTvAge(cursor.getString(2));
                 userItem.setTvContent(cursor.getString(3));
-//                userItem.setImgPerson(Integer.parseInt(cursor.getString(4)));
+                userItem.setImgPerson(cursor.getString(4));
+                userItemList.add(userItem);
             } while (cursor.moveToNext());
         }
 
@@ -123,4 +123,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(userItem.getId())});
         db.close();
     }
+
+
 }
