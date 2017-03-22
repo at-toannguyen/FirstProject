@@ -11,6 +11,8 @@ import com.example.nhungnguyen.firstproject.Models.UserItem;
 import com.example.nhungnguyen.firstproject.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+
 
 public class DetailPersonActivity extends AppCompatActivity {
     private TextView mTvPerson;
@@ -33,7 +35,7 @@ public class DetailPersonActivity extends AppCompatActivity {
         mTvAge.setText(mData.getTvAge());
         mTvContent.setText(mData.getTvContent());
 //        mImgPerson.setBackgroundResource(mData.getImgPerson());
-        Picasso.with(this).load(mData.getImgPerson()).into(mImgPerson);
+        Picasso.with(this).load(new File(mData.getImgPerson())).into(mImgPerson);
         mFavorite.setSelected(mData.isFavorite());
 
         mFavorite.setOnClickListener(new View.OnClickListener() {

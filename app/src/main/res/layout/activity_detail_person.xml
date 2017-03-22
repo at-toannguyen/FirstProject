@@ -12,10 +12,10 @@
 
         <ImageView
             android:id="@+id/imgDetail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/img_person"
+            android:src="@drawable/img_person"
             android:contentDescription="" />
 
         <ImageView

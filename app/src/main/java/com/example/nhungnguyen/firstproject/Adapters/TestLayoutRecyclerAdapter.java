@@ -2,6 +2,7 @@ package com.example.nhungnguyen.firstproject.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.example.nhungnguyen.firstproject.Models.UserItem;
 import com.example.nhungnguyen.firstproject.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.List;
 
 
@@ -25,10 +27,10 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     private final Context mContext;
 
 
-    public TestLayoutRecyclerAdapter(List<ItemList> mData, onItemClickListener listener,Context context) {
+    public TestLayoutRecyclerAdapter(List<ItemList> mData, onItemClickListener listener, Context context) {
         this.mData = mData;
         this.mItemClickListener = listener;
-        mContext=context;
+        mContext = context;
     }
 
 
@@ -59,13 +61,24 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         ItemList ob = mData.get(position);
         if (holder instanceof UserViewHolder) {
             if (ob instanceof UserItem) {
-                ((UserViewHolder) holder).mTvIdUser.setText(((UserItem) ob).getId());
-                ((UserViewHolder) holder).mTvUser.setText(((UserItem) ob).getTvUser());
-                ((UserViewHolder) holder).mTvAge.setText(((UserItem) ob).getTvAge());
-                ((UserViewHolder) holder).mTvContent.setText(((UserItem) ob).getTvContent());
-                ((UserViewHolder) holder).favorite.setSelected(((UserItem) ob).isFavorite());
+                UserItem item = (UserItem) ob;
+                ((UserViewHolder) holder).mTvIdUser.setText(item.getId());
+                ((UserViewHolder) holder).mTvUser.setText(item.getTvUser());
+                ((UserViewHolder) holder).mTvAge.setText(item.getTvAge());
+                ((UserViewHolder) holder).mTvContent.setText(item.getTvContent());
+                ((UserViewHolder) holder).favorite.setSelected(item.isFavorite());
 //                ((UserViewHolder) holder).mImgPerson.setBackgroundResource(((UserItem) ob).getImgPerson());
-                Picasso.with(mContext).load(((UserItem) ob).getImgPerson()).into(((UserViewHolder) holder).mImgPerson);
+                if (!TextUtils.isEmpty(item.getImgPerson())) {
+                    Picasso.with(mContext)
+                            .load(new File(item.getImgPerson()))
+                            .centerCrop()
+                            .fit()
+                            .error(R.drawable.img_person)
+                            .into(((UserViewHolder) holder).mImgPerson);
+                } else {
+                    ((UserViewHolder) holder).mImgPerson.setImageResource(R.drawable.img_person);
+                }
+                Log.d("onSuccess", "onBindViewHolder: " + item.getImgPerson());
                 ((UserViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -74,17 +87,20 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
                         }
                     }
                 });
-                ((UserViewHolder)holder).itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                ((UserViewHolder) holder).itemView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
-                        if(mItemClickListener!=null){
+                        if (mItemClickListener != null) {
                             mItemClickListener.onItemLongClick(holder.getAdapterPosition());
                         }
                         return true;
                     }
                 });
             }
+
+            return;
         }
+
         if (holder instanceof TitleViewHolder) {
             if (ob instanceof TitleItem) {
                 ((TitleViewHolder) holder).mTvTitle.setText(((TitleItem) ob).getTitle());
@@ -107,7 +123,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
 
         public UserViewHolder(final View itemView) {
             super(itemView);
-            mTvIdUser=(TextView)itemView.findViewById(R.id.tvIdUser);
+            mTvIdUser = (TextView) itemView.findViewById(R.id.tvIdUser);
             mTvUser = (TextView) itemView.findViewById(R.id.tvPerson1);
             mTvAge = (TextView) itemView.findViewById(R.id.tvPerson2);
             mTvContent = (TextView) itemView.findViewById(R.id.tvPerson3);
@@ -136,8 +152,10 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
             mTvTitle = (TextView) itemView.findViewById(R.id.tvItemTitle);
         }
     }
+
     public interface onItemClickListener {
         void onItemClick(int position);
+
         void onItemLongClick(int poisition);
     }
 }

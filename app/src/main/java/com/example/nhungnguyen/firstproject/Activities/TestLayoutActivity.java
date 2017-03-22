@@ -38,12 +38,11 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         init();
-        createData();
-
+        mData.addAll(mDataBaseHealper.getAllUsers());
+        mTestLayoutRecyclerAdapter.notifyDataSetChanged();
         mRecyclerViewTestLayout.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerViewTestLayout.setLayoutManager(mLayoutManager);
-        mRecyclerViewTestLayout.setAdapter(mTestLayoutRecyclerAdapter);
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,14 +53,14 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
         mImgAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle b = new Bundle();
+//                Bundle b = new Bundle();
                 Intent i = new Intent(TestLayoutActivity.this, ChangeDbActivity.class);
-                b.putString("keya", "String");
-                i.putExtras(b);
+//                b.putString("keya", "String");
+                i.putExtra("key", "String");
                 startActivity(i);
             }
         });
-        loadMore();
+//        loadMore();
 
     }
 
@@ -72,6 +71,8 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
         mHandler = new android.os.Handler();
         mProgressBar = (ProgressBar) findViewById(R.id.progressBarUser);
         mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(mData, this, this);
+        mRecyclerViewTestLayout.setAdapter(mTestLayoutRecyclerAdapter);
+
         mDataBaseHealper = new DataBaseHelper(this);
         mImgAddUser = (ImageView) findViewById(R.id.imgAdd);
     }
@@ -124,40 +125,39 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
         });
     }
 
-    private void createData() {
-        String id;
-        String person;
-        String age;
-        String content;
-        for (int i = 1; i <= 20; i++) {
-            id = "" + i;
-            person = "person " + i;
-            age = "Age: " + i;
-            if (i % 2 == 0) {
-                content = "Hello";
-            } else {
-                content = "Hi";
-            }
-//            if (i % 3 == 0 || i == 1) {
-//                mData.add(new TitleItem("Group A"));
+//    private void createData() {
+//        String id;
+//        String person;
+//        String age;
+//        String content;
+//        for (int i = 1; i <= 20; i++) {
+//            id = "" + i;
+//            person = "person " + i;
+//            age = "Age: " + i;
+//            if (i % 2 == 0) {
+//                content = "Hello";
 //            } else {
-//                if (i % 5 == 0) {
-//                    mData.add(new TitleItem("Group B"));
-//                }
+//                content = "Hi";
 //            }
-//            mData.add(new UserItem(person, age, content, R.drawable.img_person_male));
-            mDataBaseHealper.addUser(new UserItem(person, age, content, URL));
-        }
-        mData.addAll(mDataBaseHealper.getAllUsers());
-        mTestLayoutRecyclerAdapter.notifyDataSetChanged();
-    }
+////            if (i % 3 == 0 || i == 1) {
+////                mData.add(new TitleItem("Group A"));
+////            } else {
+////                if (i % 5 == 0) {
+////                    mData.add(new TitleItem("Group B"));
+////                }
+////            }
+////            mData.add(new UserItem(person, age, content, R.drawable.img_person_male));
+//            mDataBaseHealper.addUser(new UserItem(person, age, content, URL));
+//        }
+//        mData.addAll(mDataBaseHealper.getAllUsers());
+//        mTestLayoutRecyclerAdapter.notifyDataSetChanged();
+//    }
 
 
     @Override
     public void onItemClick(int position) {
         Bundle b = new Bundle();
         b.putInt("position", position);
-        b.putString("keyb", "String123");
         Intent i = new Intent(TestLayoutActivity.this, DetailPersonActivity.class);
         b.putParcelable("para", mData.get(position));
         i.putExtras(b);
@@ -191,9 +191,22 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
             }
         }
         if (requestCode == 2) {
-            if (requestCode == RESULT_OK) {
-                mDataBaseHealper.getAllUsers();
+            if (resultCode == RESULT_OK) {
+                UserItem changeDB = data.getParcelableExtra("db");
+                int poisition1 = data.getIntExtra("poisitiondb", -1);
+                mData.set(poisition1, changeDB);
+                mData = mDataBaseHealper.getAllUsers();
+                mRecyclerViewTestLayout.setAdapter(new TestLayoutRecyclerAdapter(mData, this, this));
+                mTestLayoutRecyclerAdapter.notifyDataSetChanged();
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mData = mDataBaseHealper.getAllUsers();
+        mRecyclerViewTestLayout.setAdapter(new TestLayoutRecyclerAdapter(mData, this, this));
+        mTestLayoutRecyclerAdapter.notifyDataSetChanged();
     }
 }
