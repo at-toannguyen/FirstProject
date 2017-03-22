@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -14,15 +16,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MainActivity" />
-        <activity android:name=".Activities.LoginActivity">
-
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activities.LoginActivity" />
         <activity android:name=".Activities.RegisterActivity" />
         <activity android:name=".Activities.TestLayoutActivity" />
         <activity android:name=".Activities.DetailPersonActivity" />
@@ -55,7 +56,9 @@
                 <data android:scheme="market" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.SharedReferencesActivity"></activity>
+        <activity android:name=".Activities.SharedReferencesActivity" />
+        <activity android:name=".Activities.ChangeDbActivity" />
+        <activity android:name=".Activities.TestFragmentActivity"></activity>
     </application>
 
 </manifest>

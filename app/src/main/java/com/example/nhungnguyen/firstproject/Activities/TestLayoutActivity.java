@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -29,18 +30,19 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
     private LinearLayoutManager mLayoutManager;
     private ProgressBar mProgressBar;
     private DataBaseHelper mDataBaseHealper;
+    private static final String URL = "https://www.shareicon.net/data/48x48/2015/09/18/103158_user_512x512.png";
+    private ImageView mImgAddUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         init();
-        createData();
-
+        mData.addAll(mDataBaseHealper.getAllUsers());
+        mTestLayoutRecyclerAdapter.notifyDataSetChanged();
         mRecyclerViewTestLayout.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerViewTestLayout.setLayoutManager(mLayoutManager);
-        mRecyclerViewTestLayout.setAdapter(mTestLayoutRecyclerAdapter);
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +50,17 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
                 finish();
             }
         });
-        loadMore();
+        mImgAddUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Bundle b = new Bundle();
+                Intent i = new Intent(TestLayoutActivity.this, ChangeDbActivity.class);
+//                b.putString("keya", "String");
+                i.putExtra("key", "String");
+                startActivity(i);
+            }
+        });
+//        loadMore();
 
     }
 
@@ -58,8 +70,11 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
         mData = new ArrayList<>();
         mHandler = new android.os.Handler();
         mProgressBar = (ProgressBar) findViewById(R.id.progressBarUser);
-        mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(mData, this);
-        mDataBaseHealper=new DataBaseHelper(this);
+        mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(mData, this, this);
+        mRecyclerViewTestLayout.setAdapter(mTestLayoutRecyclerAdapter);
+
+        mDataBaseHealper = new DataBaseHelper(this);
+        mImgAddUser = (ImageView) findViewById(R.id.imgAdd);
     }
 
     private void loadMore() {
@@ -77,10 +92,12 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
                             Log.d("131", "run: ");
                             int start = mData.size();
                             int end = start + 20;
+                            String id;
                             String person;
                             String age;
                             String content;
                             for (int i = start + 1; i < end; i++) {
+                                id = "" + i;
                                 person = "person " + i;
                                 age = "Age: " + i;
                                 if (i % 2 == 0) {
@@ -88,15 +105,16 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
                                 } else {
                                     content = "Hi";
                                 }
-                                if (i % 3 == 0 || i == 1) {
-                                    mData.add(new TitleItem("Group A"));
-                                } else {
-                                    if (i % 5 == 0) {
-                                        mData.add(new TitleItem("Group B"));
-                                    }
-                                }
-                                mData.add(new UserItem(person, age, content, R.drawable.img_person_male));
+//                                if (i % 3 == 0 || i == 1) {
+//                                    mData.add(new TitleItem("Group A"));
+//                                } else {
+//                                    if (i % 5 == 0) {
+//                                        mData.add(new TitleItem("Group B"));
+//                                    }
+//                                }
+                                mDataBaseHealper.addUser(new UserItem(person, age, content, URL));
                             }
+                            mData.addAll(mDataBaseHealper.getAllUsers());
                             mTestLayoutRecyclerAdapter.notifyItemInserted(mData.size());
                             mProgressBar.setVisibility(View.GONE);
                         }
@@ -107,33 +125,33 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
         });
     }
 
-    private void createData() {
-        int id = 0;
-        String person;
-        String age;
-        String content;
-        for (int i = 1; i <= 20; i++) {
-            id+=i;
-            person = "person " + i;
-            age = "Age: " + i;
-            if (i % 2 == 0) {
-                content = "Hello";
-            } else {
-                content = "Hi";
-            }
-            if (i % 3 == 0 || i == 1) {
-                mData.add(new TitleItem("Group A"));
-            } else {
-                if (i % 5 == 0) {
-                    mData.add(new TitleItem("Group B"));
-                }
-            }
-//            mData.add(new UserItem(person, age, content, R.drawable.img_person_male));
-            mDataBaseHealper.addUser(new UserItem(id,person,age,content));
-        }
-        mData.addAll(mDataBaseHealper.getAllUsers());
-        mTestLayoutRecyclerAdapter.notifyDataSetChanged();
-    }
+//    private void createData() {
+//        String id;
+//        String person;
+//        String age;
+//        String content;
+//        for (int i = 1; i <= 20; i++) {
+//            id = "" + i;
+//            person = "person " + i;
+//            age = "Age: " + i;
+//            if (i % 2 == 0) {
+//                content = "Hello";
+//            } else {
+//                content = "Hi";
+//            }
+////            if (i % 3 == 0 || i == 1) {
+////                mData.add(new TitleItem("Group A"));
+////            } else {
+////                if (i % 5 == 0) {
+////                    mData.add(new TitleItem("Group B"));
+////                }
+////            }
+////            mData.add(new UserItem(person, age, content, R.drawable.img_person_male));
+//            mDataBaseHealper.addUser(new UserItem(person, age, content, URL));
+//        }
+//        mData.addAll(mDataBaseHealper.getAllUsers());
+//        mTestLayoutRecyclerAdapter.notifyDataSetChanged();
+//    }
 
 
     @Override
@@ -144,6 +162,16 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
         b.putParcelable("para", mData.get(position));
         i.putExtras(b);
         startActivityForResult(i, 1);
+    }
+
+    @Override
+    public void onItemLongClick(int poisition) {
+        Bundle b = new Bundle();
+        b.putInt("positiondb", poisition);
+        Intent i = new Intent(TestLayoutActivity.this, ChangeDbActivity.class);
+        b.putParcelable("paradb", mData.get(poisition));
+        i.putExtras(b);
+        startActivityForResult(i, 2);
     }
 
     @Override
@@ -162,6 +190,23 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
                 }
             }
         }
+        if (requestCode == 2) {
+            if (resultCode == RESULT_OK) {
+                UserItem changeDB = data.getParcelableExtra("db");
+                int poisition1 = data.getIntExtra("poisitiondb", -1);
+                mData.set(poisition1, changeDB);
+                mData = mDataBaseHealper.getAllUsers();
+                mRecyclerViewTestLayout.setAdapter(new TestLayoutRecyclerAdapter(mData, this, this));
+                mTestLayoutRecyclerAdapter.notifyDataSetChanged();
+            }
+        }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mData = mDataBaseHealper.getAllUsers();
+        mRecyclerViewTestLayout.setAdapter(new TestLayoutRecyclerAdapter(mData, this, this));
+        mTestLayoutRecyclerAdapter.notifyDataSetChanged();
+    }
 }

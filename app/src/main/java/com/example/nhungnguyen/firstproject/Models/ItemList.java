@@ -5,6 +5,12 @@ import android.os.Parcelable;
 
 
 public abstract class ItemList implements Parcelable {
+    public ItemList(Parcel in) {
+    }
+
+    protected ItemList() {
+    }
+
     public abstract int getType();
 
     @Override

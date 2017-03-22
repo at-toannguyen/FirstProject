@@ -15,8 +15,8 @@
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:layout_alignBottom="@+id/tvPerson3"
-        android:layout_alignTop="@+id/tvPerson1"
-        android:background="@drawable/img_person" />
+        android:src="@drawable/img_logo"
+        android:layout_alignTop="@+id/tvPerson1" />
 
     <TextView
         android:id="@+id/tvPerson1"

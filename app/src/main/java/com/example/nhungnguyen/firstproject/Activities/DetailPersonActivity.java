@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import com.example.nhungnguyen.firstproject.Models.UserItem;
 import com.example.nhungnguyen.firstproject.R;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 
 public class DetailPersonActivity extends AppCompatActivity {
@@ -31,7 +34,8 @@ public class DetailPersonActivity extends AppCompatActivity {
         mTvPerson.setText(mData.getTvUser());
         mTvAge.setText(mData.getTvAge());
         mTvContent.setText(mData.getTvContent());
-        mImgPerson.setBackgroundResource(mData.getImgPerson());
+//        mImgPerson.setBackgroundResource(mData.getImgPerson());
+        Picasso.with(this).load(new File(mData.getImgPerson())).into(mImgPerson);
         mFavorite.setSelected(mData.isFavorite());
 
         mFavorite.setOnClickListener(new View.OnClickListener() {
