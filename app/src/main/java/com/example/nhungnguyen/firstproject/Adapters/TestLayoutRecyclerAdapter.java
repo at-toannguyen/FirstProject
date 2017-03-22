@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.nhungnguyen.firstproject.Fragment.Test1Fragment;
 import com.example.nhungnguyen.firstproject.Models.ItemList;
 import com.example.nhungnguyen.firstproject.Models.TitleItem;
 import com.example.nhungnguyen.firstproject.Models.UserItem;
@@ -32,6 +33,8 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         this.mItemClickListener = listener;
         mContext = context;
     }
+
+
 
 
     @Override
