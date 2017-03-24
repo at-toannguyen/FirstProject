@@ -58,7 +58,10 @@
         </activity>
         <activity android:name=".Activities.SharedReferencesActivity" />
         <activity android:name=".Activities.ChangeDbActivity" />
-        <activity android:name=".Activities.TestFragmentActivity"></activity>
+        <activity android:name=".Activities.TestFragmentViewPagerActivity">
+        </activity>
+        <activity android:name=".Activities.TestFragmentActivity">
+        </activity>
     </application>
 
 </manifest>

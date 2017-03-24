@@ -73,7 +73,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
                             .load(new File(item.getImgPerson()))
                             .centerCrop()
                             .fit()
-                            .error(R.drawable.img_person)
+                            .error(R.drawable.img_person1)
                             .into(((UserViewHolder) holder).mImgPerson);
                 } else {
                     ((UserViewHolder) holder).mImgPerson.setImageResource(R.drawable.img_person);
@@ -156,6 +156,6 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     public interface onItemClickListener {
         void onItemClick(int position);
 
-        void onItemLongClick(int poisition);
+        void onItemLongClick(int position);
     }
 }

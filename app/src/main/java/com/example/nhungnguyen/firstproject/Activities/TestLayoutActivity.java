@@ -165,11 +165,11 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
     }
 
     @Override
-    public void onItemLongClick(int poisition) {
+    public void onItemLongClick(int position) {
         Bundle b = new Bundle();
-        b.putInt("positiondb", poisition);
+        b.putInt("positiondb", position);
         Intent i = new Intent(TestLayoutActivity.this, ChangeDbActivity.class);
-        b.putParcelable("paradb", mData.get(poisition));
+        b.putParcelable("paradb", mData.get(position));
         i.putExtras(b);
         startActivityForResult(i, 2);
     }
