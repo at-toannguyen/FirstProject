@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.nhungnguyen.firstproject.Fragment.Test1Fragment;
 import com.example.nhungnguyen.firstproject.Models.ItemList;
 import com.example.nhungnguyen.firstproject.Models.TitleItem;
 import com.example.nhungnguyen.firstproject.Models.UserItem;
@@ -33,8 +32,6 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         this.mItemClickListener = listener;
         mContext = context;
     }
-
-
 
 
     @Override
@@ -76,7 +73,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
                             .load(new File(item.getImgPerson()))
                             .centerCrop()
                             .fit()
-                            .error(R.drawable.img_person)
+                            .error(R.drawable.img_person1)
                             .into(((UserViewHolder) holder).mImgPerson);
                 } else {
                     ((UserViewHolder) holder).mImgPerson.setImageResource(R.drawable.img_person);
@@ -159,6 +156,6 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     public interface onItemClickListener {
         void onItemClick(int position);
 
-        void onItemLongClick(int poisition);
+        void onItemLongClick(int position);
     }
 }

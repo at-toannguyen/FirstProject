@@ -30,9 +30,9 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
     private RecyclerView mRecyclerView;
     private TestLayoutRecyclerAdapter mAdapter;
     private final List<ItemList> mData = new ArrayList<>();
-    private final android.os.Handler mHandler= new android.os.Handler();
+    private final android.os.Handler mHandler = new android.os.Handler();
     private ProgressBar mProgressBar;
-    private static final String URL = "https://www.shareicon.net/data/48x48/2015/09/18/103158_user_512x512.png";
+    private static final String URL = "http://hinhnendepnhat.net/wp-content/uploads/2016/09/hinh-nen-girl-dep.jpg";
 
     @Nullable
     @Override
@@ -45,10 +45,10 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycleViewPersonalFrgm);
-        mProgressBar=(ProgressBar) view.findViewById(R.id.progressBarUserFrgm);
+        mProgressBar = (ProgressBar) view.findViewById(R.id.progressBarUserFrgm);
         mRecyclerView.setHasFixedSize(true);
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
-        mLinearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         createData();
         mAdapter = new TestLayoutRecyclerAdapter(mData, this, getActivity());
@@ -77,10 +77,11 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
                     mData.add(new TitleItem("Group B"));
                 }
             }
-            mData.add(new UserItem(id,person, age, content,URL ));
+            mData.add(new UserItem(id, person, age, content, URL));
         }
 
     }
+
     private void loadMore() {
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
@@ -100,7 +101,7 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
                             String person;
                             String age;
                             String content;
-                            for (int i = start + 1; i < end; i++) {
+                            for (int i = start + 1; i <= end; i++) {
                                 id = "" + i;
                                 person = "person " + i;
                                 age = "Age: " + i;
@@ -116,7 +117,7 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
                                         mData.add(new TitleItem("Group B"));
                                     }
                                 }
-                                mData.add(new UserItem(id,person,age,content,URL));
+                                mData.add(new UserItem(id, person, age, content, URL));
                             }
                             mAdapter.notifyItemInserted(mData.size());
                             mProgressBar.setVisibility(View.GONE);
@@ -136,17 +137,19 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
         Intent i = new Intent(getActivity(), DetailPersonActivity.class);
         b.putParcelable("para", mData.get(position));
         i.putExtras(b);
-        getActivity().startActivityForResult(i, 1);
+        getActivity().startActivityForResult(i, 3);
     }
 
     @Override
     public void onItemLongClick(int position) {
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
+        if (requestCode == 3) {
+            if (resultCode == Activity.RESULT_OK) {
                 Log.d("result", "onActivityResult: ");
                 UserItem test = data.getParcelableExtra("favor");
 
@@ -156,6 +159,8 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
                     mData.set(position, test);
                     mAdapter.notifyDataSetChanged();
                 }
+            }
         }
     }
+
 }
