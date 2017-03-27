@@ -21,12 +21,13 @@ public class TestAdapterViewpager extends PagerAdapter {
     private final Context context;
     private List<UserItem> mData = new ArrayList<>();
     private final LayoutInflater layoutInflater;
-    private ImageView mImgFavorite;
+    private final OnClickItemViewpager onClickItemViewpager;
 
-    public TestAdapterViewpager(Context context, List<UserItem> items) {
+    public TestAdapterViewpager(Context context, List<UserItem> items,OnClickItemViewpager listener) {
         this.context = context;
         this.mData = items;
         this.layoutInflater = (LayoutInflater) this.context.getSystemService(this.context.LAYOUT_INFLATER_SERVICE);
+        onClickItemViewpager=listener;
     }
 
     @Override
@@ -47,7 +48,7 @@ public class TestAdapterViewpager extends PagerAdapter {
         TextView mTvUser = (TextView) view.findViewById(R.id.tvPerson1);
         TextView mTvAge = (TextView) view.findViewById(R.id.tvPerson2);
         TextView mTvContent = (TextView) view.findViewById(R.id.tvPerson3);
-        mImgFavorite = (ImageView) view.findViewById(R.id.imgFavorite);
+        ImageView mImgFavorite = (ImageView) view.findViewById(R.id.imgFavorite);
         final UserItem item = this.mData.get(position);
         mTvId.setText(item.getId());
         Picasso.with(container.getContext())
@@ -59,16 +60,18 @@ public class TestAdapterViewpager extends PagerAdapter {
         mTvUser.setText(item.getTvUser());
         mTvAge.setText(item.getTvAge());
         mTvContent.setText(item.getTvContent());
-
+        mImgFavorite.setSelected(item.isFavorite());
         mImgFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mImgFavorite.setSelected(!mImgFavorite.isSelected());
+                item.setFavorite(!item.isFavorite());
+                notifyDataSetChanged();
             }
         });
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                onClickItemViewpager.onClick(position);
                 Toast.makeText(context, item.getTvContent(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -77,7 +80,15 @@ public class TestAdapterViewpager extends PagerAdapter {
     }
 
     @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
+
+    @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
+    }
+    public interface OnClickItemViewpager{
+        void onClick(int position);
     }
 }

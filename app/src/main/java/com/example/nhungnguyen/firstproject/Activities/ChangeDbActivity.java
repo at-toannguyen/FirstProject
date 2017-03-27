@@ -12,6 +12,7 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -81,7 +82,9 @@ public class ChangeDbActivity extends AppCompatActivity {
             mEdtUser.setText(mData.getTvUser());
             mEdAge.setText(mData.getTvAge());
             mEdtContent.setText(mData.getTvContent());
-            Picasso.with(this).load(new File(mData.getImgPerson())).into(mImgUser);
+            if (!TextUtils.isEmpty(mData.getImgPerson())) {
+                Picasso.with(this).load(new File(mData.getImgPerson())).into(mImgUser);
+            }
         }
     }
 

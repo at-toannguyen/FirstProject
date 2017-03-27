@@ -1,14 +1,17 @@
 package com.example.nhungnguyen.firstproject.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.example.nhungnguyen.firstproject.Activities.DetailPersonActivity;
 import com.example.nhungnguyen.firstproject.Adapters.TestAdapterViewpager;
 import com.example.nhungnguyen.firstproject.Models.UserItem;
 import com.example.nhungnguyen.firstproject.R;
@@ -17,15 +20,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Test1Fragment extends android.support.v4.app.Fragment {
+public class Test1Fragment extends android.support.v4.app.Fragment implements TestAdapterViewpager.OnClickItemViewpager {
     private List<UserItem> mData = new ArrayList<>();
+    private TestAdapterViewpager mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.test1_fragment, container, false);
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.vPagerTest);
         mData = loadData();
-        TestAdapterViewpager mAdapter = new TestAdapterViewpager(view.getContext(), mData);
+        mAdapter = new TestAdapterViewpager(view.getContext(), mData, this);
         viewPager.setAdapter(mAdapter);
         return view;
     }
@@ -50,4 +54,30 @@ public class Test1Fragment extends android.support.v4.app.Fragment {
         return mData;
     }
 
+    @Override
+    public void onClick(int position) {
+        Bundle b = new Bundle();
+        b.putInt("position", position);
+        Intent i = new Intent(getActivity(), DetailPersonActivity.class);
+        b.putParcelable("para", mData.get(position));
+        i.putExtras(b);
+        getActivity().startActivityForResult(i, 4);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==4){
+            if(resultCode==getActivity().RESULT_OK){
+                Log.d("result", "onActivityResult: ");
+                UserItem test = data.getParcelableExtra("favor");
+                int position = data.getIntExtra("positionFavorite", -1);
+                Log.d("poi", "onActivityResult: " + position);
+                if (position != -1) {
+                    mData.set(position, test);
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+        }
+    }
 }
