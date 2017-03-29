@@ -10,13 +10,18 @@ import android.widget.Button;
 import com.example.nhungnguyen.firstproject.R;
 
 // TODO: 3/9/17  
-public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button mBtnTest1;
     private Button mBtnTest2;
     private Button mBtnTest3;
     private Button mBtnTest4;
     private Button mBtnTest5;
     private Button mBtnTest6;
+    private Button mBtnTest7;
+    private Button mBtnTest8;
+    private Button mBtnTest9;
+    private static final String TEST="com.example.nhungnguyen.firstproject.TestSendData";
+    private static final String TEST1="com.example.nhungnguyen.firstproject.Receive";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,23 +38,31 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         mBtnTest4 = (Button) findViewById(R.id.btnTest4);
         mBtnTest5 = (Button) findViewById(R.id.btnTest5);
         mBtnTest6 = (Button) findViewById(R.id.btnTest6);
+        mBtnTest7 = (Button) findViewById(R.id.btnTest7);
+        mBtnTest8 = (Button) findViewById(R.id.btnSendData);
+        mBtnTest9 = (Button) findViewById(R.id.btnSendReceive);
     }
-    private  void setOnClick(){
+
+    private void setOnClick() {
         mBtnTest1.setOnClickListener(this);
         mBtnTest2.setOnClickListener(this);
         mBtnTest3.setOnClickListener(this);
         mBtnTest4.setOnClickListener(this);
         mBtnTest5.setOnClickListener(this);
         mBtnTest6.setOnClickListener(this);
+        mBtnTest7.setOnClickListener(this);
+        mBtnTest8.setOnClickListener(this);
+        mBtnTest9.setOnClickListener(this);
     }
+
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btnTest1:
                 Intent i = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(i);
                 break;
-            case  R.id.btnTest2:
+            case R.id.btnTest2:
                 startActivity(new Intent(MainActivity.this, TestLayoutActivity.class));
                 break;
             case R.id.btnTest3:
@@ -64,6 +77,20 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             case R.id.btnTest6:
                 startActivity(new Intent(MainActivity.this, TestFragmentViewPagerActivity.class));
                 break;
+            case R.id.btnTest7:
+                startActivity(new Intent(this, BroadcastActivity111.class));
+                break;
+            case R.id.btnSendData:
+                Intent intent=new Intent();
+                intent.setAction(TEST);
+                intent.putExtra("testing","Hello");
+                sendBroadcast(intent);
+                break;
+            case R.id.btnSendReceive:
+                Intent intent1=new Intent();
+                intent1.setAction(TEST1);
+                intent1.putExtra("send","Send success");
+                sendBroadcast(intent1);
         }
     }
 }

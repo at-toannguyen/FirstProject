@@ -40,4 +40,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="fragment viewpager"/>
+    <Button
+        android:id="@+id/btnTest7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Broadcast"/>
+    <Button
+        android:id="@+id/btnSendData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sendData"/>
+    <Button
+        android:id="@+id/btnSendReceive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sendreceive"/>
 </LinearLayout>

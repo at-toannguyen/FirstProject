@@ -53,7 +53,6 @@ public class Test1Fragment extends android.support.v4.app.Fragment implements Te
         }
         return mData;
     }
-
     @Override
     public void onClick(int position) {
         Bundle b = new Bundle();

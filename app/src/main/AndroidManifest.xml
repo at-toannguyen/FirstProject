@@ -7,10 +7,12 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature android:name="android.hardware.camera" />
 
     <application
+        android:name=".Activities.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -58,10 +60,32 @@
         </activity>
         <activity android:name=".Activities.SharedReferencesActivity" />
         <activity android:name=".Activities.ChangeDbActivity" />
-        <activity android:name=".Activities.TestFragmentViewPagerActivity">
+        <activity android:name=".Activities.TestFragmentViewPagerActivity" />
+        <activity android:name=".Activities.TestFragmentActivity" />
+        <activity android:name=".Activities.BroadcastActivity111" />
+
+        <receiver android:name=".MyPhoneReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".Activities.MyBroadcast"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.example.nhungnguyen.firstproject.Activities.TestNotificationActivity" />
+                <action android:name="com.example.nhungnguyen.firstproject.Receive"/>
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".Activities.TestNotificationActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".Activities.TestFragmentActivity">
-        </activity>
+        <activity android:name=".Activities.PassReceiveActivity"></activity>
     </application>
 
 </manifest>
