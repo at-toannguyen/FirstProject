@@ -74,11 +74,18 @@
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.example.nhungnguyen.firstproject.Activities.TestNotificationActivity" />
+                <action android:name="com.example.nhungnguyen.firstproject.Receive"/>
             </intent-filter>
         </receiver>
 
-        <activity android:name=".Activities.TestNotificationActivity" />
-
+        <activity android:name=".Activities.TestNotificationActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activities.PassReceiveActivity"></activity>
     </application>
 
 </manifest>

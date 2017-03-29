@@ -70,13 +70,12 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
             } else {
                 content = "Hi";
             }
-            if (i % 3 == 0 || i == 1) {
-                mData.add(new TitleItem("Group A"));
-            } else {
-                if (i % 5 == 0) {
-                    mData.add(new TitleItem("Group B"));
-                }
-            }
+//            if (i % 3 == 0 || i == 1) {
+//                mData.add(new TitleItem("Group A"));
+//            } else {
+//                mData.add(new TitleItem("Group B"));
+//            }
+
             mData.add(new UserItem(id, person, age, content, URL));
         }
 
@@ -110,13 +109,13 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
                                 } else {
                                     content = "Hi";
                                 }
-                                if (i % 3 == 0 || i == 1) {
-                                    mData.add(new TitleItem("Group A"));
-                                } else {
-                                    if (i % 5 == 0) {
-                                        mData.add(new TitleItem("Group B"));
-                                    }
-                                }
+//                                if (i % 3 == 0 || i == 1) {
+//                                    mData.add(new TitleItem("Group A"));
+//                                } else {
+//
+//                                    mData.add(new TitleItem("Group B"));
+//
+//                                }
                                 mData.add(new UserItem(id, person, age, content, URL));
                             }
                             mAdapter.notifyItemInserted(mData.size());
