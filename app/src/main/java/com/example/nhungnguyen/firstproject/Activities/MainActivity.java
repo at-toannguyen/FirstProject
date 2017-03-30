@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mBtnTest7;
     private Button mBtnTest8;
     private Button mBtnTest9;
+    private Button mBtnTest10;
     private static final String TEST="com.example.nhungnguyen.firstproject.TestSendData";
     private static final String TEST1="com.example.nhungnguyen.firstproject.Receive";
 
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnTest7 = (Button) findViewById(R.id.btnTest7);
         mBtnTest8 = (Button) findViewById(R.id.btnSendData);
         mBtnTest9 = (Button) findViewById(R.id.btnSendReceive);
+        mBtnTest10 = (Button) findViewById(R.id.btnTest10);
     }
 
     private void setOnClick() {
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnTest7.setOnClickListener(this);
         mBtnTest8.setOnClickListener(this);
         mBtnTest9.setOnClickListener(this);
+        mBtnTest10.setOnClickListener(this);
     }
 
     @Override
@@ -91,6 +94,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent1.setAction(TEST1);
                 intent1.putExtra("send","Send success");
                 sendBroadcast(intent1);
+                break;
+            case R.id.btnTest10:
+                startActivity(new Intent(this,TestDay19Activity.class));
         }
     }
 }

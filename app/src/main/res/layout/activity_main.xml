@@ -55,4 +55,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="sendreceive"/>
+    <Button
+        android:id="@+id/btnTest10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="testday19"/>
 </LinearLayout>
