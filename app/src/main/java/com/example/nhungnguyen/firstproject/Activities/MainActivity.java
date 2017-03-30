@@ -18,6 +18,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mBtnTest5;
     private Button mBtnTest6;
     private Button mBtnTest7;
+    private Button mBtnTest8;
+    private Button mBtnTest9;
+    private static final String TEST="com.example.nhungnguyen.firstproject.TestSendData";
+    private static final String TEST1="com.example.nhungnguyen.firstproject.Receive";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnTest5 = (Button) findViewById(R.id.btnTest5);
         mBtnTest6 = (Button) findViewById(R.id.btnTest6);
         mBtnTest7 = (Button) findViewById(R.id.btnTest7);
+        mBtnTest8 = (Button) findViewById(R.id.btnSendData);
+        mBtnTest9 = (Button) findViewById(R.id.btnSendReceive);
     }
 
     private void setOnClick() {
@@ -45,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnTest5.setOnClickListener(this);
         mBtnTest6.setOnClickListener(this);
         mBtnTest7.setOnClickListener(this);
+        mBtnTest8.setOnClickListener(this);
+        mBtnTest9.setOnClickListener(this);
     }
 
     @Override
@@ -72,6 +80,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnTest7:
                 startActivity(new Intent(this, BroadcastActivity111.class));
                 break;
+            case R.id.btnSendData:
+                Intent intent=new Intent();
+                intent.setAction(TEST);
+                intent.putExtra("testing","Hello");
+                sendBroadcast(intent);
+                break;
+            case R.id.btnSendReceive:
+                Intent intent1=new Intent();
+                intent1.setAction(TEST1);
+                intent1.putExtra("send","Send success");
+                sendBroadcast(intent1);
         }
     }
 }
