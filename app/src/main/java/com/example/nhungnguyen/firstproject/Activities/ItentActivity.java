@@ -4,12 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,8 +14,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.nhungnguyen.firstproject.R;
-
-import java.sql.BatchUpdateException;
 
 public class ItentActivity extends AppCompatActivity implements View.OnClickListener {
     private Button mBtnCall;
@@ -42,7 +36,7 @@ public class ItentActivity extends AppCompatActivity implements View.OnClickList
         setOnClick();
     }
 
-    public void initVariable() {
+    private void initVariable() {
         mBtnCall = (Button) findViewById(R.id.btnCall);
         mBtnCamera = (Button) findViewById(R.id.btnCamera);
         mBtnSendMail = (Button) findViewById(R.id.btnSendMail);
@@ -54,7 +48,7 @@ public class ItentActivity extends AppCompatActivity implements View.OnClickList
         mImgTest = (ImageView) findViewById(R.id.imgTest);
     }
 
-    public void setOnClick() {
+    private void setOnClick() {
         mBtnCall.setOnClickListener(this);
         mBtnCamera.setOnClickListener(this);
         mBtnSendMess.setOnClickListener(this);
@@ -126,7 +120,6 @@ public class ItentActivity extends AppCompatActivity implements View.OnClickList
                 Uri selectedImageUri = data.getData();
                 if (null != selectedImageUri) {
                     // Get the path from the Uri
-                    String path = getPathFromURI(selectedImageUri);
                     // Set the image in ImageView
                     mImgTest.setImageURI(selectedImageUri);
                 }
@@ -139,19 +132,20 @@ public class ItentActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    /**
-     * @param contentUri
-     * @return
-     */
-    public String getPathFromURI(Uri contentUri) {
-        String res = null;
-        String[] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
-        if (cursor.moveToFirst()) {
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            res = cursor.getString(column_index);
-        }
-        cursor.close();
-        return res;
-    }
+//    /**
+//     * @param contentUri
+//     * @return
+//     */
+//    @SuppressWarnings("JavaDoc")
+//    private String getPathFromURI(Uri contentUri) {
+//        String res = null;
+//        String[] proj = {MediaStore.Images.Media.DATA};
+//        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+//        if (cursor.moveToFirst()) {
+//            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//            res = cursor.getString(column_index);
+//        }
+//        cursor.close();
+//        return res;
+//    }
 }
