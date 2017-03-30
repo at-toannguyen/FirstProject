@@ -14,7 +14,7 @@
     <application
         android:name=".Activities.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_project"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -75,7 +75,7 @@
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
                 <action android:name="com.example.nhungnguyen.firstproject.Activities.TestNotificationActivity" />
-                <action android:name="com.example.nhungnguyen.firstproject.Receive"/>
+                <action android:name="com.example.nhungnguyen.firstproject.Receive" />
             </intent-filter>
         </receiver>
 
@@ -85,7 +85,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.PassReceiveActivity"></activity>
+        <activity android:name=".Activities.PassReceiveActivity" />
+        <activity android:name=".Activities.TestDay19Activity"></activity>
     </application>
 
 </manifest>

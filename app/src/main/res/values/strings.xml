@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FirstProject</string>
+    <string name="app_name">First Project</string>
     <string name="textview.text.register">Register</string>
     <string name="textview.text.user">User</string>
     <string name="textview.text.pass">Password</string>
@@ -19,4 +19,6 @@
     <string name="hint.text.user_name">User name</string>
     <string name="hint.text.pass">Password</string>
     <string name="textview.text.create_acc">Create accout here!</string>
+    <string name="show_dialog">ShowDialog</string>
+    <string name="show_dialogfragment">ShowDialogFragment</string>
 </resources>
