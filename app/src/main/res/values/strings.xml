@@ -21,4 +21,5 @@
     <string name="textview.text.create_acc">Create accout here!</string>
     <string name="show_dialog">ShowDialog</string>
     <string name="show_dialogfragment">ShowDialogFragment</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
