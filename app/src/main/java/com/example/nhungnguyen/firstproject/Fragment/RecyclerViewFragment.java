@@ -12,7 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.example.nhungnguyen.firstproject.Activities.DetailPersonActivity;
 import com.example.nhungnguyen.firstproject.Adapters.TestLayoutRecyclerAdapter;
@@ -33,7 +36,7 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
     private final android.os.Handler mHandler = new android.os.Handler();
     private ProgressBar mProgressBar;
     private static final String URL = "http://hinhnendepnhat.net/wp-content/uploads/2016/09/hinh-nen-girl-dep.jpg";
-
+    private RelativeLayout mRelativeLayout;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycleViewPersonalFrgm);
         mProgressBar = (ProgressBar) view.findViewById(R.id.progressBarUserFrgm);
+        mRelativeLayout = (RelativeLayout) view.findViewById(R.id.parent);
         mRecyclerView.setHasFixedSize(true);
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -131,12 +135,28 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
 
     @Override
     public void onItemClick(int position) {
-        Bundle b = new Bundle();
-        b.putInt("position", position);
-        Intent i = new Intent(getActivity(), DetailPersonActivity.class);
-        b.putParcelable("para", mData.get(position));
-        i.putExtras(b);
-        getActivity().startActivityForResult(i, 3);
+//        Bundle b = new Bundle();
+//        b.putInt("position", position);
+//        Intent i = new Intent(getActivity(), DetailPersonActivity.class);
+//        b.putParcelable("para", mData.get(position));
+//        i.putExtras(b);
+//        getActivity().startActivityForResult(i, 3)
+        RecyclerView.ViewHolder holder = mRecyclerView.findViewHolderForAdapterPosition(position);
+        if (holder instanceof TestLayoutRecyclerAdapter.UserViewHolder) {
+            TestLayoutRecyclerAdapter.UserViewHolder userViewHolder = (TestLayoutRecyclerAdapter.UserViewHolder) holder;
+            scaleAnimation(userViewHolder.mImgPerson);
+        }
+
+    }
+
+    private void scaleAnimation(View view) {
+        int[] img_coordinates = new int[2];
+        view.getLocationOnScreen(img_coordinates);
+        ScaleAnimation anim = new ScaleAnimation(2.0f, 1.0f, 2.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setDuration(1000);
+        view.bringToFront();
+        view.startAnimation(anim);
+        Log.d("VVVV", "scaleAnimation: " + img_coordinates[0] + "--" + img_coordinates[1]);
     }
 
     @Override
