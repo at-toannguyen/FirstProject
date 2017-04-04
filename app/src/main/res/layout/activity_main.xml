@@ -60,4 +60,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="testday19"/>
+    <Button
+        android:id="@+id/btnGGMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open GGMap"/>
 </LinearLayout>
