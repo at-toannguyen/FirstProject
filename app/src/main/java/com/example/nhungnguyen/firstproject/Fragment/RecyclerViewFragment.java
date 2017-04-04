@@ -152,7 +152,7 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
     private void scaleAnimation(View view) {
         int[] img_coordinates = new int[2];
         view.getLocationOnScreen(img_coordinates);
-        ScaleAnimation anim = new ScaleAnimation(2.0f, 1.0f, 2.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        ScaleAnimation anim = new ScaleAnimation(5.3f, 1.0f, 5.3f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         anim.setDuration(1000);
         view.bringToFront();
         view.startAnimation(anim);

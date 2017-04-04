@@ -1,14 +1,14 @@
 package com.example.nhungnguyen.firstproject.Models;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.google.maps.android.clustering.ClusterItem;
+
 
 /**
  * Copy right asiantech
  * Created by asiantech on 3/31/17.
  */
 
-public class MarkerMap implements ClusterItem {
+public class MarkerMap {
     private final LatLng position;
     private final String title;
     private final String snipper;
@@ -19,19 +19,4 @@ public class MarkerMap implements ClusterItem {
         position = new LatLng(lat,lng);
     }
 
-
-    @Override
-    public LatLng getPosition() {
-        return position;
-    }
-
-    @Override
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getSnippet() {
-        return snipper;
-    }
 }
