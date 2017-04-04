@@ -18,6 +18,11 @@ public class Markers {
         this.snippet = snippet;
     }
 
+    public Markers(float itude, float longitude) {
+        this.itude = itude;
+        this.longitude = longitude;
+    }
+
     public float getItude() {
         return itude;
     }

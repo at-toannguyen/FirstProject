@@ -1,12 +1,15 @@
 package com.example.nhungnguyen.firstproject.Adapters;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -79,23 +82,27 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
                     ((UserViewHolder) holder).mImgPerson.setImageResource(R.drawable.img_person);
                 }
                 Log.d("onSuccess", "onBindViewHolder: " + item.getImgPerson());
-                ((UserViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (mItemClickListener != null) {
-                            mItemClickListener.onItemClick(holder.getAdapterPosition());
-                        }
-                    }
-                });
-                ((UserViewHolder) holder).itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        if (mItemClickListener != null) {
-                            mItemClickListener.onItemLongClick(holder.getAdapterPosition());
-                        }
-                        return true;
-                    }
-                });
+                if (position == 5) {
+                    ((UserViewHolder) holder).setScaleAnimation(((UserViewHolder) holder).mImgPerson, position);
+                }
+                //}
+//                ((UserViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        if (mItemClickListener != null) {
+//                            mItemClickListener.onItemClick(holder.getAdapterPosition());
+//                        }
+//                    }
+//                });
+//                ((UserViewHolder) holder).itemView.setOnLongClickListener(new View.OnLongClickListener() {
+//                    @Override
+//                    public boolean onLongClick(View view) {
+//                        if (mItemClickListener != null) {
+//                            mItemClickListener.onItemLongClick(holder.getAdapterPosition());
+//                        }
+//                        return true;
+//                    }
+//                });
             }
 
             return;
@@ -119,7 +126,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         private final TextView mTvAge;
         private final TextView mTvContent;
         private final ImageView favorite;
-        private final ImageView mImgPerson;
+        public final ImageView mImgPerson;
 
         public UserViewHolder(final View itemView) {
             super(itemView);
@@ -140,7 +147,17 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
                     }
                 }
             });
+        }
 
+        public void setScaleAnimation(final View view, final int pos) {
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    mItemClickListener.onItemClick(pos);
+                }
+            };
+            Handler handler = new Handler();
+            handler.postDelayed(runnable, 3000);
         }
     }
 
