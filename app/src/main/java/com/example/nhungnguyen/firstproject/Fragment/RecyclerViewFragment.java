@@ -15,12 +15,11 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 
-import com.example.nhungnguyen.firstproject.Activities.DetailPersonActivity;
+
 import com.example.nhungnguyen.firstproject.Adapters.TestLayoutRecyclerAdapter;
 import com.example.nhungnguyen.firstproject.Models.ItemList;
-import com.example.nhungnguyen.firstproject.Models.TitleItem;
+
 import com.example.nhungnguyen.firstproject.Models.UserItem;
 import com.example.nhungnguyen.firstproject.R;
 
@@ -36,7 +35,7 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
     private final android.os.Handler mHandler = new android.os.Handler();
     private ProgressBar mProgressBar;
     private static final String URL = "http://hinhnendepnhat.net/wp-content/uploads/2016/09/hinh-nen-girl-dep.jpg";
-    private RelativeLayout mRelativeLayout;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +48,6 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recycleViewPersonalFrgm);
         mProgressBar = (ProgressBar) view.findViewById(R.id.progressBarUserFrgm);
-        mRelativeLayout = (RelativeLayout) view.findViewById(R.id.parent);
         mRecyclerView.setHasFixedSize(true);
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
