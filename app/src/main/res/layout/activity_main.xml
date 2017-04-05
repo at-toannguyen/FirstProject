@@ -1,73 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.nhungnguyen.firstproject.Activities.MainActivity">
+    >
 
-    <Button
-        android:id="@+id/btnTest1"
-        android:layout_width="wrap_content"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Test1" />
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        tools:context="com.example.nhungnguyen.firstproject.Activities.MainActivity">
 
-    <Button
-        android:id="@+id/btnTest2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test2" />
+        <Button
+            android:id="@+id/btnTest1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test1" />
 
-    <Button
-        android:id="@+id/btnTest3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test3" />
+        <Button
+            android:id="@+id/btnTest2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test2" />
 
-    <Button
-        android:id="@+id/btnTest4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test4" />
-    <Button
-        android:id="@+id/btnTest5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="fragment recyclerview"/>
-    <Button
-        android:id="@+id/btnTest6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="fragment viewpager"/>
-    <Button
-        android:id="@+id/btnTest7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Broadcast"/>
-    <Button
-        android:id="@+id/btnSendData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="sendData"/>
-    <Button
-        android:id="@+id/btnSendReceive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="sendreceive"/>
-    <Button
-        android:id="@+id/btnTest10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="testday19"/>
-    <Button
-        android:id="@+id/btnGGMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Open GGMap"/>
-    <Button
-        android:id="@+id/btnAsync"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="AsyncTask"/>
-</LinearLayout>
+        <Button
+            android:id="@+id/btnTest3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test3" />
+
+        <Button
+            android:id="@+id/btnTest4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Test4" />
+
+        <Button
+            android:id="@+id/btnTest5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fragment recyclerview" />
+
+        <Button
+            android:id="@+id/btnTest6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fragment viewpager" />
+
+        <Button
+            android:id="@+id/btnTest7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Broadcast" />
+
+        <Button
+            android:id="@+id/btnSendData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sendData" />
+
+        <Button
+            android:id="@+id/btnSendReceive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sendreceive" />
+
+        <Button
+            android:id="@+id/btnTest10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="testday19" />
+
+        <Button
+            android:id="@+id/btnGGMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open GGMap" />
+
+        <Button
+            android:id="@+id/btnAPI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="APITask" />
+
+        <Button
+            android:id="@+id/btnAsync"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AsyncTask" />
+    </LinearLayout>
+</ScrollView>

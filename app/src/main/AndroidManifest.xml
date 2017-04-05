@@ -111,7 +111,8 @@
         <activity
             android:name=".Activities.GGMapActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Activities.AsyncTaskActivity"></activity>
+        <activity android:name=".Activities.AsyncTaskActivity" />
+        <activity android:name=".Activities.APIActivity"></activity>
     </application>
 
 </manifest>
