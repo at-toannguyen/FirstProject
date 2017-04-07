@@ -2,8 +2,6 @@ package com.example.nhungnguyen.firstproject.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -15,10 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.nhungnguyen.firstproject.R;
-import com.squareup.picasso.Picasso;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -56,8 +52,8 @@ public class AsyncTaskActivity extends AppCompatActivity {
     }
 
     private class DownloadImage extends AsyncTask<String, Integer, String> {
-        Random random=new Random();
-        int i=random.nextInt(1000);
+        final Random random=new Random();
+        final int i=random.nextInt(1000);
         @Override
         protected String doInBackground(String... strings) {
             int count;

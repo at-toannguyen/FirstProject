@@ -1,6 +1,5 @@
 package com.example.nhungnguyen.firstproject.Activities;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;

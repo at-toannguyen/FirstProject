@@ -22,16 +22,16 @@ import java.util.List;
 public class AnswersAdapter extends RecyclerView.Adapter<AnswersAdapter.ViewHolder> {
 
     private List<Item> mItems;
-    private Context mContext;
-    private PostItemListener mItemListener;
+    private final Context mContext;
+    private final PostItemListener mItemListener;
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public TextView titleTv;
-        private ImageView image;
-        private TextView idtext;
-        private TextView rate;
-        PostItemListener mItemListener;
+        public final TextView titleTv;
+        private final ImageView image;
+        private final TextView idtext;
+        private final TextView rate;
+        final PostItemListener mItemListener;
 
         public ViewHolder(View itemView, PostItemListener postItemListener) {
             super(itemView);
@@ -66,8 +66,7 @@ public class AnswersAdapter extends RecyclerView.Adapter<AnswersAdapter.ViewHold
 
         View postView = inflater.inflate(R.layout.item_layout_api, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(postView, this.mItemListener);
-        return viewHolder;
+        return new ViewHolder(postView, this.mItemListener);
     }
 
     @Override

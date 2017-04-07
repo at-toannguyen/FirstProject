@@ -8,14 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.nhungnguyen.firstproject.Models.MarkerMap;
 import com.example.nhungnguyen.firstproject.Models.Markers;
 import com.example.nhungnguyen.firstproject.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * Copy right asiantech
@@ -23,10 +21,10 @@ import java.util.zip.Inflater;
  */
 
 public class AdapterPagerMap extends PagerAdapter {
-    private Context mContext;
+    private final Context mContext;
     private List<Markers> markerList=new ArrayList<>();
-    private LayoutInflater mInflater;
-    private ClickPagerMap mListener;
+    private final LayoutInflater mInflater;
+    private final ClickPagerMap mListener;
 
     public AdapterPagerMap(Context mContext,List<Markers> list,ClickPagerMap listener) {
         this.mContext = mContext;

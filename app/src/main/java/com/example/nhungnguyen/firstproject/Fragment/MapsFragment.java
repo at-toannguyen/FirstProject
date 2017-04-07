@@ -1,18 +1,14 @@
 package com.example.nhungnguyen.firstproject.Fragment;
 
 import android.app.Fragment;
-import android.location.Location;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.nhungnguyen.firstproject.Adapters.AdapterPagerMap;
-import com.example.nhungnguyen.firstproject.Adapters.TestAdapterViewpager;
-import com.example.nhungnguyen.firstproject.Models.MarkerMap;
 import com.example.nhungnguyen.firstproject.Models.Markers;
 import com.example.nhungnguyen.firstproject.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,7 +23,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 public class MapsFragment extends Fragment implements AdapterPagerMap.ClickPagerMap {
@@ -36,9 +31,9 @@ public class MapsFragment extends Fragment implements AdapterPagerMap.ClickPager
     private GoogleMap mMap;
     private MapView mMapView;
     Marker mFMarker;
-    MarkerOptions markerOptions = new MarkerOptions();
+    final MarkerOptions markerOptions = new MarkerOptions();
     private ViewPager mViewPager;
-    private List<Marker> mMarkers = new ArrayList<>();
+    private final List<Marker> mMarkers = new ArrayList<>();
 
     @Nullable
     @Override

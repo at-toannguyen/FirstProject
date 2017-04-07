@@ -8,8 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -128,7 +126,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         private final ImageView favorite;
         public final ImageView mImgPerson;
 
-        public UserViewHolder(final View itemView) {
+        UserViewHolder(final View itemView) {
             super(itemView);
             mTvIdUser = (TextView) itemView.findViewById(R.id.tvIdUser);
             mTvUser = (TextView) itemView.findViewById(R.id.tvPerson1);
@@ -149,7 +147,7 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
             });
         }
 
-        public void setScaleAnimation(final View view, final int pos) {
+        void setScaleAnimation(final View view, final int pos) {
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
@@ -161,10 +159,10 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
         }
     }
 
-    public class TitleViewHolder extends RecyclerView.ViewHolder {
+    private class TitleViewHolder extends RecyclerView.ViewHolder {
         private final TextView mTvTitle;
 
-        public TitleViewHolder(View itemView) {
+        TitleViewHolder(View itemView) {
             super(itemView);
             mTvTitle = (TextView) itemView.findViewById(R.id.tvItemTitle);
         }

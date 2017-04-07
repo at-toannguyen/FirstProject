@@ -1,9 +1,6 @@
 package com.example.nhungnguyen.firstproject.Activities;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -19,12 +16,11 @@ import com.example.nhungnguyen.firstproject.R;
 import com.squareup.picasso.Picasso;
 
 public class TestDay19Activity extends AppCompatActivity {
-    private Toolbar mToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_day19);
-        mToolbar=(Toolbar) findViewById(R.id.toolbarTest);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbarTest);
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {

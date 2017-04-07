@@ -7,13 +7,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.nhungnguyen.firstproject.Adapters.TestLayoutRecyclerAdapter;
 import com.example.nhungnguyen.firstproject.Models.ItemList;
-import com.example.nhungnguyen.firstproject.Models.TitleItem;
 import com.example.nhungnguyen.firstproject.Models.UserItem;
 import com.example.nhungnguyen.firstproject.R;
 import com.example.nhungnguyen.firstproject.SQLite.DataBaseHelper;
@@ -92,12 +90,12 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
                             Log.d("131", "run: ");
                             int start = mData.size();
                             int end = start + 20;
-                            String id;
+//                            String id;
                             String person;
                             String age;
                             String content;
                             for (int i = start + 1; i < end; i++) {
-                                id = "" + i;
+//                                id = "" + i;
                                 person = "person " + i;
                                 age = "Age: " + i;
                                 if (i % 2 == 0) {

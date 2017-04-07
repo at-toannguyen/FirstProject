@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.nhungnguyen.firstproject.API.ApiUtils;
 import com.example.nhungnguyen.firstproject.Adapters.AnswersAdapter;
@@ -20,7 +21,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class APIActivity extends AppCompatActivity implements AnswersAdapter.PostItemListener {
-    private RecyclerView mRecyclerView;
     private SOService mService;
     private AnswersAdapter mAdapter;
 
@@ -29,7 +29,7 @@ public class APIActivity extends AppCompatActivity implements AnswersAdapter.Pos
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_api);
         mService = ApiUtils.getSOService();
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycleview);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycleview);
         mAdapter = new AnswersAdapter(this, new ArrayList<Item>(), this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -40,14 +40,15 @@ public class APIActivity extends AppCompatActivity implements AnswersAdapter.Pos
         loadAnswers();
     }
 
-    public void loadAnswers() {
+    private void loadAnswers() {
         mService.getAnswers().enqueue(new Callback<SOAnswersResponse>() {
             @Override
             public void onResponse(Call<SOAnswersResponse> call, Response<SOAnswersResponse> response) {
                 if (response.isSuccessful()) {
                     mAdapter.updateAnswers(response.body().getItems());
                 } else {
-                    int statusCode = response.code();
+//                    int statusCode = response.code();
+                    Log.d("a", "onResponse: ");
                 }
             }
 

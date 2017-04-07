@@ -1,6 +1,5 @@
 package com.example.nhungnguyen.firstproject.Models;
 
-import com.example.nhungnguyen.firstproject.Models.Item;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

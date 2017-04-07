@@ -32,7 +32,8 @@
         <EditText
             android:id="@+id/edtUserName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="TextFields" />
     </TableRow>
 
     <TableRow
@@ -47,7 +48,8 @@
         <EditText
             android:id="@+id/edtUserAge"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="TextFields" />
     </TableRow>
 
     <TableRow
@@ -62,7 +64,8 @@
         <EditText
             android:id="@+id/edtUserContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:ignore="TextFields" />
     </TableRow>
 
     <TableRow
@@ -75,20 +78,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Add" />
+            android:text="Add"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnEdit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Edit" />
+            android:text="Edit"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnDelete"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="delete" />
+            android:text="delete"
+            tools:ignore="ButtonStyle" />
     </TableRow>
 </LinearLayout>
