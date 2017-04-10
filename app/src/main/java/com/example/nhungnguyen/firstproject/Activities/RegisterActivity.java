@@ -19,10 +19,15 @@ import android.widget.Toast;
 
 import com.example.nhungnguyen.firstproject.R;
 
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@EActivity(R.layout.activity_register)
 public class RegisterActivity extends AppCompatActivity {
+    @ViewById
+    Button ChkRegister;
     private Button mBtn;
     private EditText mUser;
     private EditText mPass;
@@ -37,6 +42,22 @@ public class RegisterActivity extends AppCompatActivity {
     private CheckBox mChk6;
     private ImageView mImgEye;
     private Button mBtnLogOut;
+    private void initVariable() {
+        mBtn = (Button) findViewById(R.id.chkRegister);
+        mUser = (EditText) findViewById(R.id.edUser);
+        mPass = (EditText) findViewById(R.id.edPass);
+        mMale = (RadioButton) findViewById(R.id.rbgMale);
+        mFemale = (RadioButton) findViewById(R.id.rbFemale);
+        mRag = (RadioGroup) findViewById(R.id.rbgSex);
+        mChk1 = (CheckBox) findViewById(R.id.cbkReadBook);
+        mChk2 = (CheckBox) findViewById(R.id.ckPlaySoccer);
+        mChk3 = (CheckBox) findViewById(R.id.chkListen_music);
+        mChk4 = (CheckBox) findViewById(R.id.chkPlayGame);
+        mChk5 = (CheckBox) findViewById(R.id.chkSwimming);
+        mChk6 = (CheckBox) findViewById(R.id.chkPlayBasketball);
+        mImgEye = (ImageView) findViewById(R.id.imgEye);
+        mBtnLogOut=(Button) findViewById(R.id.btnLogOut);
+    }
 
     // TODO: 3/9/17  
     @Override
@@ -101,22 +122,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void initVariable() {
-        mBtn = (Button) findViewById(R.id.chkRegister);
-        mUser = (EditText) findViewById(R.id.edUser);
-        mPass = (EditText) findViewById(R.id.edPass);
-        mMale = (RadioButton) findViewById(R.id.rbgMale);
-        mFemale = (RadioButton) findViewById(R.id.rbFemale);
-        mRag = (RadioGroup) findViewById(R.id.rbgSex);
-        mChk1 = (CheckBox) findViewById(R.id.cbkReadBook);
-        mChk2 = (CheckBox) findViewById(R.id.ckPlaySoccer);
-        mChk3 = (CheckBox) findViewById(R.id.chkListen_music);
-        mChk4 = (CheckBox) findViewById(R.id.chkPlayGame);
-        mChk5 = (CheckBox) findViewById(R.id.chkSwimming);
-        mChk6 = (CheckBox) findViewById(R.id.chkPlayBasketball);
-        mImgEye = (ImageView) findViewById(R.id.imgEye);
-        mBtnLogOut=(Button) findViewById(R.id.btnLogOut);
-    }
 
     /**
      * GET Text Checkbox of Uer
