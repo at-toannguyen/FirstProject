@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.nhungnguyen.firstproject.Fragment.RecyclerViewFragment;
+import com.example.nhungnguyen.firstproject.Fragment.RecyclerViewFragment_;
 import com.example.nhungnguyen.firstproject.Fragment.Test1Fragment;
 import com.example.nhungnguyen.firstproject.Fragment.Test3Fragment;
 
@@ -20,7 +21,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new Test1Fragment();
             case 1:
-                return new RecyclerViewFragment();
+                return new RecyclerViewFragment_();
             case 2:
                 return new Test3Fragment();
         }

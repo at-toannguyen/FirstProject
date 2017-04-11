@@ -68,7 +68,6 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
                 ((UserViewHolder) holder).mTvAge.setText(item.getTvAge());
                 ((UserViewHolder) holder).mTvContent.setText(item.getTvContent());
                 ((UserViewHolder) holder).favorite.setSelected(item.isFavorite());
-//                ((UserViewHolder) holder).mImgPerson.setBackgroundResource(((UserItem) ob).getImgPerson());
                 if (!TextUtils.isEmpty(item.getImgPerson())) {
                     Picasso.with(mContext)
                             .load(new File(item.getImgPerson()))
@@ -80,27 +79,24 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
                     ((UserViewHolder) holder).mImgPerson.setImageResource(R.drawable.img_person);
                 }
                 Log.d("onSuccess", "onBindViewHolder: " + item.getImgPerson());
-                if (position == 5) {
-                    ((UserViewHolder) holder).setScaleAnimation(((UserViewHolder) holder).mImgPerson, position);
-                }
                 //}
-//                ((UserViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        if (mItemClickListener != null) {
-//                            mItemClickListener.onItemClick(holder.getAdapterPosition());
-//                        }
-//                    }
-//                });
-//                ((UserViewHolder) holder).itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//                    @Override
-//                    public boolean onLongClick(View view) {
-//                        if (mItemClickListener != null) {
-//                            mItemClickListener.onItemLongClick(holder.getAdapterPosition());
-//                        }
-//                        return true;
-//                    }
-//                });
+                ((UserViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (mItemClickListener != null) {
+                            mItemClickListener.onItemClick(holder.getAdapterPosition());
+                        }
+                    }
+                });
+                ((UserViewHolder) holder).itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        if (mItemClickListener != null) {
+                            mItemClickListener.onItemLongClick(holder.getAdapterPosition());
+                        }
+                        return true;
+                    }
+                });
             }
 
             return;
@@ -141,22 +137,22 @@ public class TestLayoutRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
                     ItemList ob = mData.get(getAdapterPosition());
                     if (ob instanceof UserItem) {
                         ((UserItem) ob).setFavorite(!((UserItem) ob).isFavorite());
-                        notifyDataSetChanged();
+                        notifyItemChanged(getAdapterPosition());
                     }
                 }
             });
         }
 
-        void setScaleAnimation(final View view, final int pos) {
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-                    mItemClickListener.onItemClick(pos);
-                }
-            };
-            Handler handler = new Handler();
-            handler.postDelayed(runnable, 3000);
-        }
+//        void setScaleAnimation(final View view, final int pos) {
+//            Runnable runnable = new Runnable() {
+//                @Override
+//                public void run() {
+//                    mItemClickListener.onItemClick(pos);
+//                }
+//            };
+//            Handler handler = new Handler();
+//            handler.postDelayed(runnable, 3000);
+//        }
     }
 
     private class TitleViewHolder extends RecyclerView.ViewHolder {

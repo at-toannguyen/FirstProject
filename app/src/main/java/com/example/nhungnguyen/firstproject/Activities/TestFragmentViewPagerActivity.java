@@ -11,30 +11,25 @@ import android.support.v4.view.ViewPager;
 import com.example.nhungnguyen.firstproject.Adapters.ViewPagerAdapter;
 import com.example.nhungnguyen.firstproject.R;
 
-public class TestFragmentViewPagerActivity extends FragmentActivity implements TabLayout.OnTabSelectedListener {
-    private ViewPager mViewPager;
-    private ViewPagerAdapter mViewPagerAdapter;
-    private TabLayout mTabs;
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.PageSelected;
+import org.androidannotations.annotations.ViewById;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_fragment);
-        init();
-        createTab();
+@EActivity(R.layout.activity_test_fragment)
+public class TestFragmentViewPagerActivity extends FragmentActivity implements TabLayout.OnTabSelectedListener {
+    @ViewById(R.id.vPager)
+    ViewPager mViewPager;
+    @ViewById(R.id.tabs)
+    TabLayout mTabs;
+
+    @AfterViews
+    void init() {
         mTabs.setOnTabSelectedListener(this);
         mTabs.setTabGravity(TabLayout.GRAVITY_FILL);
+        ViewPagerAdapter mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mViewPagerAdapter);
-
-    }
-
-    private void init() {
-        mViewPager = (ViewPager) findViewById(R.id.vPager);
-        mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        mTabs = (TabLayout) findViewById(R.id.tabs);
-    }
-
-    private void createTab() {
         final TabLayout.Tab tab1 = mTabs.newTab();
         final TabLayout.Tab tab2 = mTabs.newTab();
         final TabLayout.Tab tab3 = mTabs.newTab();
@@ -89,7 +84,6 @@ public class TestFragmentViewPagerActivity extends FragmentActivity implements T
             fragment.onActivityResult(requestCode, resultCode, data);
         }
     }
-
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {

@@ -14,51 +14,45 @@ import com.example.nhungnguyen.firstproject.Models.UserItem;
 import com.example.nhungnguyen.firstproject.R;
 import com.squareup.picasso.Picasso;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.ViewById;
+
 import java.io.File;
 
-
+@EActivity(R.layout.activity_detail_person)
 public class DetailPersonActivity extends AppCompatActivity {
-    private TextView mTvPerson;
-    private TextView mTvAge;
-    private TextView mTvContent;
-    private ImageView mFavorite;
-    private ImageView mImgPerson;
-    private UserItem mData;
-    private int mPosition;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_person);
-        init();
-        Bundle bundle = getIntent().getExtras();
-        mData = bundle.getParcelable("para");
-        mPosition = bundle.getInt("position");
+    @Extra
+    UserItem mData;
+    @Extra
+    int mPosition;
+    @ViewById(R.id.tvDetail1)
+    TextView mTvPerson;
+    @ViewById(R.id.tvDetail2)
+    TextView mTvAge;
+    @ViewById(R.id.tvDetail3)
+    TextView mTvContent;
+    @ViewById(R.id.imgFavoriteDetail)
+    ImageView mFavorite;
+    @ViewById(R.id.imgDetail)
+    ImageView mImgPerson;
+    @AfterViews
+    void init(){
         mTvPerson.setText(mData.getTvUser());
         mTvAge.setText(mData.getTvAge());
         mTvContent.setText(mData.getTvContent());
-//        mImgPerson.setBackgroundResource(mData.getImgPerson());
         if (!TextUtils.isEmpty(mData.getImgPerson())) {
             Picasso.with(this).load(new File(mData.getImgPerson())).centerCrop().fit().error(R.drawable.img_person1).into(mImgPerson);
         }
         mFavorite.setSelected(mData.isFavorite());
-
-        mFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mFavorite.setSelected(!mData.isFavorite());
-                mData.setFavorite(!mData.isFavorite());
-
-            }
-        });
     }
-
-    private void init() {
-        mTvPerson = (TextView) findViewById(R.id.tvDetail1);
-        mTvAge = (TextView) findViewById(R.id.tvDetail2);
-        mTvContent = (TextView) findViewById(R.id.tvDetail3);
-        mFavorite = (ImageView) findViewById(R.id.imgFavoriteDetail);
-        mImgPerson = (ImageView) findViewById(R.id.imgDetail);
+    @Click(R.id.imgFavoriteDetail)
+    void onClickFavoriteDetail(){
+        mFavorite.setSelected(!mData.isFavorite());
+        mData.setFavorite(!mData.isFavorite());
     }
 
     @Override

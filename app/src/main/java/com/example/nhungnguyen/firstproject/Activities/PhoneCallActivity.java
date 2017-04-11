@@ -6,152 +6,116 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.inputmethod.BaseInputConnection;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nhungnguyen.firstproject.R;
 
-public class PhoneCallActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView mTvNum1;
-    private TextView mTvNum2;
-    private TextView mTvNum3;
-    private TextView mTvNum4;
-    private TextView mTvNum5;
-    private TextView mTvNum6;
-    private TextView mTvNum7;
-    private TextView mTvNum8;
-    private TextView mTvNum9;
-    private TextView mTvNum0;
-    private TextView mTvAsterisk;
-    private TextView mTvPound;
-    private ImageView mImgCall;
-    private ImageView mImgDel;
-    private EditText mEdtNumCall;
+import org.androidannotations.annotations.AfterTextChange;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.LongClick;
+import org.androidannotations.annotations.ViewById;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phone_call);
-        initVariable();
-        setOnClick();
-        mImgDel.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                mEdtNumCall.getText().clear();
-                return true;
-            }
-        });
-        mEdtNumCall.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                mEdtNumCall.setSelection(mEdtNumCall.getText().length());
-            }
-        });
+@EActivity(R.layout.activity_phone_call)
+public class PhoneCallActivity extends AppCompatActivity {
+    @ViewById(R.id.edtPhoneCall)
+    EditText mEdtNumCall;
+    @ViewById(R.id.tvNum0)
+    TextView mTvNum0;
+    @ViewById(R.id.tvNum1)
+    TextView mTvNum1;
+    @ViewById(R.id.tvNum2)
+    TextView mTvNum2;
+    @ViewById(R.id.tvNum3)
+    TextView mTvNum3;
+    @ViewById(R.id.tvNum4)
+    TextView mTvNum4;
+    @ViewById(R.id.tvNum5)
+    TextView mTvNum5;
+    @ViewById(R.id.tvNum6)
+    TextView mTvNum6;
+    @ViewById(R.id.tvNum7)
+    TextView mTvNum7;
+    @ViewById(R.id.tvNum8)
+    TextView mTvNum8;
+    @ViewById(R.id.tvNum9)
+    TextView mTvNum9;
+    @ViewById(R.id.tvSao)
+    TextView mTvAsterisk;
+    @ViewById(R.id.tvThang)
+    TextView mTvPound;
+    @Click(R.id.tvNum0)
+    void onClickNum0() {
+        mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum0.getText().toString());
     }
-
-    private void initVariable() {
-        mTvNum1 = (TextView) findViewById(R.id.tvNum1);
-        mTvNum2 = (TextView) findViewById(R.id.tvNum2);
-        mTvNum3 = (TextView) findViewById(R.id.tvNum3);
-        mTvNum4 = (TextView) findViewById(R.id.tvNum4);
-        mTvNum5 = (TextView) findViewById(R.id.tvNum5);
-        mTvNum6 = (TextView) findViewById(R.id.tvNum6);
-        mTvNum7 = (TextView) findViewById(R.id.tvNum7);
-        mTvNum8 = (TextView) findViewById(R.id.tvNum8);
-        mTvNum9 = (TextView) findViewById(R.id.tvNum9);
-        mTvNum0 = (TextView) findViewById(R.id.tvNum0);
-        mTvAsterisk = (TextView) findViewById(R.id.tvSao);
-        mTvPound = (TextView) findViewById(R.id.tvThang);
-        mImgCall = (ImageView) findViewById(R.id.imgCall);
-        mImgDel = (ImageView) findViewById(R.id.imgDelNumber);
-        mEdtNumCall = (EditText) findViewById(R.id.edtPhoneCall);
+    @Click(R.id.tvNum1)
+    void onClickNum1() {
+        mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum1.getText().toString());
     }
-
-    private void setOnClick() {
-        mTvNum0.setOnClickListener(this);
-        mTvNum1.setOnClickListener(this);
-        mTvNum2.setOnClickListener(this);
-        mTvNum3.setOnClickListener(this);
-        mTvNum4.setOnClickListener(this);
-        mTvNum5.setOnClickListener(this);
-        mTvNum6.setOnClickListener(this);
-        mTvNum7.setOnClickListener(this);
-        mTvNum8.setOnClickListener(this);
-        mTvNum9.setOnClickListener(this);
-        mTvAsterisk.setOnClickListener(this);
-        mTvPound.setOnClickListener(this);
-        mImgDel.setOnClickListener(this);
-        mImgCall.setOnClickListener(this);
+    @Click(R.id.tvNum2)
+    void onClickNum2() {
+        mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum2.getText().toString());
     }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tvNum0:
-                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum0.getText().toString());
-                break;
-            case R.id.tvNum1:
-                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum1.getText().toString());
-                break;
-            case R.id.tvNum2:
-                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum2.getText().toString());
-                break;
-            case R.id.tvNum3:
-                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum3.getText().toString());
-                break;
-            case R.id.tvNum4:
-                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum4.getText().toString());
-                break;
-            case R.id.tvNum5:
-                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum5.getText().toString());
-                break;
-            case R.id.tvNum6:
-                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum6.getText().toString());
-                break;
-            case R.id.tvNum7:
-                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum7.getText().toString());
-                break;
-            case R.id.tvNum8:
-                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum8.getText().toString());
-                break;
-            case R.id.tvNum9:
-                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum9.getText().toString());
-                break;
-            case R.id.tvSao:
-                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvAsterisk.getText().toString());
-                break;
-            case R.id.tvThang:
-                mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvPound.getText().toString());
-                break;
-            case R.id.imgDelNumber:
-                BaseInputConnection del = new BaseInputConnection(mEdtNumCall, true);
-                del.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
-                break;
-            case R.id.imgCall:
-                Intent call = new Intent(Intent.ACTION_CALL);
-                call.setData(Uri.parse("tel: " + mEdtNumCall.getText().toString()));
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 0);
-                    return;
-                }
-                startActivity(call);
+    @Click(R.id.tvNum3)
+    void onClickNum3() {
+        mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum3.getText().toString());
+    }
+    @Click(R.id.tvNum4)
+    void onClickNum4() {
+        mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum4.getText().toString());
+    }
+    @Click(R.id.tvNum5)
+    void onClickNum5() {
+        mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum5.getText().toString());
+    }
+    @Click(R.id.tvNum6)
+    void onClickNum6() {
+        mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum6.getText().toString());
+    }
+    @Click(R.id.tvNum7)
+    void onClickNum7() {
+        mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum7.getText().toString());
+    }
+    @Click(R.id.tvNum8)
+    void onClickNum8() {
+        mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum8.getText().toString());
+    }
+    @Click(R.id.tvNum9)
+    void onClickNum9() {
+        mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvNum9.getText().toString());
+    }
+    @Click(R.id.tvSao)
+    void onClickSao() {
+        mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvAsterisk.getText().toString());
+    }
+    @Click(R.id.tvThang)
+    void onClickThang() {
+        mEdtNumCall.setText(mEdtNumCall.getText().toString() + mTvPound.getText().toString());
+    }
+    @Click(R.id.imgDelNumber)
+    void onCLickDel(){
+        BaseInputConnection del = new BaseInputConnection(mEdtNumCall, true);
+        del.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+    }
+    @Click(R.id.imgCall)
+    void onClickCall(){
+        Intent call = new Intent(Intent.ACTION_CALL);
+        call.setData(Uri.parse("tel: " + mEdtNumCall.getText().toString()));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 0);
+            return;
         }
+        startActivity(call);
+    }
+    @LongClick(R.id.imgDelNumber)
+    void onLongClickDel(){
+        mEdtNumCall.getText().clear();
+    }
+    @AfterTextChange(R.id.edtPhoneCall)
+    void textchange(){
+        mEdtNumCall.setSelection(mEdtNumCall.getText().length());
     }
 }

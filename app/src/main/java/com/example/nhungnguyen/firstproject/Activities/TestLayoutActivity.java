@@ -16,187 +16,91 @@ import com.example.nhungnguyen.firstproject.Models.UserItem;
 import com.example.nhungnguyen.firstproject.R;
 import com.example.nhungnguyen.firstproject.SQLite.DataBaseHelper;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OnActivityResult;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@EActivity(R.layout.activity_user)
 public class TestLayoutActivity extends AppCompatActivity implements TestLayoutRecyclerAdapter.onItemClickListener {
-    private RecyclerView mRecyclerViewTestLayout;
     private List<ItemList> mData;
-    private ImageView imgBack;
     private TestLayoutRecyclerAdapter mTestLayoutRecyclerAdapter;
-    private android.os.Handler mHandler;
     private LinearLayoutManager mLayoutManager;
-    private ProgressBar mProgressBar;
     private DataBaseHelper mDataBaseHealper;
     private static final String URL = "https://www.shareicon.net/data/48x48/2015/09/18/103158_user_512x512.png";
-    private ImageView mImgAddUser;
+    private static final int REQUESTCODE1 = 1;
+    private static final int REQUESTCODE2 = 2;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
-        init();
+
+    @ViewById(R.id.recycleViewPersonal)
+    RecyclerView mRecyclerViewTestLayout;
+
+    @Click(R.id.imgBack)
+    void onClickBack() {
+        finish();
+    }
+
+    @Click(R.id.imgAdd)
+    void onClickAddUser() {
+        ChangeDbActivity_.intent(this).key("String").start();
+    }
+
+    @AfterViews
+    void init() {
+        mData = new ArrayList<>();
+        mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(mData, this, this);
+        mRecyclerViewTestLayout.setAdapter(mTestLayoutRecyclerAdapter);
+        mDataBaseHealper = new DataBaseHelper(this);
         mData.addAll(mDataBaseHealper.getAllUsers());
         mTestLayoutRecyclerAdapter.notifyDataSetChanged();
         mRecyclerViewTestLayout.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerViewTestLayout.setLayoutManager(mLayoutManager);
-
-        imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        mImgAddUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Bundle b = new Bundle();
-                Intent i = new Intent(TestLayoutActivity.this, ChangeDbActivity.class);
-//                b.putString("keya", "String");
-                i.putExtra("key", "String");
-                startActivity(i);
-            }
-        });
-//        loadMore();
-
     }
-
-    private void init() {
-        imgBack = (ImageView) findViewById(R.id.imgBack);
-        mRecyclerViewTestLayout = (RecyclerView) findViewById(R.id.recycleViewPersonal);
-        mData = new ArrayList<>();
-        mHandler = new android.os.Handler();
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBarUser);
-        mTestLayoutRecyclerAdapter = new TestLayoutRecyclerAdapter(mData, this, this);
-        mRecyclerViewTestLayout.setAdapter(mTestLayoutRecyclerAdapter);
-
-        mDataBaseHealper = new DataBaseHelper(this);
-        mImgAddUser = (ImageView) findViewById(R.id.imgAdd);
-    }
-
-    private void loadMore() {
-        mRecyclerViewTestLayout.addOnScrollListener(new RecyclerView.OnScrollListener() {
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                int mLastVisibleItem = mLayoutManager.findLastCompletelyVisibleItemPosition();
-                if (mLastVisibleItem == mData.size() - 1) {
-                    mProgressBar.setVisibility(View.VISIBLE);
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.d("131", "run: ");
-                            int start = mData.size();
-                            int end = start + 20;
-//                            String id;
-                            String person;
-                            String age;
-                            String content;
-                            for (int i = start + 1; i < end; i++) {
-//                                id = "" + i;
-                                person = "person " + i;
-                                age = "Age: " + i;
-                                if (i % 2 == 0) {
-                                    content = "Hello";
-                                } else {
-                                    content = "Hi";
-                                }
-//                                if (i % 3 == 0 || i == 1) {
-//                                    mData.add(new TitleItem("Group A"));
-//                                } else {
-//                                    if (i % 5 == 0) {
-//                                        mData.add(new TitleItem("Group B"));
-//                                    }
-//                                }
-                                mDataBaseHealper.addUser(new UserItem(person, age, content, URL));
-                            }
-                            mData.addAll(mDataBaseHealper.getAllUsers());
-                            mTestLayoutRecyclerAdapter.notifyItemInserted(mData.size());
-                            mProgressBar.setVisibility(View.GONE);
-                        }
-
-                    }, 3000);
-                }
-            }
-        });
-    }
-
-//    private void createData() {
-//        String id;
-//        String person;
-//        String age;
-//        String content;
-//        for (int i = 1; i <= 20; i++) {
-//            id = "" + i;
-//            person = "person " + i;
-//            age = "Age: " + i;
-//            if (i % 2 == 0) {
-//                content = "Hello";
-//            } else {
-//                content = "Hi";
-//            }
-////            if (i % 3 == 0 || i == 1) {
-////                mData.add(new TitleItem("Group A"));
-////            } else {
-////                if (i % 5 == 0) {
-////                    mData.add(new TitleItem("Group B"));
-////                }
-////            }
-////            mData.add(new UserItem(person, age, content, R.drawable.img_person_male));
-//            mDataBaseHealper.addUser(new UserItem(person, age, content, URL));
-//        }
-//        mData.addAll(mDataBaseHealper.getAllUsers());
-//        mTestLayoutRecyclerAdapter.notifyDataSetChanged();
-//    }
-
 
     @Override
     public void onItemClick(int position) {
-        Bundle b = new Bundle();
-        b.putInt("position", position);
-        Intent i = new Intent(TestLayoutActivity.this, DetailPersonActivity.class);
-        b.putParcelable("para", mData.get(position));
-        i.putExtras(b);
-        startActivityForResult(i, 1);
+//        Bundle b = new Bundle();
+//        b.putInt("position", position);
+//        Intent i = new Intent(TestLayoutActivity.this, DetailPersonActivity.class);
+//        b.putParcelable("para", mData.get(position));
+//        i.putExtras(b);
+//        startActivityForResult(i, 1);
+        DetailPersonActivity_.intent(this).mPosition(position).mData((UserItem) mData.get(position)).startForResult(REQUESTCODE1);
     }
 
     @Override
     public void onItemLongClick(int position) {
-        Bundle b = new Bundle();
-        b.putInt("positiondb", position);
-        Intent i = new Intent(TestLayoutActivity.this, ChangeDbActivity.class);
-        b.putParcelable("paradb", mData.get(position));
-        i.putExtras(b);
-        startActivityForResult(i, 2);
+        ChangeDbActivity_.intent(this).key(String.valueOf(position)).mData((UserItem) mData.get(position)).startForResult(REQUESTCODE2);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                Log.d("result", "onActivityResult: ");
-                UserItem test = data.getParcelableExtra("favor");
-
-                int position = data.getIntExtra("positionFavorite", -1);
-                Log.d("poi", "onActivityResult: " + position);
-                if (position != -1) {
-                    mData.set(position, test);
-                    mTestLayoutRecyclerAdapter.notifyDataSetChanged();
-                }
-            }
-        }
-        if (requestCode == 2) {
-            if (resultCode == RESULT_OK) {
-                UserItem changeDB = data.getParcelableExtra("db");
-                int poisition1 = data.getIntExtra("poisitiondb", -1);
-                mData.set(poisition1, changeDB);
-                mData = mDataBaseHealper.getAllUsers();
-                mRecyclerViewTestLayout.setAdapter(new TestLayoutRecyclerAdapter(mData, this, this));
+    @OnActivityResult(REQUESTCODE1)
+    void resultData(int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            Log.d("result", "onActivityResult: ");
+            UserItem test = data.getParcelableExtra("favor");
+            int position = data.getIntExtra("positionFavorite", -1);
+            Log.d("poi", "onActivityResult: " + position);
+            if (position != -1) {
+                mData.set(position, test);
                 mTestLayoutRecyclerAdapter.notifyDataSetChanged();
             }
+        }
+    }
+
+    @OnActivityResult(REQUESTCODE2)
+    void resultDataDb(int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            UserItem changeDB = data.getParcelableExtra("db");
+            int poisition1 = data.getIntExtra("poisitiondb", -1);
+            mData.set(poisition1, changeDB);
+            mData = mDataBaseHealper.getAllUsers();
+            mRecyclerViewTestLayout.setAdapter(new TestLayoutRecyclerAdapter(mData, this, this));
+            mTestLayoutRecyclerAdapter.notifyDataSetChanged();
         }
     }
 

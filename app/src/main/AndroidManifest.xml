@@ -35,10 +35,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.LoginActivity_" />
-        <activity android:name=".Activities.RegisterActivity" />
-        <activity android:name=".Activities.TestLayoutActivity" />
-        <activity android:name=".Activities.DetailPersonActivity" />
-        <activity android:name=".Activities.PhoneCallActivity">
+        <activity android:name=".Activities.RegisterActivity_" />
+        <activity android:name=".Activities.TestLayoutActivity_" />
+        <activity android:name=".Activities.DetailPersonActivity_" />
+        <activity android:name=".Activities.PhoneCallActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -53,7 +53,7 @@
                 <data android:scheme="tel" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.ItentActivity">
+        <activity android:name=".Activities.ItentActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
 
@@ -68,9 +68,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.SharedReferencesActivity" />
-        <activity android:name=".Activities.ChangeDbActivity" />
-        <activity android:name=".Activities.TestFragmentViewPagerActivity" />
-        <activity android:name=".Activities.TestFragmentActivity" />
+        <activity android:name=".Activities.ChangeDbActivity_" />
+        <activity android:name=".Activities.TestFragmentViewPagerActivity_" />
+        <activity android:name=".Activities.TestFragmentActivity_" />
         <activity android:name=".Activities.BroadcastActivity111" />
 
         <receiver android:name=".MyPhoneReceiver">
@@ -109,10 +109,10 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Activities.GGMapActivity"
+            android:name=".Activities.GGMapActivity_"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Activities.AsyncTaskActivity" />
-        <activity android:name=".Activities.APIActivity"></activity>
+        <activity android:name=".Activities.AsyncTaskActivity_" />
+        <activity android:name=".Activities.APIActivity"/>
     </application>
 
 </manifest>
