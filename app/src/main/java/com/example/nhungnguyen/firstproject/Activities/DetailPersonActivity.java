@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -60,7 +61,7 @@ public class DetailPersonActivity extends AppCompatActivity {
         Intent i = new Intent();
         i.putExtra("favor", mData);
         i.putExtra("positionFavorite", mPosition);
-
+        Log.d("pos", "onBackPressed: "+mData.isFavorite());
         setResult(RESULT_OK, i);
         finish();
     }

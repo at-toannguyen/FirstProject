@@ -14,22 +14,26 @@ import com.example.nhungnguyen.firstproject.Models.Item;
 import com.example.nhungnguyen.firstproject.Models.SOAnswersResponse;
 import com.example.nhungnguyen.firstproject.R;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@EActivity(R.layout.activity_api)
 public class APIActivity extends AppCompatActivity implements AnswersAdapter.PostItemListener {
     private SOService mService;
     private AnswersAdapter mAdapter;
+    @ViewById(R.id.recycleview)
+    RecyclerView mRecyclerView;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_api);
+    @AfterViews
+    void init() {
         mService = ApiUtils.getSOService();
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycleview);
         mAdapter = new AnswersAdapter(this, new ArrayList<Item>(), this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -47,7 +51,6 @@ public class APIActivity extends AppCompatActivity implements AnswersAdapter.Pos
                 if (response.isSuccessful()) {
                     mAdapter.updateAnswers(response.body().getItems());
                 } else {
-//                    int statusCode = response.code();
                     Log.d("a", "onResponse: ");
                 }
             }

@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.nhungnguyen.firstproject.Interface.Mypre;
+import com.example.nhungnguyen.firstproject.Interface.Mypre_;
 import com.example.nhungnguyen.firstproject.R;
 
 import org.androidannotations.annotations.AfterViews;
@@ -16,9 +18,14 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.sharedpreferences.DefaultString;
+import org.androidannotations.annotations.sharedpreferences.Pref;
+import org.androidannotations.annotations.sharedpreferences.SharedPref;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends AppCompatActivity {
+    @Pref
+    Mypre_ mypre;
     @ViewById
     EditText edUser;
     @ViewById
@@ -30,15 +37,9 @@ public class LoginActivity extends AppCompatActivity {
 
     @Click(R.id.btnLogin)
     void setClickBtn() {
-        if (edUser.getText().toString().equalsIgnoreCase("abcd") && edPass.getText().toString().equalsIgnoreCase("1234")) {
-            SharedPreferences preferences = getSharedPreferences("mydata", MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("user", edUser.getText().toString());
-            editor.putString("pass", edPass.getText().toString());
-            editor.commit();
-            startActivity(new Intent(this, RegisterActivity_.class));
-            finish();
-        }
+        mypre.edit().user().put(edUser.getText().toString()).apply();
+        mypre.edit().pass().put(edPass.getText().toString()).apply();
+        RegisterActivity_.intent(this).start();
     }
 
     @Click(R.id.tvCra)
@@ -48,22 +49,10 @@ public class LoginActivity extends AppCompatActivity {
 
     @AfterViews
     void init() {
-        boolean rs = checkLogin();
-        if (rs) {
+        if (mypre.user().exists()) {
             startActivity(new Intent(this, RegisterActivity_.class));
             finish();
         }
     }
 
-    private boolean checkLogin() {
-        boolean rs = false;
-        SharedPreferences share = getSharedPreferences("mydata", MODE_PRIVATE);
-        //Lấy chuỗi String trong file SharedPreferences thông qua tên URName và URPass
-        String name = share.getString("user", "");
-        String pass = share.getString("pass", "");
-        if (name.equalsIgnoreCase("abcd") && pass.equalsIgnoreCase("1234")) {
-            rs = true;
-        }
-        return rs;
-    }
 }

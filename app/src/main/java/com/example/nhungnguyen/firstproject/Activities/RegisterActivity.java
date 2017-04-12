@@ -17,18 +17,22 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.nhungnguyen.firstproject.Interface.Mypre_;
 import com.example.nhungnguyen.firstproject.R;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Touch;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @EActivity(R.layout.activity_register)
 public class RegisterActivity extends AppCompatActivity {
+    @Pref
+    Mypre_ mypre;
     @ViewById
     Button btnRegister;
     @ViewById
@@ -84,10 +88,8 @@ public class RegisterActivity extends AppCompatActivity {
         builder.setMessage("Do U want exit?")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        SharedPreferences preferences = getSharedPreferences("mydata", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.clear();
-                        editor.commit();
+                        mypre.edit().user().remove().apply();
+                        mypre.edit().pass().remove().apply();
                         finish();
                     }
                 })
