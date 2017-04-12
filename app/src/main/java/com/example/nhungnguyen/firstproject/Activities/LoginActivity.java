@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.nhungnguyen.firstproject.Interface.Mypre;
+import com.example.nhungnguyen.firstproject.Interface.Mypre_;
 import com.example.nhungnguyen.firstproject.R;
 
 import org.androidannotations.annotations.AfterViews;
@@ -16,100 +18,41 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.sharedpreferences.DefaultString;
+import org.androidannotations.annotations.sharedpreferences.Pref;
+import org.androidannotations.annotations.sharedpreferences.SharedPref;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends AppCompatActivity {
+    @Pref
+    Mypre_ mypre;
     @ViewById
-        EditText edUser;
+    EditText edUser;
     @ViewById
     EditText edPass;
     @ViewById
     Button btnLogin;
     @ViewById
     TextView tvCra;
+
     @Click(R.id.btnLogin)
-    void setClickBtn(){
-        if(mUser.getText().toString().equalsIgnoreCase("abcd")&&mPass.getText().toString().equalsIgnoreCase("1234")){
-            SharedPreferences preferences=getSharedPreferences("mydata",MODE_PRIVATE);
-            SharedPreferences.Editor editor=preferences.edit();
-            editor.putString("user",mUser.getText().toString());
-            editor.putString("pass",mPass.getText().toString());
-            editor.commit();
-            startActivity(new Intent(this,RegisterActivity.class));
-            finish();
-        }
+    void setClickBtn() {
+        mypre.edit().user().put(edUser.getText().toString()).apply();
+        mypre.edit().pass().put(edPass.getText().toString()).apply();
+        RegisterActivity_.intent(this).start();
     }
+
     @Click(R.id.tvCra)
-    void onCLickTv(){
-        startActivity(new Intent(this, RegisterActivity.class));
+    void onCLickTv() {
+        startActivity(new Intent(this, RegisterActivity_.class));
     }
-    private EditText mUser;
-    private EditText mPass;
-    private Button mBtnLg;
-    private TextView mTvCra;
+
     @AfterViews
-    void init(){
-        boolean rs=checkLogin();
-        if (rs){
-            startActivity(new Intent(this,RegisterActivity.class));
+    void init() {
+        if (mypre.user().exists()) {
+            startActivity(new Intent(this, RegisterActivity_.class));
             finish();
         }
     }
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_login);
-//        if (rs){
-//            startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
-//            finish();
-//        }else {
-//            initVariable();
-//            setOnClick();
-//        }
-//    }
-//
-//    // Init Variable
-//    private void initVariable() {
-//        mUser = (EditText) findViewById(R.id.edUser);
-//        mPass = (EditText) findViewById(R.id.edPass);
-//        mBtnLg = (Button) findViewById(R.id.btnLogin);
-//        mTvCra = (TextView) findViewById(R.id.tvCra);
-//    }
-
-    // Set OnClick for Button and TextView
-//    private void setOnClick() {
-//        mBtnLg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(mUser.getText().toString().equalsIgnoreCase("abcd")&&mPass.getText().toString().equalsIgnoreCase("1234")){
-//                    SharedPreferences preferences=getSharedPreferences("mydata",MODE_PRIVATE);
-//                    SharedPreferences.Editor editor=preferences.edit();
-//                    editor.putString("user",mUser.getText().toString());
-//                    editor.putString("pass",mPass.getText().toString());
-//                    editor.commit();
-//                    startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
-//                    finish();
-//                }
-//            }
-//        });
-//        mTvCra.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-//                startActivity(i);
-//            }
-//        });
-//    }
-    private boolean checkLogin(){
-        boolean rs=false;
-        SharedPreferences share = getSharedPreferences("mydata", MODE_PRIVATE);
-        //Lấy chuỗi String trong file SharedPreferences thông qua tên URName và URPass
-        String name = share.getString("user", "");
-        String pass = share.getString("pass", "");
-        if (name.equalsIgnoreCase("abcd") && pass.equalsIgnoreCase("1234")) {
-            rs = true;
-        }
-        return rs;
-    }
 }

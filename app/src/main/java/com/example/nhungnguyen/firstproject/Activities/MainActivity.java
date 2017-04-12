@@ -17,33 +17,6 @@ import org.androidannotations.annotations.ViewById;
 public class MainActivity extends AppCompatActivity {
     private static final String TEST = "com.example.nhungnguyen.firstproject.TestSendData";
     private static final String TEST1 = "com.example.nhungnguyen.firstproject.Receive";
-    @ViewById
-    Button btnTest1;
-    @ViewById
-    Button btnTest2;
-    @ViewById
-    Button btnTest3;
-    @ViewById
-    Button btnTest4;
-    @ViewById
-    Button btnTest5;
-    @ViewById
-    Button btnTest6;
-    @ViewById
-    Button btnTest7;
-    @ViewById
-    Button btnSendData;
-    @ViewById
-    Button btnSendReceive;
-    @ViewById
-    Button btnTest10;
-    @ViewById
-    Button btnGGMap;
-    @ViewById
-    Button btnAsync;
-    @ViewById
-    Button btnAPI;
-
     @Click(R.id.btnTest1)
     void onClickBtn1() {
         startActivity(new Intent(MainActivity.this, LoginActivity_.class));
@@ -51,32 +24,32 @@ public class MainActivity extends AppCompatActivity {
 
     @Click(R.id.btnTest2)
     void onClickBtn2() {
-        startActivity(new Intent(MainActivity.this, TestLayoutActivity.class));
+        startActivity(new Intent(MainActivity.this, TestLayoutActivity_.class));
     }
 
     @Click(R.id.btnTest3)
     void onClickBtn3() {
-        startActivity(new Intent(MainActivity.this, PhoneCallActivity.class));
+        startActivity(new Intent(MainActivity.this, PhoneCallActivity_.class));
     }
 
     @Click(R.id.btnTest4)
     void onClickBtn4() {
-        startActivity(new Intent(MainActivity.this, ItentActivity.class));
+        startActivity(new Intent(MainActivity.this, ItentActivity_.class));
     }
 
     @Click(R.id.btnTest5)
     void onClickBtn5() {
-        startActivity(new Intent(MainActivity.this, TestFragmentActivity.class));
+        startActivity(new Intent(MainActivity.this, TestFragmentActivity_.class));
     }
 
     @Click(R.id.btnTest6)
     void onClickBtn6() {
-        startActivity(new Intent(MainActivity.this, TestFragmentViewPagerActivity.class));
+        startActivity(new Intent(MainActivity.this, TestFragmentViewPagerActivity_.class));
     }
 
     @Click(R.id.btnTest7)
     void onClickBtn7() {
-        startActivity(new Intent(this, BroadcastActivity111.class));
+        startActivity(new Intent(this, BroadcastActivity111_.class));
     }
 
     @Click(R.id.btnSendData)
@@ -97,21 +70,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Click(R.id.btnTest10)
     void onClickBtn10() {
-        startActivity(new Intent(this, TestDay19Activity.class));
+        startActivity(new Intent(this, TestDay19Activity_.class));
     }
 
     @Click(R.id.btnGGMap)
     void onClickBtnGGMap() {
-        startActivity(new Intent(this, GGMapActivity.class));
+        startActivity(new Intent(this, GGMapActivity_.class));
     }
 
     @Click(R.id.btnAsync)
     void onClickBtnAsync() {
-        startActivity(new Intent(this, AsyncTaskActivity.class));
+        startActivity(new Intent(this, AsyncTaskActivity_.class));
     }
 
     @Click(R.id.btnAPI)
     void onClickBtnAPI() {
-        startActivity(new Intent(this, APIActivity.class));
+        startActivity(new Intent(this, APIActivity_.class));
     }
 }

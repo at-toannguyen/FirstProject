@@ -12,28 +12,30 @@ import android.view.ViewGroup;
 
 
 import com.example.nhungnguyen.firstproject.Activities.DetailPersonActivity;
+import com.example.nhungnguyen.firstproject.Activities.DetailPersonActivity_;
 import com.example.nhungnguyen.firstproject.Adapters.TestAdapterViewpager;
 import com.example.nhungnguyen.firstproject.Models.UserItem;
 import com.example.nhungnguyen.firstproject.R;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
+@EFragment(R.layout.test1_fragment)
 public class Test1Fragment extends android.support.v4.app.Fragment implements TestAdapterViewpager.OnClickItemViewpager {
     private List<UserItem> mData = new ArrayList<>();
     private TestAdapterViewpager mAdapter;
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.test1_fragment, container, false);
-        ViewPager viewPager = (ViewPager) view.findViewById(R.id.vPagerTest);
+    @ViewById(R.id.vPagerTest)
+    ViewPager viewPager;
+    @AfterViews
+    void init(){
         mData = loadData();
-        mAdapter = new TestAdapterViewpager(view.getContext(), mData, this);
+        mAdapter = new TestAdapterViewpager(getContext(), mData, this);
         viewPager.setAdapter(mAdapter);
-        return view;
     }
-
     private List<UserItem> loadData() {
         String id;
         String name;
@@ -55,12 +57,7 @@ public class Test1Fragment extends android.support.v4.app.Fragment implements Te
     }
     @Override
     public void onClick(int position) {
-        Bundle b = new Bundle();
-        b.putInt("position", position);
-        Intent i = new Intent(getActivity(), DetailPersonActivity.class);
-        b.putParcelable("para", mData.get(position));
-        i.putExtras(b);
-        getActivity().startActivityForResult(i, 4);
+        DetailPersonActivity_.intent(getContext()).mPosition(position).mData(mData.get(position)).startForResult(4);
     }
 
     @Override

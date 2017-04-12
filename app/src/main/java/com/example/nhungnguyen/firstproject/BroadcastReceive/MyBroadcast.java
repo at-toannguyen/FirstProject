@@ -1,4 +1,4 @@
-package com.example.nhungnguyen.firstproject.Activities;
+package com.example.nhungnguyen.firstproject.BroadcastReceive;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,15 +7,17 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.Toast;
 
+import com.example.nhungnguyen.firstproject.Activities.MyApplication;
+import com.example.nhungnguyen.firstproject.Activities.PassReceiveActivity_;
+import com.example.nhungnguyen.firstproject.Activities.TestNotificationActivity;
+
+import org.androidannotations.annotations.EReceiver;
+
 
 public class MyBroadcast extends BroadcastReceiver {
     public static ConnectivityReceiverListener connectivityReceiverListener;
     public static String NAME = "com.example.nhungnguyen.firstproject.Activities.TestNotificationActivity";
-    public static String NAME1="com.example.nhungnguyen.firstproject.Receive";
-
-    public MyBroadcast() {
-        super();
-    }
+    public static String NAME1 = "com.example.nhungnguyen.firstproject.Receive";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -27,8 +29,8 @@ public class MyBroadcast extends BroadcastReceiver {
             context.startActivity(i);
         } else {
             if (intent.getAction().equals(NAME1)) {
-                Intent i1=new Intent(context,PassReceiveActivity.class);
-                i1.putExtra("from",intent.getStringExtra("send"));
+                Intent i1 = new Intent(context, PassReceiveActivity_.class);
+                i1.putExtra("from", intent.getStringExtra("send"));
                 context.startActivity(i1);
             } else {
                 ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -48,7 +50,7 @@ public class MyBroadcast extends BroadcastReceiver {
         return networkInfo != null && networkInfo.isConnectedOrConnecting();
     }
 
-    interface ConnectivityReceiverListener {
+    public interface ConnectivityReceiverListener {
         void onNetworkConnectionChanged(Boolean isConnect);
     }
 }
