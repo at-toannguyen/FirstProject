@@ -17,37 +17,33 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ProgressBar;
 
 
+import com.example.nhungnguyen.firstproject.Activities.DetailPersonActivity_;
 import com.example.nhungnguyen.firstproject.Adapters.TestLayoutRecyclerAdapter;
 import com.example.nhungnguyen.firstproject.Models.ItemList;
 
 import com.example.nhungnguyen.firstproject.Models.UserItem;
 import com.example.nhungnguyen.firstproject.R;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.ArrayList;
 import java.util.List;
-
-
+@EFragment(R.layout.fragment_recyclerview_layout)
 public class RecyclerViewFragment extends Fragment implements TestLayoutRecyclerAdapter.onItemClickListener {
     private LinearLayoutManager mLinearLayoutManager;
-    private RecyclerView mRecyclerView;
     private TestLayoutRecyclerAdapter mAdapter;
     private final List<ItemList> mData = new ArrayList<>();
     private final android.os.Handler mHandler = new android.os.Handler();
-    private ProgressBar mProgressBar;
     private static final String URL = "http://hinhnendepnhat.net/wp-content/uploads/2016/09/hinh-nen-girl-dep.jpg";
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_recyclerview_layout, container, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycleViewPersonalFrgm);
-        mProgressBar = (ProgressBar) view.findViewById(R.id.progressBarUserFrgm);
+    private static final int REQUESTCODE=3;
+    @ViewById(R.id.recycleViewPersonalFrgm)
+    RecyclerView mRecyclerView;
+    @ViewById(R.id.progressBarUserFrgm)
+    ProgressBar mProgressBar;
+    @AfterViews
+    void init(){
         mRecyclerView.setHasFixedSize(true);
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -57,6 +53,26 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
         mRecyclerView.setAdapter(mAdapter);
         loadMore();
     }
+//    @Nullable
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+//        return inflater.inflate(R.layout.fragment_recyclerview_layout, container, false);
+//    }
+//
+//    @Override
+//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycleViewPersonalFrgm);
+//        mProgressBar = (ProgressBar) view.findViewById(R.id.progressBarUserFrgm);
+//        mRecyclerView.setHasFixedSize(true);
+//        mLinearLayoutManager = new LinearLayoutManager(getActivity());
+//        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+//        createData();
+//        mAdapter = new TestLayoutRecyclerAdapter(mData, this, getActivity());
+//        mRecyclerView.setAdapter(mAdapter);
+//        loadMore();
+//    }
 
     private void createData() {
         String id;
@@ -135,27 +151,14 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
     public void onItemClick(int position) {
 //        Bundle b = new Bundle();
 //        b.putInt("position", position);
-//        Intent i = new Intent(getActivity(), DetailPersonActivity.class);
+//        Intent i = new Intent(getActivity(), DetailPersonActivity_.class);
 //        b.putParcelable("para", mData.get(position));
 //        i.putExtras(b);
-//        getActivity().startActivityForResult(i, 3)
-        RecyclerView.ViewHolder holder = mRecyclerView.findViewHolderForAdapterPosition(position);
-        if (holder instanceof TestLayoutRecyclerAdapter.UserViewHolder) {
-            TestLayoutRecyclerAdapter.UserViewHolder userViewHolder = (TestLayoutRecyclerAdapter.UserViewHolder) holder;
-            scaleAnimation(userViewHolder.mImgPerson);
+//        getActivity().startActivityForResult(i, 3);
+        DetailPersonActivity_.intent(getContext()).mPosition(position).mData((UserItem) mData.get(position)).startForResult(REQUESTCODE);
         }
 
-    }
 
-    private void scaleAnimation(View view) {
-        int[] img_coordinates = new int[2];
-        view.getLocationOnScreen(img_coordinates);
-        ScaleAnimation anim = new ScaleAnimation(5.3f, 1.0f, 5.3f, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        anim.setDuration(1000);
-        view.bringToFront();
-        view.startAnimation(anim);
-        Log.d("VVVV", "scaleAnimation: " + img_coordinates[0] + "--" + img_coordinates[1]);
-    }
 
     @Override
     public void onItemLongClick(int position) {

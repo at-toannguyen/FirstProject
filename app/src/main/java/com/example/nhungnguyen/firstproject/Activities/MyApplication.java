@@ -3,6 +3,7 @@ package com.example.nhungnguyen.firstproject.Activities;
 import android.app.Application;
 import android.util.Log;
 
+import com.example.nhungnguyen.firstproject.BroadcastReceive.MyBroadcast;
 import com.google.android.gms.maps.MapsInitializer;
 
 

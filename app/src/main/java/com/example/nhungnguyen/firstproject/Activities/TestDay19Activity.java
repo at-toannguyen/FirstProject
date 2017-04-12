@@ -15,30 +15,20 @@ import android.widget.TextView;
 import com.example.nhungnguyen.firstproject.R;
 import com.squareup.picasso.Picasso;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ItemSelect;
+import org.androidannotations.annotations.OptionsItem;
+import org.androidannotations.annotations.OptionsMenu;
+import org.androidannotations.annotations.OptionsMenuItem;
+import org.androidannotations.annotations.ViewById;
+@EActivity(R.layout.activity_test_day19)
+@OptionsMenu(R.menu.menu_test)
 public class TestDay19Activity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_day19);
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbarTest);
-        setSupportActionBar(mToolbar);
-        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_test, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    @ViewById(R.id.toolbarTest)
+    Toolbar mToolbar;
+    @OptionsItem({R.id.itemShowCustomDialog,R.id.itemShowDialog,R.id.itemShowFragmentDialog})
+    void itemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.itemShowDialog:
                 AlertDialog.Builder builder=new AlertDialog.Builder(this);
@@ -73,6 +63,16 @@ public class TestDay19Activity extends AppCompatActivity {
                 AlertDialog.Builder builder1=new AlertDialog.Builder(this);
 
         }
-        return super.onOptionsItemSelected(item);
+    }
+    @AfterViews
+    void init(){
+        setSupportActionBar(mToolbar);
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }

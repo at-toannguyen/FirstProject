@@ -8,22 +8,18 @@ import android.os.Bundle;
 
 
 import com.example.nhungnguyen.firstproject.Fragment.RecyclerViewFragment;
+import com.example.nhungnguyen.firstproject.Fragment.RecyclerViewFragment_;
 import com.example.nhungnguyen.firstproject.R;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
 
+@EActivity(R.layout.activity_test_fragment2)
 public class TestFragmentActivity extends AppCompatActivity {
     private final RecyclerViewFragment fragment = new RecyclerViewFragment();
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test_fragment2);
-        if (findViewById(R.id.frameContainer) != null) {
-            if (savedInstanceState == null) {
-                fragment.setArguments(getIntent().getExtras());
-                getSupportFragmentManager().beginTransaction().add(R.id.frameContainer, fragment).commit();
-            }
-        }
+    @AfterViews
+    void inti(){
+        getSupportFragmentManager().beginTransaction().add(R.id.frameContainer, RecyclerViewFragment_.builder().build()).commit();
     }
 
     @Override

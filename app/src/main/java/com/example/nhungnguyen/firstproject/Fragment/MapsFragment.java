@@ -13,6 +13,7 @@ import com.example.nhungnguyen.firstproject.Models.Markers;
 import com.example.nhungnguyen.firstproject.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -21,31 +22,34 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.PageSelected;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
+@EFragment(R.layout.activity_maps)
 public class MapsFragment extends Fragment implements AdapterPagerMap.ClickPagerMap {
     List<Markers> mData = new ArrayList<>();
     AdapterPagerMap mAdapter;
     private GoogleMap mMap;
-    private MapView mMapView;
     Marker mFMarker;
     final MarkerOptions markerOptions = new MarkerOptions();
-    private ViewPager mViewPager;
     private final List<Marker> mMarkers = new ArrayList<>();
-
-    @Nullable
-    @Override
-    public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.activity_maps, container, false);
-        mMapView = (MapView) view.findViewById(R.id.mapView);
-        mViewPager = (ViewPager) view.findViewById(R.id.viewPagerMap);
+    @ViewById(R.id.viewPagerMap)
+    ViewPager mViewPager;
+    @ViewById(R.id.mapView)
+    MapView mMapView;
+    @AfterViews
+    void init(){
         mData = loadData();
-        mAdapter = new AdapterPagerMap(view.getContext(), mData, this);
+        mAdapter = new AdapterPagerMap(getView().getContext(), mData, this);
         mViewPager.setAdapter(mAdapter);
-        mMapView.onCreate(savedInstanceState);
-        mMapView.getMapAsync(new OnMapReadyCallback() {
+        MapFragment supportMapFragment = MapFragment.newInstance();
+        getFragmentManager().beginTransaction().replace(R.id.mapView, supportMapFragment).commit();
+        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 mMap = googleMap;
@@ -63,8 +67,6 @@ public class MapsFragment extends Fragment implements AdapterPagerMap.ClickPager
                     }
                     Marker marker = mMap.addMarker(markerOptions);
                     mMarkers.add(marker);
-//                    mMarker.setPosition(new LatLng(mData.get(i).getItude(),mData.get(i).getLongitude()));
-//                    mMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
                 }
                 mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override
@@ -79,45 +81,21 @@ public class MapsFragment extends Fragment implements AdapterPagerMap.ClickPager
                 });
             }
         });
-
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                Markers item = mData.get(position);
-                mMarkers.get(position).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location_select));
-                for (int i = 0; i < mMarkers.size(); i++) {
-                    if (position == 0) {
-                        mMarkers.get(position).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location_select));
-                    }
-                    if(i!=position) {
-                        mMarkers.get(i).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-                    }
-                }
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(item.getItude(), item.getLongitude()), 16));
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-        return view;
     }
-//    private void setSelectedMarker(int pos){
-//        if (pos==-1){}else {
-//        markerOptions.position(new LatLng(mData.get(pos).getItude(), mData.get(pos).getLongitude()));
-//        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
-//        mMarkers.get(pos).remove();
-//        Marker marker = mMap.addMarker(markerOptions);
-//        mMarkers.add(marker);}
-//    }
-
+    @PageSelected(R.id.viewPagerMap)
+    void setmViewPager(int position){
+        Markers item = mData.get(position);
+        mMarkers.get(position).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location_select));
+        for (int i = 0; i < mMarkers.size(); i++) {
+            if (position == 0) {
+                mMarkers.get(position).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location_select));
+            }
+            if(i!=position) {
+                mMarkers.get(i).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location));
+            }
+        }
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(item.getItude(), item.getLongitude()), 16));
+    }
     private List<Markers> loadData() {
         mData.add(new Markers(16.0741042f, 108.233353f));
         mData.add(new Markers(16.0770811f, 108.2313433f));
@@ -130,31 +108,6 @@ public class MapsFragment extends Fragment implements AdapterPagerMap.ClickPager
         mData.add(new Markers(16.076211f, 108.235590f));
         return mData;
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mMapView.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mMapView.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mMapView.onDestroy();
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        mMapView.onLowMemory();
-    }
-
     @Override
     public void setOnClick(final int pos) {
 

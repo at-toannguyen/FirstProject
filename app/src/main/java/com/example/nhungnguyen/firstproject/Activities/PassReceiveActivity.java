@@ -6,13 +6,17 @@ import android.widget.TextView;
 
 import com.example.nhungnguyen.firstproject.R;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.ViewById;
+
+@EActivity(R.layout.activity_pass_receive)
 public class PassReceiveActivity extends AppCompatActivity {
-    private TextView mTvPassReceive;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pass_receive);
-        mTvPassReceive=(TextView) findViewById(R.id.tvPassReceive);
+    @ViewById(R.id.tvPassReceive)
+    TextView mTvPassReceive;
+    @AfterViews
+    void init(){
         mTvPassReceive.setText(getIntent().getStringExtra("from"));
     }
 }
