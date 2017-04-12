@@ -64,43 +64,44 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
 
     @Override
     public void onItemClick(int position) {
-//        Bundle b = new Bundle();
-//        b.putInt("position", position);
-//        Intent i = new Intent(TestLayoutActivity.this, DetailPersonActivity.class);
-//        b.putParcelable("para", mData.get(position));
-//        i.putExtras(b);
-//        startActivityForResult(i, 1);
-        DetailPersonActivity_.intent(this).mPosition(position).mData((UserItem) mData.get(position)).startForResult(REQUESTCODE1);
+        DetailPersonActivity_.intent(this).mPosition(position)
+                .mData((UserItem) mData.get(position))
+                .startForResult(REQUESTCODE1);
     }
 
     @Override
     public void onItemLongClick(int position) {
-        ChangeDbActivity_.intent(this).key(String.valueOf(position)).mData((UserItem) mData.get(position)).startForResult(REQUESTCODE2);
+        ChangeDbActivity_.intent(this)
+                .key(String.valueOf(position))
+                .mData((UserItem) mData.get(position))
+                .startForResult(REQUESTCODE2);
     }
 
-    @OnActivityResult(REQUESTCODE1)
-    void resultData(int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            Log.d("result", "onActivityResult: ");
-            UserItem test = data.getParcelableExtra("favor");
-            int position = data.getIntExtra("positionFavorite", -1);
-            Log.d("poi", "onActivityResult: " + position);
-            if (position != -1) {
-                mData.set(position, test);
-                mTestLayoutRecyclerAdapter.notifyDataSetChanged();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUESTCODE1) {
+            if (resultCode == RESULT_OK) {
+                Log.d("result", "onActivityResult: ");
+                UserItem test = data.getParcelableExtra("favor");
+
+                int position = data.getIntExtra("positionFavorite", -1);
+                Log.d("poi", "onActivityResult: " + position);
+                if (position != -1) {
+                    mData.set(position, test);
+                    mTestLayoutRecyclerAdapter.notifyDataSetChanged();
+                }
             }
         }
-    }
-
-    @OnActivityResult(REQUESTCODE2)
-    void resultDataDb(int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            UserItem changeDB = data.getParcelableExtra("db");
-            int poisition1 = data.getIntExtra("poisitiondb", -1);
-            mData.set(poisition1, changeDB);
-            mData = mDataBaseHealper.getAllUsers();
-            mRecyclerViewTestLayout.setAdapter(new TestLayoutRecyclerAdapter(mData, this, this));
-            mTestLayoutRecyclerAdapter.notifyDataSetChanged();
+        if (requestCode == REQUESTCODE2) {
+            if (resultCode == RESULT_OK) {
+                UserItem changeDB = data.getParcelableExtra("db");
+                int poisition1 = data.getIntExtra("poisitiondb", -1);
+                mData.set(poisition1, changeDB);
+                mData = mDataBaseHealper.getAllUsers();
+                mRecyclerViewTestLayout.setAdapter(new TestLayoutRecyclerAdapter(mData, this, this));
+                mTestLayoutRecyclerAdapter.notifyDataSetChanged();
+            }
         }
     }
 

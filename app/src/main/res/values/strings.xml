@@ -22,4 +22,6 @@
     <string name="show_dialog">ShowDialog</string>
     <string name="show_dialogfragment">ShowDialogFragment</string>
     <string name="title_activity_maps">Map</string>
+    <string name="username">abcd</string>
+    <string name="pass">1234</string>
 </resources>

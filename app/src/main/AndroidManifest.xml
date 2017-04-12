@@ -71,7 +71,7 @@
         <activity android:name=".Activities.ChangeDbActivity_" />
         <activity android:name=".Activities.TestFragmentViewPagerActivity_" />
         <activity android:name=".Activities.TestFragmentActivity_" />
-        <activity android:name=".Activities.BroadcastActivity111" />
+        <activity android:name=".Activities.BroadcastActivity111_" />
 
         <receiver android:name=".MyPhoneReceiver">
             <intent-filter>
@@ -79,7 +79,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".Activities.MyBroadcast"
+            android:name=".BroadcastReceive.MyBroadcast"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -94,8 +94,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.PassReceiveActivity" />
-        <activity android:name=".Activities.TestDay19Activity" />
+        <activity android:name=".Activities.PassReceiveActivity_" />
+        <activity android:name=".Activities.TestDay19Activity_" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -112,7 +112,7 @@
             android:name=".Activities.GGMapActivity_"
             android:label="@string/title_activity_maps" />
         <activity android:name=".Activities.AsyncTaskActivity_" />
-        <activity android:name=".Activities.APIActivity"/>
+        <activity android:name=".Activities.APIActivity_"/>
     </application>
 
 </manifest>

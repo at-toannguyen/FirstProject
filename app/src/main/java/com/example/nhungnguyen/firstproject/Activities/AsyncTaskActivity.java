@@ -67,9 +67,9 @@ public class AsyncTaskActivity extends AppCompatActivity {
     void setmDownloading() {
         if (!mDownloading.isShowing()) {
             mDownloading.show();
-            mDownloading.dismiss();
         }
         downloadImageFromURl(URL_DOWNLOAD);
+
     }
 
     private void init() {

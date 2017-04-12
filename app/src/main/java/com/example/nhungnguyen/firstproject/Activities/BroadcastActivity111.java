@@ -15,35 +15,27 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 
 import android.support.design.widget.Snackbar;
-import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
 import android.view.View;
-import android.widget.Button;
 
 import android.widget.TextView;
 
 
+import com.example.nhungnguyen.firstproject.BroadcastReceive.MyBroadcast;
 import com.example.nhungnguyen.firstproject.R;
 
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+
+@EActivity(R.layout.activity_broadcast)
 public class BroadcastActivity111 extends Activity implements MyBroadcast.ConnectivityReceiverListener {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_broadcast);
-        Button mBtnTest = (Button) findViewById(R.id.btnStart);
-        mBtnTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkConnection();
-            }
-        });
-
+    @Click(R.id.btnStart)
+    void checkConnect(){
+        checkConnection();
     }
 
     private void checkConnection() {
         boolean isConnect = MyBroadcast.isConnect();
-//        showSnack(isConnect);
         showNotification(isConnect);
     }
 
@@ -65,17 +57,11 @@ public class BroadcastActivity111 extends Activity implements MyBroadcast.Connec
     }
 
 
-//    @Override
-//    public void onNetworkConnectionChanged(Boolean isConnect) {
-//        showSnack(isConnect);
-//    }
 
     private void showNotification(boolean isConnect) {
         NotificationCompat.Builder builder;
         String data1 = "Connect Success";
         String data2 = "Connect Fail";
-//        BitmapDrawable b=(BitmapDrawable) findViewById(R.drawable.ic_warning);
-//        int requestID = (int) System.currentTimeMillis();
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         Intent notificationIntent = new Intent(this, TestNotificationActivity.class);
         if (isConnect) {
@@ -96,10 +82,8 @@ public class BroadcastActivity111 extends Activity implements MyBroadcast.Connec
                     .setSound(alarmSound);
             notificationIntent.putExtra("data", data2);
         }
-//        notificationIntent.setAction("myString"+requestID);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
-//        notificationIntent.setData(Uri.parse("myString"+requestID));
         builder.setContentIntent(contentIntent);
         // Add as notification
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

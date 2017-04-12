@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Click(R.id.btnTest7)
     void onClickBtn7() {
-        startActivity(new Intent(this, BroadcastActivity111.class));
+        startActivity(new Intent(this, BroadcastActivity111_.class));
     }
 
     @Click(R.id.btnSendData)
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Click(R.id.btnTest10)
     void onClickBtn10() {
-        startActivity(new Intent(this, TestDay19Activity.class));
+        startActivity(new Intent(this, TestDay19Activity_.class));
     }
 
     @Click(R.id.btnGGMap)
@@ -85,6 +85,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Click(R.id.btnAPI)
     void onClickBtnAPI() {
-        startActivity(new Intent(this, APIActivity.class));
+        startActivity(new Intent(this, APIActivity_.class));
     }
 }
