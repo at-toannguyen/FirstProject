@@ -4,9 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.nhungnguyen.firstproject.Fragment.RecyclerViewFragment;
 import com.example.nhungnguyen.firstproject.Fragment.RecyclerViewFragment_;
-import com.example.nhungnguyen.firstproject.Fragment.Test1Fragment;
 import com.example.nhungnguyen.firstproject.Fragment.Test1Fragment_;
 import com.example.nhungnguyen.firstproject.Fragment.Test3Fragment;
 

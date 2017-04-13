@@ -1,12 +1,7 @@
 package com.example.nhungnguyen.firstproject.Fragment;
 
 import android.app.Fragment;
-import android.support.annotation.Nullable;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.nhungnguyen.firstproject.Adapters.AdapterPagerMap;
 import com.example.nhungnguyen.firstproject.Models.Markers;
@@ -83,7 +78,7 @@ public class MapsFragment extends Fragment implements AdapterPagerMap.ClickPager
         });
     }
     @PageSelected(R.id.viewPagerMap)
-    void setmViewPager(int position){
+    void setPageSelectViewPager(int position){
         Markers item = mData.get(position);
         mMarkers.get(position).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location_select));
         for (int i = 0; i < mMarkers.size(); i++) {

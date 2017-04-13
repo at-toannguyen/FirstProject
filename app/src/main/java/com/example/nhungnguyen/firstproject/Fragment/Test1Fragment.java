@@ -2,16 +2,9 @@ package com.example.nhungnguyen.firstproject.Fragment;
 
 
 import android.content.Intent;
-import android.os.Bundle;
 
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-
-import com.example.nhungnguyen.firstproject.Activities.DetailPersonActivity;
 import com.example.nhungnguyen.firstproject.Activities.DetailPersonActivity_;
 import com.example.nhungnguyen.firstproject.Adapters.TestAdapterViewpager;
 import com.example.nhungnguyen.firstproject.Models.UserItem;

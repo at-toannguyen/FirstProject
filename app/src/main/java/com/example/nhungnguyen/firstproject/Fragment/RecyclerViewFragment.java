@@ -2,18 +2,11 @@ package com.example.nhungnguyen.firstproject.Fragment;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-
-import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
 import android.widget.ProgressBar;
 
 
@@ -53,26 +46,6 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
         mRecyclerView.setAdapter(mAdapter);
         loadMore();
     }
-//    @Nullable
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-//        return inflater.inflate(R.layout.fragment_recyclerview_layout, container, false);
-//    }
-//
-//    @Override
-//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycleViewPersonalFrgm);
-//        mProgressBar = (ProgressBar) view.findViewById(R.id.progressBarUserFrgm);
-//        mRecyclerView.setHasFixedSize(true);
-//        mLinearLayoutManager = new LinearLayoutManager(getActivity());
-//        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-//        mRecyclerView.setLayoutManager(mLinearLayoutManager);
-//        createData();
-//        mAdapter = new TestLayoutRecyclerAdapter(mData, this, getActivity());
-//        mRecyclerView.setAdapter(mAdapter);
-//        loadMore();
-//    }
 
     private void createData() {
         String id;
@@ -88,11 +61,6 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
             } else {
                 content = "Hi";
             }
-//            if (i % 3 == 0 || i == 1) {
-//                mData.add(new TitleItem("Group A"));
-//            } else {
-//                mData.add(new TitleItem("Group B"));
-//            }
 
             mData.add(new UserItem(id, person, age, content, URL));
         }
@@ -127,13 +95,6 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
                                 } else {
                                     content = "Hi";
                                 }
-//                                if (i % 3 == 0 || i == 1) {
-//                                    mData.add(new TitleItem("Group A"));
-//                                } else {
-//
-//                                    mData.add(new TitleItem("Group B"));
-//
-//                                }
                                 mData.add(new UserItem(id, person, age, content, URL));
                             }
                             mAdapter.notifyItemInserted(mData.size());
@@ -149,12 +110,6 @@ public class RecyclerViewFragment extends Fragment implements TestLayoutRecycler
 
     @Override
     public void onItemClick(int position) {
-//        Bundle b = new Bundle();
-//        b.putInt("position", position);
-//        Intent i = new Intent(getActivity(), DetailPersonActivity_.class);
-//        b.putParcelable("para", mData.get(position));
-//        i.putExtras(b);
-//        getActivity().startActivityForResult(i, 3);
         DetailPersonActivity_.intent(getContext()).mPosition(position).mData((UserItem) mData.get(position)).startForResult(REQUESTCODE);
         }
 
