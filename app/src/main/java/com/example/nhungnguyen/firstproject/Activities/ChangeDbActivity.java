@@ -11,7 +11,6 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -66,7 +65,6 @@ public class ChangeDbActivity extends AppCompatActivity {
     void init() {
         mDataBaseHelper=new DataBaseHelper(this);
         changeDataBse();
-        Log.d("ffffff", "init: "+key);
     }
 
     @Click(R.id.btnAdd)
@@ -134,7 +132,6 @@ public class ChangeDbActivity extends AppCompatActivity {
                         .centerCrop()
                         .fit()
                         .into(mImgUser);
-                Log.d("aaaaa", "onActivityResult: " + mPath);
             }
         }
     }

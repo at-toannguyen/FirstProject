@@ -2,13 +2,9 @@ package com.example.nhungnguyen.firstproject.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import com.example.nhungnguyen.firstproject.Adapters.TestLayoutRecyclerAdapter;
 import com.example.nhungnguyen.firstproject.Models.ItemList;
@@ -19,7 +15,6 @@ import com.example.nhungnguyen.firstproject.SQLite.DataBaseHelper;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
@@ -29,7 +24,6 @@ import java.util.List;
 public class TestLayoutActivity extends AppCompatActivity implements TestLayoutRecyclerAdapter.onItemClickListener {
     private List<ItemList> mData;
     private TestLayoutRecyclerAdapter mTestLayoutRecyclerAdapter;
-    private LinearLayoutManager mLayoutManager;
     private DataBaseHelper mDataBaseHealper;
     private static final String URL = "https://www.shareicon.net/data/48x48/2015/09/18/103158_user_512x512.png";
     private static final int REQUESTCODE1 = 1;
@@ -58,7 +52,7 @@ public class TestLayoutActivity extends AppCompatActivity implements TestLayoutR
         mData.addAll(mDataBaseHealper.getAllUsers());
         mTestLayoutRecyclerAdapter.notifyDataSetChanged();
         mRecyclerViewTestLayout.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerViewTestLayout.setLayoutManager(mLayoutManager);
     }
 

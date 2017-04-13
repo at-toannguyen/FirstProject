@@ -11,7 +11,6 @@ import com.example.nhungnguyen.firstproject.Activities.MyApplication;
 import com.example.nhungnguyen.firstproject.Activities.PassReceiveActivity_;
 import com.example.nhungnguyen.firstproject.Activities.TestNotificationActivity;
 
-import org.androidannotations.annotations.EReceiver;
 
 
 public class MyBroadcast extends BroadcastReceiver {

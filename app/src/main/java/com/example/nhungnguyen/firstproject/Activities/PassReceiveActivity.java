@@ -1,14 +1,12 @@
 package com.example.nhungnguyen.firstproject.Activities;
 
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.nhungnguyen.firstproject.R;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_pass_receive)

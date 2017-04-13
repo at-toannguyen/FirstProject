@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
 
 import android.support.v4.view.ViewPager;
 
@@ -13,7 +12,6 @@ import com.example.nhungnguyen.firstproject.R;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.PageSelected;
 import org.androidannotations.annotations.ViewById;
 

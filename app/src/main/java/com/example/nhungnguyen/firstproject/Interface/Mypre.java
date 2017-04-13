@@ -3,7 +3,6 @@ package com.example.nhungnguyen.firstproject.Interface;
 import com.example.nhungnguyen.firstproject.R;
 
 import org.androidannotations.annotations.sharedpreferences.DefaultRes;
-import org.androidannotations.annotations.sharedpreferences.DefaultString;
 import org.androidannotations.annotations.sharedpreferences.SharedPref;
 
 /**

@@ -1,32 +1,20 @@
 package com.example.nhungnguyen.firstproject.Activities;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nhungnguyen.firstproject.R;
 
-import org.androidannotations.annotations.AfterTextChange;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
-import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.EBean;
-import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.NonConfigurationInstance;
-import org.androidannotations.annotations.RootContext;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
@@ -36,15 +24,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Calendar;
-import java.util.Random;
 
 @EActivity(R.layout.activity_async_task)
 public class AsyncTaskActivity extends AppCompatActivity {
-    private final String URL_DOWNLOAD = "http://hd.wallpaperswide.com/thumbs/colorful_background_5-t2.jpg";
     private ProgressDialog mDownloading;
 
     private int mPercen;
@@ -68,6 +53,7 @@ public class AsyncTaskActivity extends AppCompatActivity {
         if (!mDownloading.isShowing()) {
             mDownloading.show();
         }
+        String URL_DOWNLOAD = "http://hd.wallpaperswide.com/thumbs/colorful_background_5-t2.jpg";
         downloadImageFromURl(URL_DOWNLOAD);
 
     }
@@ -81,12 +67,13 @@ public class AsyncTaskActivity extends AppCompatActivity {
     void downloadImageFromURl(String imageUrl) {
         int count;
         try {
+            String mpath="/sdcard/downloadedfile" + Calendar.getInstance().getTimeInMillis() + ".jpg";
             URL url = new URL(imageUrl);
             URLConnection connection = url.openConnection();
             connection.connect();
             int leghtOfFile = connection.getContentLength();
             InputStream inputStream = new BufferedInputStream(url.openStream(), 8192);
-            OutputStream outputStream = new FileOutputStream("/sdcard/downloadedfile" + Calendar.getInstance().getTimeInMillis() + ".jpg");
+            OutputStream outputStream = new FileOutputStream(mpath);
             byte data[] = new byte[1024];
             long total = 0;
             while ((count = inputStream.read(data)) != -1) {
@@ -101,6 +88,7 @@ public class AsyncTaskActivity extends AppCompatActivity {
             outputStream.flush();
             outputStream.close();
             inputStream.close();
+            resultUI(mpath);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,5 +97,12 @@ public class AsyncTaskActivity extends AppCompatActivity {
     @UiThread
     void updateUi() {
         mDownloading.setProgress(mPercen);
+    }
+    @UiThread
+    void resultUI(String mpath){
+        imgTest.setImageDrawable(Drawable.createFromPath(mpath));
+        mTvMess.setText("Download complete");
+        mDownloading.dismiss();
+        sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,Uri.fromFile(new File(mpath))));
     }
 }
